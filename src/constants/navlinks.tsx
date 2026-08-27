@@ -24,7 +24,7 @@ export const navlinks = [
     icon: IconBriefcase2,
   },
   {
-    href: "/playground",
+    href: "/experience",
     label: "演示",
     icon: IconSparkles,
   },
