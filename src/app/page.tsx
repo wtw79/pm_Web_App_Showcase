@@ -25,12 +25,6 @@ const navCards = [
     desc: "标的管理 / 控制台报价 / 副屏投屏 / 成交归档 / 报表 / 公式引擎",
   },
   {
-    href: "/playground",
-    icon: "🎬",
-    title: "视差演示",
-    desc: "基于 Motion 的多深度视差 Hero 组件，可作大屏欢迎页候选视觉",
-  },
-  {
     href: "/blog",
     icon: "📝",
     title: "技术文章",
