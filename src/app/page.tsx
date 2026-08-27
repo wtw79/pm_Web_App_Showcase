@@ -95,7 +95,7 @@ export default function Home() {
             </div>
           </div>
           <p className="mt-2 text-xs text-neutral-400 font-medium tracking-wide uppercase">
-            FIG.01 — Overview · 三主题控制台与投屏页 · 点击在线体验
+            FIG.01 — 控制台 · 起拍设置 / 竞价 / 操作面板 · 点击在线体验
           </p>
         </Link>
       </div>

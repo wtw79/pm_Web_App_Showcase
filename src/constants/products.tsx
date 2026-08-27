@@ -4,10 +4,10 @@ export const products = [
     title: "标的管理",
     description:
       "标的批量新增 / Excel 导入导出（13 列模板，可回导）/ 搜索分页 / 批量操作（删除·流拍·暂停·恢复·清空）。标的详情四页签：资料 / 媒体 / 键盘 / 历史报表。",
-    thumbnail: "/images/console-light.png",
+    thumbnail: "/images/lots.png",
     images: [
-      "/images/console-light.png",
-      "/images/console-light.png",
+      "/images/lots.png",
+      "/images/lots.png",
     ],
     stack: ["React", "SheetJS"],
     slug: "lots",
@@ -57,8 +57,8 @@ export const products = [
     title: "副屏投屏",
     description:
       "欢迎页（PDF / 图片轮播）与竞价页（2×2 大字卡 + 实时报价表）独立投放到不同物理显示器；Viewbox Uniform 等比缩放，任意分辨率无黑边。",
-    thumbnail: "/images/bigscreen-bid.png",
-    images: ["/images/bigscreen-bid.png", "/images/bigscreen-welcome.png"],
+    thumbnail: "/images/welcome.jpg",
+    images: ["/images/welcome.jpg", "/images/welcome.jpg"],
     stack: ["Electron", "pdfjs-dist"],
     slug: "projection",
     content: (
@@ -81,8 +81,8 @@ export const products = [
     title: "成交归档",
     description:
       "确认成交一键完成：Excel 成交报表生成 + 竞价页现场截图 + 按标的归档（文件名带时间戳）+ 台账登记，事后可查可溯。",
-    thumbnail: "/images/console-dark.png",
-    images: ["/images/console-dark.png", "/images/console-dark.png"],
+    thumbnail: "/images/archive.png",
+    images: ["/images/archive.png", "/images/archive.png"],
     stack: ["SheetJS", "Electron"],
     slug: "deal-archive",
     content: (
@@ -105,8 +105,8 @@ export const products = [
     title: "报表管理",
     description:
       "全局已结束标的列表 + 单标的完整报价记录（行级删除 / 已删除记录精确撤回 / 导出 Excel）。报表状态自动重算，杜绝历史数据残留错误。",
-    thumbnail: "/images/console-glass.png",
-    images: ["/images/console-glass.png", "/images/console-glass.png"],
+    thumbnail: "/images/reports.png",
+    images: ["/images/reports.png", "/images/reports.png"],
     stack: ["SheetJS", "Vitest"],
     slug: "reports",
     content: (
@@ -128,10 +128,10 @@ export const products = [
     title: "G4 公式引擎",
     description:
       "Cn4-Cn7 参数列按公式实时计算（单位地价 DD/C1、楼面地价 DD/C2、溢价率 (DD-C3)/C3×100 等），公式可配置，报价即算即显。",
-    thumbnail: "/images/bigscreen-welcome.png",
+    thumbnail: "/images/formula.png",
     images: [
-      "/images/bigscreen-welcome.png",
-      "/images/bigscreen-welcome.png",
+      "/images/formula.png",
+      "/images/formula.png",
     ],
     stack: ["Shunting-yard", "公式引擎"],
     slug: "formula-engine",
