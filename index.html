@@ -4,222 +4,309 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="拍卖竞价显示系统 — 面向拍卖师与现场操作员的桌面管理系统：标的管理、实时报价、副屏投屏、成交归档。在线体验纯 Web 演示版。">
-<title>拍卖竞价显示系统 · Auction Bid Console</title>
+<title>拍卖竞价显示系统 · Auction Bid Console — Marque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
-     DESIGN TOKENS — Aurora · 科技优雅 + 拍卖金
+     DESIGN TOKENS — Marque · Editorial Brand Book
+     深紫罗兰墨色 Ink / 层叠淡紫表面 Lavender / 靛蓝条纹 Signature
   ============================================================ */
   :root{
-    --bg-0:#070D17;            /* 最深底 */
-    --bg-1:#0B1524;            /* 页面底 */
-    --bg-2:#101D31;            /* 面板 */
-    --bg-3:#16263E;            /* 悬浮面板 */
-    --line:rgba(148,190,223,.14);
-    --line-2:rgba(148,190,223,.28);
-    --teal:#1A9AA6;            /* 品牌青绿 */
-    --teal-l:#5DCAA5;          /* 青绿亮 */
-    --teal-g:#33C3D0;
-    --gold:#E8C37B;            /* 拍卖金 */
-    --gold-l:#F6DCA8;
-    --text:#E8EEF5;
-    --text-2:#9FB2C8;
-    --text-3:#6C829E;
-    --grad-brand:linear-gradient(120deg,#5DCAA5 0%,#1A9AA6 45%,#2B6CB0 100%);
-    --grad-gold:linear-gradient(120deg,#F6DCA8,#E8C37B 55%,#C9974E);
-    --glass:rgba(16,29,49,.62);
-    --shadow-lg:0 24px 70px rgba(2,8,18,.6);
-    --r-lg:20px; --r-md:14px; --r-sm:10px;
+    --violet:#6D4AC4;          /* 紫罗兰 · 品牌强调 */
+    --violet-deep:#4B2E8F;     /* 深紫罗兰 · hover/渐变端点 */
+    --violet-ink:#1E1533;      /* 墨紫 · 深色装饰块 */
+    --indigo:#4338CA;          /* 靛蓝 · 条纹标记主色 */
+    --indigo-bright:#4F46E5;   /* 亮靛蓝 · 条纹渐变/焦点 */
+    --ink:#241A3F;             /* 深紫罗兰墨色 · 主文字 */
+    --ink-2:#5A5280;           /* 次级文字 */
+    --ink-3:#8B83B0;           /* 弱化/图注 */
+    --paper:#FBFAFE;           /* 页面纸面（近白淡紫） */
+    --lav-1:#F4F0FB;           /* 表面 1 · 面板 */
+    --lav-2:#ECE5F8;           /* 表面 2 · 悬浮 */
+    --surface:#FFFFFF;         /* 纯白容器 */
+    --line:#E3DCF2;            /* hairline 细线 */
+    --line-2:#CDC3E8;          /* 强调细线 */
+    --deal:#B42318;            /* 成交红（中文语义） */
+    --flow:#667085;            /* 流拍灰 */
+    --ok:#0E7A5F;
+    --shadow-sm:0 1px 2px rgba(36,26,63,.06);
+    --shadow-md:0 12px 34px rgba(36,26,63,.10);
+    --shadow-lg:0 28px 70px rgba(36,26,63,.16);
+    --fd:"Space Grotesk","Archivo","PingFang SC","Microsoft YaHei UI",system-ui,sans-serif;
+    --fb:"PingFang SC","Microsoft YaHei UI","Noto Sans SC",system-ui,sans-serif;
     --ease:cubic-bezier(.22,.9,.3,1);
   }
-  [data-theme="light"]{
-    --bg-0:#EAF2F6; --bg-1:#F4F8FB; --bg-2:#FFFFFF; --bg-3:#FFFFFF;
-    --line:rgba(14,124,134,.12); --line-2:rgba(14,124,134,.25);
-    --text:#152433; --text-2:#48607A; --text-3:#7C93AC;
-    --glass:rgba(255,255,255,.72);
-    --shadow-lg:0 24px 60px rgba(14,124,134,.16);
+  [data-theme="dark"]{
+    --violet:#8B6CE0; --violet-deep:#6D4AC4; --violet-ink:#0B0818;
+    --indigo:#6366F1; --indigo-bright:#818CF8;
+    --ink:#F4F0FC; --ink-2:#B9AFE0; --ink-3:#8F84BC;
+    --paper:#141021; --lav-1:#1C1631; --lav-2:#251D42;
+    --surface:#2A2148; --line:#342A5C; --line-2:#4A3E7A;
+    --deal:#F97066; --flow:#98A2B3; --ok:#32D583;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.35);
+    --shadow-md:0 12px 34px rgba(0,0,0,.45);
+    --shadow-lg:0 28px 70px rgba(0,0,0,.55);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   html,body{margin:0;padding:0}
   body{
-    font-family:'Microsoft YaHei UI','PingFang SC','Noto Sans SC',system-ui,sans-serif;
-    background:var(--bg-1);color:var(--text);line-height:1.65;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    font-family:var(--fb);background:var(--paper);color:var(--ink);
+    line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;
     transition:background .4s var(--ease),color .4s var(--ease);
+    /* 编辑式网格底纹：极淡 32px 细网格 */
+    background-image:
+      linear-gradient(rgba(36,26,63,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,26,63,.035) 1px, transparent 1px);
+    background-size:32px 32px;
   }
-  ::selection{background:rgba(26,154,166,.35);color:#fff}
+  [data-theme="dark"] body{background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px)}
+  ::selection{background:rgba(109,74,196,.22)}
   a{color:inherit}
-  /* ================= 粒子背景 ================= */
-  #bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.75}
-  [data-theme="light"] #bg{opacity:.45}
-  .cursor-glow{position:fixed;top:0;left:0;width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle,rgba(26,154,166,.14),transparent 60%);
-    transform:translate(-50%,-50%);pointer-events:none;z-index:1;
-    transition:opacity .5s var(--ease);will-change:transform}
-  @media(hover:none){.cursor-glow{display:none}}
-  /* ================= 顶部导航 ================= */
-  .topbar{position:sticky;top:0;z-index:100;backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
-    background:var(--glass);border-bottom:1px solid var(--line)}
-  .bar{max-width:1280px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:12px;height:62px}
-  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:16.5px;letter-spacing:.4px;white-space:nowrap}
-  .brand .logo{width:36px;height:36px;border-radius:11px;background:var(--grad-brand);display:grid;place-items:center;
-    color:#fff;font-size:17px;box-shadow:0 6px 18px rgba(26,154,166,.4);position:relative;overflow:hidden}
-  .brand .logo::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.5),transparent 60%);
-    transform:translateX(-120%);animation:sheen 4.5s ease infinite}
-  @keyframes sheen{20%,100%{transform:translateX(120%)}}
-  .brand small{color:var(--text-3);font-weight:500;font-size:12px;margin-left:2px}
-  .tabs{display:flex;gap:5px;margin-left:24px;padding:4px;border-radius:13px;background:rgba(148,190,223,.07);border:1px solid var(--line)}
-  .tab{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:10px;font-size:13.5px;font-weight:600;
-    color:var(--text-2);cursor:pointer;border:1px solid transparent;transition:all .28s var(--ease);user-select:none;white-space:nowrap}
-  .tab:hover{color:var(--text)}
-  .tab.on{background:var(--grad-brand);color:#fff;box-shadow:0 6px 18px rgba(26,154,166,.38)}
-  .tab.on small{color:rgba(255,255,255,.75)}
-  .bar .side{margin-left:auto;display:flex;align-items:center;gap:8px}
-  .icon-btn{width:38px;height:38px;border-radius:11px;border:1px solid var(--line-2);background:transparent;color:var(--text-2);
-    display:grid;place-items:center;cursor:pointer;font-size:16px;transition:all .25s var(--ease)}
-  .icon-btn:hover{color:var(--teal);border-color:var(--teal);transform:translateY(-1px)}
-  .gh{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:11px;text-decoration:none;font-size:13.5px;font-weight:600;
-    color:var(--text);border:1px solid var(--line-2);background:rgba(148,190,223,.06);transition:all .25s var(--ease)}
-  .gh:hover{border-color:var(--gold);color:var(--gold-l);transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,195,123,.15)}
-  /* ================= Tab 面板 ================= */
-  main{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:26px 22px 60px}
+
+  /* ============ 条纹签名标记 Signature Mark ============ */
+  .stripe{display:inline-block;vertical-align:middle;width:39px;height:22px;flex:none;
+    background:
+      linear-gradient(var(--indigo),var(--indigo))        0 0 / 6px 100% no-repeat,
+      linear-gradient(var(--indigo-bright),var(--indigo-bright)) 11px 0 / 6px 100% no-repeat,
+      linear-gradient(var(--violet),var(--violet))         22px 0 / 6px 100% no-repeat,
+      linear-gradient(var(--violet-deep),var(--violet-deep)) 33px 0 / 6px 100% no-repeat;
+    border-radius:2px}
+  .stripe-bar{height:4px;width:100%;border-radius:99px;
+    background:linear-gradient(90deg,var(--indigo),var(--indigo-bright) 30%,var(--violet) 68%,var(--violet-deep))}
+
+  /* ============ 书脊侧边文字（宽屏装饰） ============ */
+  .spine{position:fixed;left:16px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:center;
+    font-family:var(--fd);font-size:10px;font-weight:700;letter-spacing:.42em;color:var(--ink-3);opacity:.55;
+    text-transform:uppercase;z-index:60;pointer-events:none;white-space:nowrap}
+  @media(max-width:1180px){.spine{display:none}}
+
+  /* ============ 顶部导航 ============ */
+  .topbar{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--line);
+    transition:background .4s var(--ease);backdrop-filter:blur(10px)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  .bar{display:flex;align-items:center;gap:14px;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--fd);font-weight:700;font-size:16.5px;letter-spacing:.02em;white-space:nowrap}
+  .brand .nm{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--ink-3);margin-left:2px;text-transform:uppercase}
+  .tabs{display:flex;gap:2px;margin-left:20px}
+  .tab{display:flex;align-items:center;gap:8px;padding:9px 15px;border-radius:8px;font-size:13px;font-weight:600;
+    font-family:var(--fd);letter-spacing:.05em;color:var(--ink-2);cursor:pointer;border:1px solid transparent;
+    transition:all .25s var(--ease);user-select:none;white-space:nowrap}
+  .tab:hover{color:var(--ink);background:var(--lav-1)}
+  .tab.on{color:var(--violet);background:var(--lav-1);border-color:var(--line)}
+  .tab.on small{color:var(--violet)}
+  .tab small{font-size:10px;color:var(--ink-3);letter-spacing:.1em}
+  .bar .side{margin-left:auto;display:flex;align-items:center;gap:9px}
+  .icon-btn{width:38px;height:38px;border-radius:9px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);
+    display:grid;place-items:center;cursor:pointer;font-size:15px;transition:all .22s var(--ease);font-family:var(--fd)}
+  .icon-btn:hover{color:var(--violet);border-color:var(--violet);transform:translateY(-1px)}
+  .gh{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:9px;text-decoration:none;font-size:12.5px;font-weight:600;
+    font-family:var(--fd);letter-spacing:.04em;color:var(--ink);border:1px solid var(--line-2);transition:all .22s var(--ease)}
+  .gh:hover{border-color:var(--violet);color:var(--violet);transform:translateY(-1px)}
+
+  /* ============ Tab 面板 ============ */
+  main{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 28px 80px}
   .pane{display:none;animation:rise .45s var(--ease)}
   .pane.on{display:block}
-  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .pane-iframe{height:calc(100vh - 130px);min-height:600px;border-radius:var(--r-lg);overflow:hidden;position:relative;
-    border:1px solid var(--line-2);box-shadow:var(--shadow-lg);background:var(--bg-2)}
-  .pane-iframe::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
-    border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-  .pane-iframe iframe{width:100%;height:100%;border:none;display:block;background:#fff}
-  /* ================= Hero ================= */
-  .hero{position:relative;text-align:center;padding:64px 20px 40px;overflow:hidden}
-  .hero .halo{position:absolute;left:50%;top:44px;transform:translateX(-50%);width:min(900px,94%);
-    aspect-ratio:2.1/1;background:radial-gradient(50% 60% at 50% 40%,rgba(26,154,166,.28),rgba(43,108,176,.12) 55%,transparent 75%);
-    filter:blur(6px);pointer-events:none;animation:haloPulse 6s ease-in-out infinite}
-  [data-theme="light"] .hero .halo{opacity:.55}
-  @keyframes haloPulse{0%,100%{opacity:.8;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.04)}}
-  .badge-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;margin-bottom:20px}
-  .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:30px;font-size:12.5px;font-weight:600;letter-spacing:.6px;
-    border:1px solid var(--line-2);background:var(--glass);backdrop-filter:blur(8px);color:var(--text-2);animation:floatIn .7s var(--ease) both}
-  .pill b{color:var(--teal-l);font-weight:800}
-  .pill.gold{border-color:rgba(232,195,123,.4);color:var(--gold-l)}
-  .pill.gold b{color:var(--gold)}
-  @keyframes floatIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
-  .hero h1{position:relative;margin:0 0 12px;font-size:clamp(34px,6vw,62px);font-weight:900;letter-spacing:2px;line-height:1.14;
-    background:linear-gradient(120deg,#fff 0%,var(--teal-l) 40%,var(--gold-l) 100%);
-    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  [data-theme="light"] .hero h1{background:linear-gradient(120deg,#0A5F66,#1A9AA6 55%,#2B6CB0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .hero .typed{position:relative;font-size:clamp(15px,2.2vw,19px);color:var(--text-2);min-height:1.9em;max-width:760px;margin:0 auto 26px}
-  .hero .typed .caret{display:inline-block;width:2px;height:1.05em;background:var(--teal-l);vertical-align:-.2em;margin-left:2px;animation:blink .9s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
-  .hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;margin-bottom:44px}
-  .btn-x{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:14px;font-size:15.5px;font-weight:800;
-    cursor:pointer;border:none;font-family:inherit;letter-spacing:.5px;transition:all .3s var(--ease);text-decoration:none;position:relative;overflow:hidden}
-  .btn-x.go{background:var(--grad-brand);color:#fff;box-shadow:0 12px 34px rgba(26,154,166,.4)}
-  .btn-x.go::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.35),transparent 65%);transform:translateX(-130%);transition:transform .7s var(--ease)}
-  .btn-x.go:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(26,154,166,.5)}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .pane-iframe{height:calc(100dvh - 110px);min-height:600px;border-radius:16px;overflow:hidden;position:relative;
+    border:1px solid var(--line-2);box-shadow:var(--shadow-lg);background:var(--surface)}
+  .pane-iframe::before{content:"LOADING / 加载中…";position:absolute;inset:0;display:grid;place-items:center;
+    font-family:var(--fd);font-size:12px;letter-spacing:.2em;color:var(--ink-3);background:var(--lav-1);z-index:0}
+  .pane-iframe iframe{position:relative;z-index:1;width:100%;height:100%;border:none;display:block;background:var(--surface)}
+
+  /* ============ Hero — 超大展示字体 + 水印 + 几何装饰 ============ */
+  .hero{padding:104px 0 76px;position:relative;overflow:hidden}
+  /* 超大水印字 */
+  .hero .watermark{position:absolute;top:-30px;right:-16px;margin:0;font-family:var(--fd);font-weight:700;
+    font-size:clamp(180px,26vw,380px);line-height:1;letter-spacing:-.04em;color:var(--lav-2);user-select:none;pointer-events:none;z-index:0}
+  [data-theme="dark"] .hero .watermark{color:var(--lav-2)}
+  /* 几何装饰：圆环 + 旋转方框 */
+  .hero .deco{position:absolute;top:36px;right:10%;width:230px;height:230px;border:1px solid var(--line-2);border-radius:50%;pointer-events:none;z-index:0}
+  .hero .deco::before{content:"";position:absolute;inset:26px;border:1px solid var(--line);border-radius:50%}
+  .hero .deco::after{content:"";position:absolute;inset:52px;border:1px solid var(--violet);opacity:.5;transform:rotate(45deg);border-radius:6px;background:rgba(109,74,196,.05)}
+  .hero .kicker{display:flex;align-items:center;gap:14px;margin-bottom:30px;position:relative;z-index:1}
+  .hero .kicker .stripe{height:18px}
+  .hero .kicker span{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.22em;color:var(--indigo);text-transform:uppercase}
+  .hero .kicker .krule{flex:0 0 90px;height:1px;background:var(--line)}
+  .hero .kicker .issue{font-size:11px;color:var(--ink-3);letter-spacing:.14em}
+  .hero h1{position:relative;z-index:1;margin:0;font-family:var(--fd);font-weight:700;font-size:clamp(52px,9vw,128px);
+    line-height:.96;letter-spacing:-.03em;color:var(--ink);max-width:11em}
+  .hero h1 .hl{display:inline-block;position:relative}
+  .hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.085em;z-index:-1;
+    background:linear-gradient(90deg,var(--indigo),var(--violet));opacity:.16;border-radius:4px}
+  .hero .en{margin:18px 0 0;font-family:var(--fd);font-weight:500;font-size:clamp(15px,2vw,19px);
+    letter-spacing:.34em;color:var(--ink-3);text-transform:uppercase;position:relative;z-index:1}
+  .hero .en b{color:var(--indigo);font-weight:700}
+  .hero .lead{margin:36px 0 0;max-width:600px;font-size:clamp(15px,1.8vw,17px);color:var(--ink-2);line-height:1.9;position:relative;z-index:1}
+  .hero .lead b{color:var(--ink)}
+  .hero .btns{display:flex;gap:16px;flex-wrap:wrap;margin-top:44px;position:relative;z-index:1}
+  .btn-x{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:9px;font-size:14.5px;font-weight:700;
+    font-family:var(--fd);letter-spacing:.03em;cursor:pointer;border:none;transition:all .28s var(--ease);text-decoration:none;position:relative;overflow:hidden}
+  .btn-x.go{background:var(--indigo);color:#fff;box-shadow:var(--shadow-md)}
+  .btn-x.go::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 40%,rgba(255,255,255,.22),transparent 60%);transform:translateX(-130%);transition:transform .7s var(--ease)}
+  .btn-x.go:hover{background:var(--violet-deep);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
   .btn-x.go:hover::after{transform:translateX(130%)}
-  .btn-x.doc{background:rgba(232,195,123,.1);color:var(--gold-l);border:1px solid rgba(232,195,123,.45)}
-  .btn-x.doc:hover{background:rgba(232,195,123,.18);transform:translateY(-3px);box-shadow:0 14px 34px rgba(232,195,123,.18)}
-  /* ================= 统计条 ================= */
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
-  .stat{background:var(--glass);border:1px solid var(--line);border-radius:var(--r-md);padding:20px 14px;text-align:center;
-    backdrop-filter:blur(10px);transition:all .3s var(--ease);position:relative;overflow:hidden}
-  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-brand);opacity:0;transition:opacity .3s}
-  .stat:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow-lg)}
-  .stat:hover::before{opacity:1}
-  .stat .num{font-size:clamp(26px,4vw,40px);font-weight:900;line-height:1;background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variant-numeric:tabular-nums}
-  .stat.gold .num{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .stat .lbl{margin-top:8px;font-size:12.5px;color:var(--text-3);font-weight:600;letter-spacing:.4px}
-  /* ================= 区块标题 ================= */
-  .sec-head{display:flex;align-items:center;gap:14px;margin:54px 0 8px}
-  .sec-head .ico{width:42px;height:42px;border-radius:12px;background:var(--grad-brand);display:grid;place-items:center;font-size:20px;color:#fff;box-shadow:0 8px 22px rgba(26,154,166,.35);flex:none}
-  .sec-head h2{margin:0;font-size:clamp(21px,3vw,27px);font-weight:800;letter-spacing:.6px}
-  .sec-head .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--line-2),transparent)}
-  .sec-lead{color:var(--text-2);font-size:14.5px;max-width:820px;margin:0 0 24px}
-  /* ================= 总览图 ================= */
-  .overview{position:relative;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line-2);cursor:pointer;
-    box-shadow:var(--shadow-lg);background:#000;transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
-  .overview:hover{transform:translateY(-5px);box-shadow:0 34px 80px rgba(2,8,18,.7)}
-  .overview::after{content:"▶ 点击进入在线体验";position:absolute;inset:auto 0 0 0;padding:12px;text-align:center;font-size:13.5px;font-weight:700;color:#fff;
-    background:linear-gradient(0deg,rgba(4,10,20,.85),transparent);opacity:0;transition:opacity .35s var(--ease);letter-spacing:1px}
+  .btn-x.text{background:transparent;color:var(--violet);border-bottom:1.5px solid var(--violet);border-radius:0;padding:11px 4px}
+  .btn-x.text:hover{color:var(--violet-deep);border-color:var(--violet-deep)}
+  /* 统计条 — 编号条目感 */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:72px;position:relative;z-index:1}
+  .stat{position:relative;background:var(--lav-1);border:1px solid var(--line);border-radius:14px;padding:26px 20px 22px;
+    transition:all .3s var(--ease);overflow:hidden}
+  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--indigo),var(--violet));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+  .stat:hover{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--shadow-md)}
+  .stat:hover::before{transform:scaleX(1)}
+  .stat .num{font-family:var(--fd);font-weight:700;font-size:clamp(32px,4vw,46px);line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .stat .num em{font-style:normal;color:var(--violet);font-size:.58em;margin-left:2px}
+  .stat .lbl{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-3);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-family:var(--fd)}
+  .stat .lbl::before{content:"";width:14px;height:3px;background:linear-gradient(90deg,var(--indigo),var(--violet));border-radius:2px;flex:none}
+
+  /* ============ 章节结构 ============ */
+  section.ch{scroll-margin-top:90px}
+  .chapter{display:flex;align-items:center;gap:24px;margin:100px 0 14px;position:relative}
+  .chapter .no{font-family:var(--fd);font-weight:700;font-size:clamp(46px,6.5vw,74px);line-height:1;
+    letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.6px var(--line-2);flex:none;user-select:none}
+  .chapter .no i{font-style:normal;color:var(--indigo);-webkit-text-stroke:0;font-size:.34em;vertical-align:super;margin-left:2px}
+  .chapter .tt{display:flex;flex-direction:column;gap:2px}
+  .chapter .tt .tag{font-family:var(--fd);font-size:10.5px;font-weight:700;letter-spacing:.24em;color:var(--ink-3);text-transform:uppercase}
+  .chapter h2{margin:0;font-family:var(--fd);font-weight:700;font-size:clamp(30px,4.5vw,48px);line-height:1.08;letter-spacing:-.01em;color:var(--ink)}
+  .chapter .rule{flex:1;height:1px;background:var(--line);align-self:center}
+  .sec-lead{margin:0 0 36px;max-width:680px;color:var(--ink-2);font-size:14.5px;padding-left:0}
+  .sec-lead b{color:var(--ink)}
+
+  /* ============ Figure 截图 ============ */
+  .overview{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line-2);cursor:pointer;
+    box-shadow:var(--shadow-lg);background:var(--surface);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  .overview::after{content:"▸ 点击进入在线体验";position:absolute;inset:auto 0 0 0;padding:14px;text-align:center;
+    font-size:13px;font-weight:700;font-family:var(--fd);letter-spacing:.08em;color:#fff;
+    background:linear-gradient(0deg,rgba(36,26,63,.82),transparent);opacity:0;transition:opacity .3s var(--ease)}
+  .overview:hover{transform:translateY(-4px)}
   .overview:hover::after{opacity:1}
   .overview img{width:100%;display:block}
-  /* ================= 特性卡 3D Tilt ================= */
-  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;perspective:1200px}
-  .feat{position:relative;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;
-    transition:transform .18s ease-out,box-shadow .3s var(--ease),border-color .3s;transform-style:preserve-3d;will-change:transform;overflow:hidden}
-  .feat::before{content:"";position:absolute;inset:0;border-radius:inherit;background:
-    radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(26,154,166,.16),transparent 55%);opacity:0;transition:opacity .3s;pointer-events:none}
-  .feat:hover{transform:translateY(-4px) rotateX(2.2deg) rotateY(-2.2deg);border-color:var(--line-2);box-shadow:var(--shadow-lg)}
-  .feat:hover::before{opacity:1}
-  .feat .ico{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,rgba(26,154,166,.2),rgba(43,108,176,.16));
-    border:1px solid var(--line-2);display:grid;place-items:center;font-size:22px;margin-bottom:14px;transform:translateZ(22px);color:var(--teal-l)}
-  .feat.gold .ico{background:linear-gradient(135deg,rgba(232,195,123,.2),rgba(201,151,78,.14));color:var(--gold-l)}
-  .feat h3{font-size:15.5px;font-weight:800;margin:0 0 8px;letter-spacing:.3px;transform:translateZ(14px)}
-  .feat p{margin:0;font-size:13.5px;color:var(--text-2);line-height:1.75;transform:translateZ(8px)}
-  .feat .tag{position:absolute;top:16px;right:16px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;
-    background:rgba(26,154,166,.12);color:var(--teal-l);border:1px solid rgba(26,154,166,.25);letter-spacing:.5px}
-  /* ================= 技术栈 chips ================= */
+  .figcap{display:flex;align-items:center;gap:14px;margin-top:16px}
+  .figcap .fno{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.12em;color:#fff;
+    background:var(--indigo);border-radius:5px;padding:4px 10px;flex:none}
+  .figcap .frule{flex:1;height:1px;background:var(--line);border:none;margin:0}
+  .figcap .fdesc{font-family:var(--fd);font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase}
+
+  /* ============ 特性卡 ============ */
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .feat{position:relative;background:var(--lav-1);border:1px solid var(--line);border-radius:14px;padding:30px 24px 24px;
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;overflow:hidden}
+  .feat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--indigo),var(--indigo-bright) 40%,var(--violet) 80%,var(--violet-deep));
+    transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+  .feat:hover{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--shadow-md)}
+  .feat:hover::before{transform:scaleX(1)}
+  .feat .bno{position:absolute;top:14px;right:20px;font-family:var(--fd);font-weight:700;font-size:54px;line-height:1;
+    color:var(--lav-2);user-select:none;transition:color .3s var(--ease);letter-spacing:-.02em}
+  [data-theme="dark"] .feat .bno{color:var(--lav-2)}
+  .feat:hover .bno{color:rgba(109,74,196,.35)}
+  .feat .top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .feat .ico{width:44px;height:44px;border-radius:11px;border:1px solid var(--line-2);background:var(--surface);
+    display:grid;place-items:center;font-size:19px;color:var(--violet);font-family:var(--fd);font-weight:700;flex:none}
+  .feat .tag{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--indigo);text-transform:uppercase}
+  .feat h3{margin:0 0 8px;font-family:var(--fd);font-weight:700;font-size:clamp(17px,2vw,19px);color:var(--ink);letter-spacing:.01em}
+  .feat p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.85;position:relative;z-index:1}
+  .feat p b{color:var(--ink)}
+
+  /* ============ 技术栈 chips ============ */
   .stack{display:flex;flex-wrap:wrap;gap:11px}
-  .tech{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:30px;font-size:13.5px;font-weight:700;
-    color:var(--text-2);border:1px solid var(--line-2);background:var(--bg-2);transition:all .3s var(--ease);cursor:default}
-  .tech .dot{width:7px;height:7px;border-radius:50%;background:var(--teal-g);box-shadow:0 0 8px var(--teal-g)}
-  .tech:hover{color:var(--teal-l);border-color:var(--teal);transform:translateY(-3px);box-shadow:0 10px 26px rgba(26,154,166,.2)}
-  .tech:hover .dot{background:var(--gold);box-shadow:0 0 10px var(--gold)}
-  /* ================= 测试体系 ================= */
-  .qa{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:22px;align-items:center}
-  .ring-wrap{display:grid;place-items:center;gap:10px}
-  .ring{position:relative;width:178px;height:178px;border-radius:50%;display:grid;place-items:center}
+  .tech{display:inline-flex;align-items:center;gap:9px;padding:11px 19px;border-radius:999px;font-family:var(--fd);
+    font-size:13.5px;font-weight:600;letter-spacing:.03em;color:var(--ink-2);border:1px solid var(--line);
+    background:var(--lav-1);transition:all .28s var(--ease);cursor:default}
+  .tech .dot{width:7px;height:7px;border-radius:50%;background:var(--indigo-bright)}
+  .tech:hover{color:var(--violet);border-color:var(--violet);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+  .tech:hover .dot{background:var(--violet)}
+
+  /* ============ 质量保证 ============ */
+  .qa{display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:24px;align-items:center}
+  .ring-wrap{display:grid;place-items:center;gap:12px}
+  .ring{position:relative;width:188px;height:188px;border-radius:50%;display:grid;place-items:center}
   .ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
-  .ring .bgc{fill:none;stroke:rgba(148,190,223,.14);stroke-width:11}
-  .ring .fgc{fill:none;stroke:url(#ringGrad);stroke-width:11;stroke-linecap:round;
-    stroke-dasharray:502;stroke-dashoffset:502;transition:stroke-dashoffset 1.4s var(--ease)}
-  .ring .val{font-size:40px;font-weight:900;background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variant-numeric:tabular-nums}
-  .ring .cap{font-size:12px;color:var(--text-3);font-weight:700;letter-spacing:1px}
-  .qa-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-  .qa-card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-md);padding:18px}
-  .qa-card b{color:var(--teal-l);font-size:14px;display:block;margin-bottom:6px}
-  .qa-card p{margin:0;font-size:12.8px;color:var(--text-2);line-height:1.7}
-  /* ================= 导航卡 ================= */
+  .ring .bgc{fill:none;stroke:var(--line);stroke-width:12}
+  .ring .fgc{fill:none;stroke:url(#ringGrad);stroke-width:12;stroke-linecap:round;
+    stroke-dasharray:523;stroke-dashoffset:523;transition:stroke-dashoffset 1.4s var(--ease)}
+  .ring .val{font-family:var(--fd);font-weight:700;font-size:46px;color:var(--ink);font-variant-numeric:tabular-nums}
+  .ring .cap{font-family:var(--fd);font-size:11px;color:var(--ink-3);font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+  .qa-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .qa-card{background:var(--lav-1);border:1px solid var(--line);border-radius:14px;padding:22px 20px 18px;position:relative;overflow:hidden}
+  .qa-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--indigo),var(--violet))}
+  .qa-card b{color:var(--ink);font-size:14px;font-family:var(--fd);letter-spacing:.02em;display:block;margin-bottom:8px}
+  .qa-card p{margin:0;font-size:12.8px;color:var(--ink-2);line-height:1.8}
+
+  /* ============ 导航卡 ============ */
   .cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
-  .card3{position:relative;display:block;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;
+  .card3{position:relative;display:block;background:var(--lav-1);border:1px solid var(--line);border-radius:14px;padding:30px 24px 24px;
     text-decoration:none;transition:all .35s var(--ease);overflow:hidden}
-  .card3::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--grad-brand);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
-  .card3:hover{transform:translateY(-5px);border-color:var(--line-2);box-shadow:var(--shadow-lg)}
-  .card3:hover::after{transform:scaleX(1)}
-  .card3 h3{margin:0 0 8px;font-size:16px;font-weight:800}
-  .card3 p{margin:0;font-size:13px;color:var(--text-2)}
-  .card3 .u{display:block;margin-top:12px;font-size:12px;color:var(--teal-l);font-weight:600;letter-spacing:.4px}
-  .card3 .arrow{position:absolute;top:22px;right:20px;font-size:15px;color:var(--text-3);transition:all .3s var(--ease)}
-  .card3:hover .arrow{color:var(--gold-l);transform:translateX(4px)}
-  /* ================= 权益 ================= */
-  .callout{background:linear-gradient(135deg,rgba(232,195,123,.08),rgba(232,195,123,.03));border:1px solid rgba(232,195,123,.28);
-    border-left:4px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;font-size:13.8px;color:var(--text-2);line-height:1.8}
-  .callout strong{color:var(--gold-l)}
-  /* ================= 页脚 ================= */
-  footer{position:relative;z-index:2;margin-top:20px;background:linear-gradient(180deg,transparent,rgba(7,13,23,.9));
-    border-top:1px solid var(--line);text-align:center;padding:38px 20px;color:var(--text-3);font-size:13px}
-  [data-theme="light"] footer{background:linear-gradient(180deg,transparent,rgba(234,242,246,.9))}
-  footer a{color:var(--teal-l);text-decoration:none;margin:0 10px;transition:color .25s}
-  footer a:hover{color:var(--gold-l)}
-  /* ================= 回到顶部 ================= */
-  #toTop{position:fixed;right:24px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:13px;border:1px solid var(--line-2);
-    background:var(--glass);backdrop-filter:blur(10px);color:var(--teal-l);font-size:18px;cursor:pointer;
-    opacity:0;pointer-events:none;transform:translateY(12px);transition:all .35s var(--ease)}
+  .card3::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--indigo),var(--violet));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+  .card3:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--shadow-md)}
+  .card3:hover::before{transform:scaleX(1)}
+  .card3 .no{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--indigo);text-transform:uppercase;display:block;margin-bottom:12px}
+  .card3 h3{margin:0 0 8px;font-size:17px;font-family:var(--fd);font-weight:700;color:var(--ink)}
+  .card3 p{margin:0;font-size:13px;color:var(--ink-2)}
+  .card3 .u{display:block;margin-top:14px;font-family:var(--fd);font-size:12px;color:var(--violet);font-weight:600;letter-spacing:.05em}
+  .card3 .arrow{position:absolute;top:26px;right:22px;font-size:16px;color:var(--ink-3);transition:all .3s var(--ease)}
+  .card3:hover .arrow{color:var(--violet);transform:translateX(4px)}
+
+  /* ============ 权益声明 ============ */
+  .callout{background:var(--lav-1);border:1px solid var(--line);border-left:4px solid var(--indigo);
+    border-radius:0 14px 14px 0;padding:24px 28px;font-size:13.8px;color:var(--ink-2);line-height:1.9;position:relative}
+  .callout strong{color:var(--ink)}
+  .callout .clabel{display:block;font-family:var(--fd);font-size:10.5px;font-weight:700;letter-spacing:.24em;
+    color:var(--indigo);text-transform:uppercase;margin-bottom:10px}
+
+  /* ============ 页脚 · 封底 ============ */
+  footer{position:relative;z-index:2;margin-top:110px;background:var(--violet-ink);color:rgba(255,255,255,.6);
+    padding:64px 0 40px;overflow:hidden;transition:background .4s var(--ease)}
+  footer .stripe-bar{position:absolute;top:0;left:0}
+  footer .fwater{position:absolute;right:-10px;bottom:-46px;margin:0;font-family:var(--fd);font-weight:700;
+    font-size:clamp(120px,18vw,260px);line-height:1;letter-spacing:-.03em;color:rgba(255,255,255,.045);user-select:none;pointer-events:none}
+  footer .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;position:relative}
+  footer .f-brand{display:flex;align-items:center;gap:12px;font-family:var(--fd);font-weight:700;font-size:17px;color:#fff;margin-bottom:16px}
+  footer .f-brand .stripe{filter:brightness(1.3)}
+  footer .f-desc{font-size:13px;line-height:1.9;max-width:340px;color:rgba(255,255,255,.55)}
+  footer h4{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.22em;color:var(--indigo-bright);text-transform:uppercase;margin:0 0 16px}
+  footer .f-links{display:flex;flex-direction:column;gap:9px}
+  footer .f-links a{font-family:var(--fd);font-size:13px;letter-spacing:.04em;color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s,transform .2s}
+  footer .f-links a:hover{color:#fff;transform:translateX(3px)}
+  footer .f-links a .ix{color:var(--indigo-bright);margin-right:8px;font-size:11px}
+  footer .f-bottom{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11.5px;color:rgba(255,255,255,.42);letter-spacing:.05em;position:relative}
+  footer .f-bottom b{color:rgba(255,255,255,.7);font-weight:600}
+
+  /* ============ 回到顶部 ============ */
+  #toTop{position:fixed;right:26px;bottom:26px;z-index:90;width:46px;height:46px;border-radius:10px;border:1px solid var(--line-2);
+    background:var(--surface);color:var(--violet);font-family:var(--fd);font-size:17px;cursor:pointer;
+    opacity:0;pointer-events:none;transform:translateY(12px);transition:all .3s var(--ease);box-shadow:var(--shadow-md)}
   #toTop.show{opacity:1;pointer-events:auto;transform:none}
-  #toTop:hover{background:var(--grad-brand);color:#fff;border-color:transparent;box-shadow:0 10px 28px rgba(26,154,166,.4)}
-  /* ================= 滚动揭示 ================= */
-  .rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  #toTop:hover{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+
+  /* ============ 滚动揭示 ============ */
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
   .rv.on{opacity:1;transform:none}
-  /* ================= 响应式 ================= */
+
+  /* ============ 响应式 ============ */
   @media(max-width:960px){
-    .bar{flex-wrap:wrap;height:auto;padding:12px 14px;gap:10px}
-    .tabs{margin-left:0;width:100%;overflow-x:auto;scrollbar-width:none}
+    .bar{flex-wrap:wrap;height:auto;padding:14px 0;gap:10px}
+    .tabs{margin-left:0;width:100%;overflow-x:auto;scrollbar-width:none;display:flex}
     .tabs::-webkit-scrollbar{display:none}
-    .bar .side{margin-left:auto}
     .stats{grid-template-columns:repeat(2,1fr)}
     .qa{grid-template-columns:1fr}
+    .hero{padding:64px 0 48px}
+    section.ch .chapter{margin-top:72px}
+    .hero .deco{display:none}
+    footer .f-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:520px){
+    .stats{grid-template-columns:1fr 1fr}
+    .hero h1{font-size:clamp(44px,12vw,60px)}
+    .btns .btn-x{width:100%;justify-content:center}
+    footer .f-grid{grid-template-columns:1fr}
   }
   @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -227,72 +314,76 @@
 </style>
 </head>
 <body>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="cursor-glow" id="glow" aria-hidden="true"></div>
+<div class="spine" aria-hidden="true">PM System · Auction Bid Console · Vol. 02.2</div>
 
 <!-- ================= 顶部导航 + Tab ================= -->
 <header class="topbar">
-  <div class="bar">
-    <div class="brand"><span class="logo">拍</span>拍卖竞价显示系统<small>V2.2.00</small></div>
+  <div class="wrap bar">
+    <div class="brand"><span class="stripe" aria-hidden="true"></span>拍卖竞价显示系统<span class="nm">Vol. 2.2.00</span></div>
     <nav class="tabs" id="tabs" role="tablist">
-      <div class="tab on" role="tab" data-tab="readme">🏠 项目概览 <small>README</small></div>
-      <div class="tab" role="tab" data-tab="demo">🎮 在线体验</div>
-      <div class="tab" role="tab" data-tab="docs">📄 项目介绍</div>
+      <div class="tab on" role="tab" data-tab="readme">项目概览<small>01</small></div>
+      <div class="tab" role="tab" data-tab="demo">在线体验<small>02</small></div>
+      <div class="tab" role="tab" data-tab="docs">项目介绍<small>03</small></div>
     </nav>
     <div class="side">
-      <button class="icon-btn" id="themeBtn" title="切换明暗主题" aria-label="切换主题">🌙</button>
-      <a class="gh" href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener">🔗 GitHub</a>
+      <button class="icon-btn" id="themeBtn" title="切换明暗主题" aria-label="切换主题">☀️</button>
+      <a class="gh" href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
   </div>
 </header>
 
 <main>
-  <!-- ================= Tab 1 · README 概览 ================= -->
+  <!-- ================= Tab 1 · 项目概览 ================= -->
   <section class="pane on" id="pane-readme" role="tabpanel">
+
+    <!-- Hero -->
     <div class="hero">
-      <div class="halo"></div>
-      <div class="badge-row">
-        <span class="pill">◆ <b>Auction Bid Console</b></span>
-        <span class="pill">🏷 <b>V2.2.00</b></span>
-        <span class="pill gold">✦ 对齐 pm 桌面端业务</span>
-      </div>
-      <h1>拍卖竞价显示系统</h1>
-      <p class="typed" id="typed"><span id="typedText"></span><span class="caret"></span></p>
+      <p class="watermark" aria-hidden="true">AUC</p>
+      <div class="deco" aria-hidden="true"></div>
+      <div class="kicker"><span class="stripe" aria-hidden="true"></span><span>System Handbook</span><span class="krule"></span><span class="issue">Issue No. 02.2 — 2026</span></div>
+      <h1>拍卖竞价<br><span class="hl">显示系统</span></h1>
+      <p class="en">Auction <b>Bid</b> Console</p>
+      <p class="lead">面向拍卖师与现场操作员的桌面管理系统 —— 标的管理、实时报价、副屏投屏、成交归档。一次成交，自动成册。以<b>出版级编辑语法</b>呈现产品全貌。</p>
       <div class="btns">
-        <button class="btn-x go" data-goto="demo">🎮 在线体验系统</button>
-        <button class="btn-x doc" data-goto="docs">📄 查看项目介绍</button>
+        <button class="btn-x go" data-goto="demo">在线体验系统 →</button>
+        <button class="btn-x text" data-goto="docs">查看项目介绍</button>
       </div>
       <div class="stats rv">
         <div class="stat"><div class="num" data-count="88">0</div><div class="lbl">自动化测试用例</div></div>
         <div class="stat"><div class="num" data-count="3">0</div><div class="lbl">主题换肤</div></div>
-        <div class="stat gold"><div class="num" data-count="45">0</div><div class="lbl">报表每页轮次</div></div>
+        <div class="stat"><div class="num" data-count="45">0</div><div class="lbl">报表每页轮次</div></div>
         <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">核心特性</div></div>
       </div>
     </div>
 
-    <div class="rv">
-      <div class="sec-head"><span class="ico">🖼</span><h2>界面总览</h2><span class="ln"></span></div>
+    <!-- 01 界面总览 -->
+    <section class="ch rv">
+      <div class="chapter"><span class="no">01<i>§</i></span><div class="tt"><span class="tag">Overview · 总览</span><h2>界面总览</h2></div><span class="rule"></span></div>
       <p class="sec-lead">三主题控制台与投屏页真实渲染 —— 一张图看全部界面，点击直达在线体验。</p>
       <div class="overview" data-goto="demo" title="点击进入在线体验">
         <img src="docs/screenshots/overview.png" alt="系统界面总览">
       </div>
-    </div>
+      <div class="figcap"><span class="fno">FIG.01</span><hr class="frule"><span class="fdesc">三主题 · 控制台与投屏</span></div>
+    </section>
 
-    <div class="rv">
-      <div class="sec-head"><span class="ico">✨</span><h2>核心特性</h2><span class="ln"></span></div>
+    <!-- 02 核心特性 -->
+    <section class="ch rv">
+      <div class="chapter"><span class="no">02<i>§</i></span><div class="tt"><span class="tag">Features · 特性</span><h2>核心特性</h2></div><span class="rule"></span></div>
       <p class="sec-lead">面向拍卖现场高频交互场景设计，每个功能都有 88 个自动化用例护航。</p>
       <div class="feats" id="feats">
-        <div class="feat"><div class="ico">▤</div><span class="tag">LOTS</span><h3>标的管理</h3><p>批量新增 / 导入导出（Excel 13 列模板，可回导）/ 搜索分页 / 批量操作（删除/流拍/暂停/恢复/清空）</p></div>
-        <div class="feat"><div class="ico">$</div><span class="tag">BID</span><h3>实时报价</h3><p>应价 + 号牌双输入 · 内嵌软键盘（快速/默认双模式）· 报价校验（增价不低于起拍价 / 减价不高于）</p></div>
-        <div class="feat"><div class="ico">↺</div><span class="tag">UNDO</span><h3>撤回与撤销</h3><p>撤回上一手 · 删除任意行（精确撤销栈）· 重新开始（快照可恢复）</p></div>
-        <div class="feat gold"><div class="ico">✓</div><span class="tag">DEAL</span><h3>成交 / 流拍</h3><p>成交锁定领先记录（价/号牌/时间落库）· 成交前二次校验 · 状态机完整（未开始→进行中→暂停/成交/流拍）</p></div>
-        <div class="feat"><div class="ico">∑</div><span class="tag">FORMULA</span><h3>G4 公式引擎</h3><p>Cn4-Cn7 参数列实时计算（DD/C1、DD/(C1*C2) 等），公式可配置（对齐 pm Config.GongSh）</p></div>
-        <div class="feat"><div class="ico">▢</div><span class="tag">STAGE</span><h3>副屏投屏</h3><p>欢迎页（PDF/图片轮播）与竞价页（4 大字卡+报价表）独立投屏 · 多显示器 · 实时预览</p></div>
+        <div class="feat"><span class="bno" aria-hidden="true">01</span><div class="top"><span class="ico">▤</span><span class="tag">Lots</span></div><h3>标的管理</h3><p>批量新增 / 导入导出（Excel 13 列模板，可回导）/ 搜索分页 / 批量操作（删除·流拍·暂停·恢复·清空）</p></div>
+        <div class="feat"><span class="bno" aria-hidden="true">02</span><div class="top"><span class="ico">$</span><span class="tag">Bid</span></div><h3>实时报价</h3><p>应价 + 号牌双输入 · 内嵌软键盘（快速/默认双模式）· 报价校验（增价不低于起拍价 / 减价不高于）</p></div>
+        <div class="feat"><span class="bno" aria-hidden="true">03</span><div class="top"><span class="ico">↺</span><span class="tag">Undo</span></div><h3>撤回与撤销</h3><p>撤回上一手 · 删除任意行（精确撤销栈）· 重新开始（快照可恢复）</p></div>
+        <div class="feat"><span class="bno" aria-hidden="true">04</span><div class="top"><span class="ico">✓</span><span class="tag">Deal</span></div><h3>成交 / 流拍</h3><p>成交锁定领先记录（价/号牌/时间落库）· 成交前二次校验 · 状态机完整（未开始→进行中→暂停/成交/流拍）</p></div>
+        <div class="feat"><span class="bno" aria-hidden="true">05</span><div class="top"><span class="ico">∑</span><span class="tag">Formula</span></div><h3>G4 公式引擎</h3><p>Cn4-Cn7 参数列实时计算（DD/C1、DD/(C1·C2) 等），公式可配置（对齐 pm Config.GongSh）</p></div>
+        <div class="feat"><span class="bno" aria-hidden="true">06</span><div class="top"><span class="ico">▢</span><span class="tag">Stage</span></div><h3>副屏投屏</h3><p>欢迎页（PDF/图片轮播）与竞价页（4 大字卡 + 报价表）独立投屏 · 多显示器 · 实时预览</p></div>
       </div>
-    </div>
+    </section>
 
-    <div class="rv">
-      <div class="sec-head"><span class="ico">🛠</span><h2>技术栈</h2><span class="ln"></span></div>
+    <!-- 03 技术栈 -->
+    <section class="ch rv">
+      <div class="chapter"><span class="no">03<i>§</i></span><div class="tt"><span class="tag">Stack · 技术</span><h2>技术栈</h2></div><span class="rule"></span></div>
+      <p class="sec-lead">单仓库 · 双入口 · 三宿主兼容（Electron / WebView2 / 浏览器），纯 WASM 数据库免编译。</p>
       <div class="stack">
         <span class="tech"><span class="dot"></span>React 18</span>
         <span class="tech"><span class="dot"></span>Vite 5</span>
@@ -303,21 +394,22 @@
         <span class="tech"><span class="dot"></span>Vitest 4</span>
         <span class="tech"><span class="dot"></span>自研 Store</span>
       </div>
-    </div>
+    </section>
 
-    <div class="rv">
-      <div class="sec-head"><span class="ico">✅</span><h2>质量保证</h2><span class="ln"></span></div>
+    <!-- 04 质量保证 -->
+    <section class="ch rv">
+      <div class="chapter"><span class="no">04<i>§</i></span><div class="tt"><span class="tag">Quality · 质量</span><h2>质量保证</h2></div><span class="rule"></span></div>
       <div class="qa">
         <div class="ring-wrap">
           <div class="ring">
-            <svg viewBox="0 0 180 180" aria-hidden="true">
+            <svg viewBox="0 0 190 190" aria-hidden="true">
               <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#5DCAA5"/><stop offset="100%" stop-color="#1A9AA6"/>
+                <stop offset="0%" stop-color="#4338CA"/><stop offset="100%" stop-color="#6D4AC4"/>
               </linearGradient></defs>
-              <circle class="bgc" cx="90" cy="90" r="80"/>
-              <circle class="fgc" id="ringFg" cx="90" cy="90" r="80"/>
+              <circle class="bgc" cx="95" cy="95" r="83"/>
+              <circle class="fgc" id="ringFg" cx="95" cy="95" r="83"/>
             </svg>
-            <div><div class="val" data-count="100" data-suffix="%">0%</div><div class="cap">用例通过率</div></div>
+            <div style="text-align:center"><div class="val" data-count="100" data-suffix="%">0%</div><div class="cap">用例通过率</div></div>
           </div>
         </div>
         <div class="qa-cards">
@@ -326,38 +418,68 @@
           <div class="qa-card"><b>历史 Bug 回归</b><p>报表「轮次残留领先」重算 · 模板无幅度列继承默认 · 删除当前标的回未选态（activeId=null）</p></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="rv">
-      <div class="sec-head"><span class="ico">🧭</span><h2>快速导航</h2><span class="ln"></span></div>
+    <!-- 05 快速导航 -->
+    <section class="ch rv">
+      <div class="chapter"><span class="no">05<i>§</i></span><div class="tt"><span class="tag">Navigate · 导航</span><h2>快速导航</h2></div><span class="rule"></span></div>
       <div class="cards3">
-        <a class="card3" data-goto-card="demo" href="demo/"><span class="arrow">→</span><h3>🎮 在线体验</h3><p>浏览器打开即用的可运行系统：控制台报价、标的管理、系统设置、三主题、投屏演示。</p><span class="u">/demo/</span></a>
-        <a class="card3" data-goto-card="docs" href="docs/"><span class="arrow">→</span><h3>📄 项目介绍</h3><p>功能特性、技术栈、架构说明、测试体系、截图画廊、权益说明。</p><span class="u">/docs/</span></a>
-        <a class="card3" href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener"><span class="arrow">→</span><h3>🔗 GitHub 仓库</h3><p>README、LICENSE、权益保护声明；源代码与可执行程序不公开。</p><span class="u">github.com/wtw79/pm_Web_App_Showcase</span></a>
+        <a class="card3" data-goto-card="demo" href="demo/"><span class="arrow">→</span><span class="no">Page 01</span><h3>在线体验</h3><p>浏览器打开即用的可运行系统：控制台报价、标的管理、系统设置、三主题、投屏演示。</p><span class="u">/demo/</span></a>
+        <a class="card3" data-goto-card="docs" href="docs/"><span class="arrow">→</span><span class="no">Page 02</span><h3>项目介绍</h3><p>功能特性、技术栈、架构说明、测试体系、截图画廊、权益说明。</p><span class="u">/docs/</span></a>
+        <a class="card3" href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener"><span class="arrow">→</span><span class="no">Page 03</span><h3>GitHub 仓库</h3><p>README、LICENSE、权益保护声明；源代码与可执行程序不公开。</p><span class="u">github.com/wtw79/pm_Web_App_Showcase</span></a>
       </div>
-    </div>
+    </section>
 
-    <div class="rv">
-      <div class="sec-head"><span class="ico">🔒</span><h2>权益声明</h2><span class="ln"></span></div>
-      <div class="callout">📌 本仓库为<strong>项目展示仓库</strong>：含项目说明、界面截图、展示网页与<strong>纯 Web 演示版（编译产物）</strong>，不包含<strong>源代码</strong>（src/electron）、<strong>可执行程序</strong>（exe/安装包）等核心权益文件。演示版为构建后的静态产物，仅供功能体验，不构成对源代码的授权。如需业务合作、源码授权或定制开发，请通过 GitHub 联系作者。</div>
-    </div>
+    <!-- 06 权益声明 -->
+    <section class="ch rv">
+      <div class="chapter"><span class="no">06<i>§</i></span><div class="tt"><span class="tag">Legal · 权益</span><h2>权益声明</h2></div><span class="rule"></span></div>
+      <div class="callout"><span class="clabel">Notice — 声明</span>📌 本仓库为<strong>项目展示仓库</strong>：含项目说明、界面截图、展示网页与<strong>纯 Web 演示版（编译产物）</strong>，不包含<strong>源代码</strong>（src/electron）、<strong>可执行程序</strong>（exe/安装包）等核心权益文件。演示版为构建后的静态产物，仅供功能体验，不构成对源代码的授权。如需业务合作、源码授权或定制开发，请通过 GitHub 联系作者。</div>
+    </section>
   </section>
 
   <!-- ================= Tab 2 · 在线体验 ================= -->
   <section class="pane" id="pane-demo" role="tabpanel">
-    <div class="pane-iframe"><iframe id="frame-demo" data-src="demo/" title="在线体验系统" loading="lazy"></iframe></div>
+    <div class="pane-iframe"><iframe id="frame-demo" data-src="demo/index.html" title="在线体验系统" loading="lazy"></iframe></div>
   </section>
 
   <!-- ================= Tab 3 · 项目介绍 ================= -->
   <section class="pane" id="pane-docs" role="tabpanel">
-    <div class="pane-iframe"><iframe id="frame-docs" data-src="docs/" title="项目介绍" loading="lazy"></iframe></div>
+    <div class="pane-iframe"><iframe id="frame-docs" data-src="docs/index.html" title="项目介绍" loading="lazy"></iframe></div>
   </section>
 </main>
 
+<!-- ================= 页脚 · 封底 ================= -->
 <footer>
-  <p style="margin:0 0 8px">© 拍卖竞价显示系统 · V2.2.00 · 对齐 pm 桌面端业务</p>
-  <p style="margin:0 0 10px"><a href="demo/">在线体验</a> · <a href="docs/">项目介绍</a> · <a href="https://github.com/wtw79/pm_Web_App_Showcase">GitHub</a></p>
-  <p style="margin:0;font-size:12px;opacity:.65">远程仅含展示内容 · 源代码与可执行程序保留所有权利</p>
+  <div class="stripe-bar" aria-hidden="true"></div>
+  <p class="fwater" aria-hidden="true">AUCTION</p>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="f-brand"><span class="stripe" aria-hidden="true"></span>拍卖竞价显示系统 · Marque</div>
+        <p class="f-desc">以出版级编辑语法呈现的一件桌面工具 —— 标的管理、实时报价、副屏投屏、成交归档，一次成交，自动成册。</p>
+      </div>
+      <div>
+        <h4>Chapters · 章节</h4>
+        <div class="f-links">
+          <a href="#" data-goto="readme"><span class="ix">01</span>项目概览</a>
+          <a href="#" data-goto="demo"><span class="ix">02</span>在线体验</a>
+          <a href="#" data-goto="docs"><span class="ix">03</span>项目介绍</a>
+        </div>
+      </div>
+      <div>
+        <h4>Links · 链接</h4>
+        <div class="f-links">
+          <a href="demo/" target="_blank" rel="noopener"><span class="ix">↗</span>Demo /demo/</a>
+          <a href="docs/" target="_blank" rel="noopener"><span class="ix">↗</span>Docs /docs/</a>
+          <a href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener"><span class="ix">↗</span>GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© <b>Auction Bid Console</b> · V2.2.00 · 对齐 pm 桌面端业务</span>
+      <span>远程仅含展示内容 · 源代码与可执行程序保留所有权利</span>
+    </div>
+  </div>
 </footer>
 
 <button id="toTop" title="回到顶部" aria-label="回到顶部">↑</button>
@@ -367,7 +489,7 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ============ 1. Tab 切换（保留核心逻辑） ============ */
+  /* ============ 1. Tab 切换 ============ */
   var tabs = document.querySelectorAll('#tabs .tab');
   var panes = { readme: document.getElementById('pane-readme'), demo: document.getElementById('pane-demo'), docs: document.getElementById('pane-docs') };
   var frames = { demo: document.getElementById('frame-demo'), docs: document.getElementById('frame-docs') };
@@ -391,29 +513,12 @@
       if (n === 'demo' || n === 'docs') { e.preventDefault(); show(n); }
     });
   });
+  /* 页脚章节链接 */
+  document.querySelectorAll('footer [data-goto]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); show(el.getAttribute('data-goto')); });
+  });
 
-  /* ============ 2. 打字机 ============ */
-  var phrases = [
-    '面向拍卖师与现场操作员的桌面管理系统',
-    '标的批量管理 · 实时报价 · 副屏投屏 · 成交归档',
-    '三主题换肤 · 88 个自动化测试用例护航',
-    '纯 Web 演示版 —— 浏览器打开即用'
-  ];
-  var typedEl = document.getElementById('typedText');
-  var pi = 0, ci = 0, del = false;
-  if (reduce) { typedEl.textContent = phrases[0]; }
-  else {
-    (function tick() {
-      var cur = phrases[pi];
-      typedEl.textContent = cur.slice(0, ci);
-      if (!del && ci < cur.length) { ci++; setTimeout(tick, 65 + Math.random() * 60); }
-      else if (del && ci > 0) { ci--; setTimeout(tick, 28); }
-      else if (!del) { del = true; setTimeout(tick, 2100); }
-      else { del = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 320); }
-    })();
-  }
-
-  /* ============ 3. 数字滚动统计 ============ */
+  /* ============ 2. 数字滚动统计 ============ */
   function countUp(el) {
     var target = parseInt(el.getAttribute('data-count'), 10) || 0;
     var suffix = el.getAttribute('data-suffix') || '';
@@ -421,7 +526,7 @@
     function step(ts) {
       if (!t0) t0 = ts;
       var p = Math.min((ts - t0) / dur, 1);
-      var e = 1 - Math.pow(1 - p, 4); /* ease-out-quart */
+      var e = 1 - Math.pow(1 - p, 4);
       el.textContent = Math.round(target * e) + suffix;
       if (p < 1) requestAnimationFrame(step);
     }
@@ -438,18 +543,18 @@
   var statsBox = document.querySelector('.stats');
   if (statsBox) io.observe(statsBox);
 
-  /* ============ 4. 环形进度 ============ */
+  /* ============ 3. 环形进度 ============ */
   var ringIo = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       if (en.isIntersecting) {
         var fg = document.getElementById('ringFg');
-        var target = 502 * (1 - 1); /* 100% */
+        if (!fg) return;
         var t0 = null;
         (function anim(ts) {
           if (!t0) t0 = ts;
           var p = Math.min((ts - t0) / 1500, 1);
           var e = 1 - Math.pow(1 - p, 3);
-          fg.style.strokeDashoffset = 502 * (1 - e);
+          fg.style.strokeDashoffset = 523 * (1 - e);
           var v = document.querySelector('.ring .val');
           if (v && v.textContent !== '100%') v.textContent = Math.round(100 * e) + '%';
           if (p < 1) requestAnimationFrame(anim);
@@ -461,7 +566,7 @@
   var ringBox = document.querySelector('.ring');
   if (ringBox) ringIo.observe(ringBox);
 
-  /* ============ 5. 滚动揭示 ============ */
+  /* ============ 4. 滚动揭示 ============ */
   var rvIo = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       if (en.isIntersecting) { en.target.classList.add('on'); rvIo.unobserve(en.target); }
@@ -469,100 +574,25 @@
   }, { threshold: .12 });
   document.querySelectorAll('.rv').forEach(function (el) { rvIo.observe(el); });
 
-  /* ============ 6. 3D Tilt 特性卡 + 光晕跟随 ============ */
-  var feats = document.getElementById('feats');
-  if (feats && !reduce && window.matchMedia('(hover:hover)').matches) {
-    feats.addEventListener('mousemove', function (e) {
-      var card = e.target.closest('.feat');
-      if (!card) return;
-      var r = card.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-      card.style.setProperty('--mx', (px * 100) + '%');
-      card.style.setProperty('--my', (py * 100) + '%');
-      card.style.transform = 'translateY(-4px) rotateX(' + ((0.5 - py) * 5) + 'deg) rotateY(' + ((px - 0.5) * 5) + 'deg)';
-    });
-    feats.addEventListener('mouseleave', function (e) {
-      var card = e.target.closest('.feat');
-      if (card) card.style.transform = '';
-    });
-  }
-
-  /* ============ 7. 光标光晕 ============ */
-  var glow = document.getElementById('glow');
-  if (glow && !reduce && window.matchMedia('(hover:hover)').matches) {
-    var gx = -400, gy = -400;
-    document.addEventListener('mousemove', function (e) {
-      gx = e.clientX; gy = e.clientY;
-      glow.style.transform = 'translate(' + (gx - 260) + 'px,' + (gy - 260) + 'px)';
-    });
-  }
-
-  /* ============ 8. 粒子背景 ============ */
-  var canvas = document.getElementById('bg');
-  if (canvas && !reduce) {
-    var ctx = canvas.getContext('2d');
-    var W, H, parts = [], DPR = Math.min(window.devicePixelRatio || 1, 2);
-    var COLORS = ['26,154,166', '92,202,165', '43,108,176', '232,195,123'];
-    function resize() {
-      W = canvas.clientWidth; H = canvas.clientHeight;
-      canvas.width = W * DPR; canvas.height = H * DPR;
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    }
-    function build() {
-      parts = [];
-      var n = Math.min(64, Math.floor(W * H / 26000));
-      for (var i = 0; i < n; i++) {
-        parts.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.8 + .6,
-          vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22,
-          c: COLORS[Math.floor(Math.random() * COLORS.length)], a: Math.random() * .4 + .18 });
-      }
-    }
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      var i, j;
-      for (i = 0; i < parts.length; i++) {
-        var p = parts[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
-        if (p.y < -10) p.y = H + 10; if (p.y > H + 10) p.y = -10;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832);
-        ctx.fillStyle = 'rgba(' + p.c + ',' + p.a + ')'; ctx.fill();
-        for (j = i + 1; j < parts.length; j++) {
-          var q = parts[j];
-          var dx = p.x - q.x, dy = p.y - q.y, d2 = dx * dx + dy * dy;
-          if (d2 < 120 * 120) {
-            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = 'rgba(148,190,223,' + (0.1 * (1 - Math.sqrt(d2) / 120)) + ')';
-            ctx.lineWidth = 1; ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-    resize(); build(); draw();
-    var rt;
-    window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { resize(); build(); }, 220); });
-  }
-
-  /* ============ 9. 主题切换 ============ */
+  /* ============ 5. 主题切换（默认浅色 Marque） ============ */
   var themeBtn = document.getElementById('themeBtn');
   var saved = null;
-  try { saved = localStorage.getItem('auction-showcase-theme'); } catch (e) {}
-  var dark = saved ? saved === 'dark' : true;
+  try { saved = localStorage.getItem('marque-showcase-theme'); } catch (e) {}
+  var dark = saved ? saved === 'dark' : false;
   function apply() {
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     themeBtn.textContent = dark ? '☀️' : '🌙';
-    try { localStorage.setItem('auction-showcase-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    try { localStorage.setItem('marque-showcase-theme', dark ? 'dark' : 'light'); } catch (e) {}
   }
-  themeBtn.addEventListener('click', function () { dark = !dark; apply(); });
+  if (themeBtn) { themeBtn.addEventListener('click', function () { dark = !dark; apply(); }); }
   apply();
 
-  /* ============ 10. 回到顶部 ============ */
+  /* ============ 6. 回到顶部 ============ */
   var toTop = document.getElementById('toTop');
   window.addEventListener('scroll', function () {
     toTop.classList.toggle('show', (window.scrollY || document.documentElement.scrollTop) > 500);
   }, { passive: true });
-  toTop.addEventListener('click', function () {
+  if (toTop) toTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
   });
 })();

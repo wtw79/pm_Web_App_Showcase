@@ -1,0 +1,43 @@
+import { BlogLayout } from "@/components/BlogLayout";
+
+export const meta = {
+  date: "2026-08-20",
+  title: "Electron 架构升级：从 WebView2 混合到主进程权威态",
+  description:
+    "为什么最终选择 Electron 封装 Web 前端？主进程权威态、集中式 IPC 中转、投屏窗崩溃自动恢复与 sql.js 纯 WASM 数据库的架构取舍。",
+  image: "/images/console-dark.png",
+  tags: ["架构", "Electron"],
+};
+
+export default (props) => <BlogLayout meta={meta} {...props} />;
+
+拍卖竞价显示系统的 web 版最初计划采用薄 .NET 宿主 + WebView2 加载构建产物的路线，但实机验证时出现白屏（`ERR_CONNECTION_REFUSED`），根因是路径解析、WebView2 运行时与 dev-server fallback 三者叠加的脆弱链路。最终改用 **Electron 封装现有 Web 前端**，一次拿到多屏投屏、本地文件、真持久化与自动更新全套桌面能力。
+
+## 主进程权威态（Single Source of Truth）
+
+系统有主控制窗与两个投屏窗（竞价页 / 欢迎页），它们是独立的渲染进程。若让控制台兼任持久化与广播源头，多窗口写入必然产生冲突。因此主进程持有 `canonicalState` / `canonicalConfig` 作为唯一权威态：
+
+```text
+控制台 push-state
+  → db.persist(state)                  # SQL 落盘
+  → canonicalState = state             # 更新权威态
+  → broadcastToDisplays('state-sync')  # 广播所有投屏窗
+```
+
+投屏窗只读不回写：挂载时 `request-state` 回拉最新态，随后订阅 `state-sync` 实时刷新。崩溃重启后可立即回拉，状态不丢。
+
+## 配置即时通道（Config Hot Path）
+
+config 是小负载且变化频繁（主题、字号）。如果与整份 state 共用 300ms 防抖落盘通道，副屏要等 300ms 才响应。因此 config 单独走 `push-config`（50ms 防抖，仅内存广播不落盘），实现副屏"即改即现"，整库持久化仍由防抖的 `push-state` 负责。
+
+## 投屏窗崩溃自动恢复
+
+现场最怕"黑屏干等"。监听 `render-process-gone` 后 600ms 自动重建投屏窗（最多 3 次），连续崩溃则回发 `display-crashed` 通知控制台。窗口管理器统一登记所有窗口，创建 / 销毁 / 恢复集中管理。
+
+## sql.js：纯 WASM 的 SQLite
+
+选型 `sql.js` 而非 `better-sqlite3`：纯 WASM 无需 native 重编译，`asarUnpack` 确保 WASM 文件在打包后可访问。代价是需手动 `flush()` 落盘——本项目主进程单写者模型天然满足。表结构为 `kv`（键值）+ `targets`（标的 JSON）+ `media` / `deal_artifacts`（台账），增量 upsert + prune 兜底清理孤儿行。
+
+## 三宿主兼容
+
+`bridge.js` 统一抽象 Electron / WebView2 / 纯浏览器三种宿主，方法名刻意保持一致（`LoadState` / `OpenProjection` / `PickFile`…），业务代码完全感知不到运行环境——同一份前端，桌面端用真投屏与 SQLite，浏览器端自动降级为 `window.open` 与 localStorage。

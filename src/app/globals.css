@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+/*
+  Tailwind v4 defaults border color to currentColor.
+  Restore the v3 gray-200 default so bare `border` classes stay light.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, #e5e7eb);
+  }
+}
+
+@theme {
+  --color-primary: var(--color-neutral-700);
+  --color-secondary: var(--color-neutral-500);
+
+  /* 拍卖竞价显示系统 · 品牌青绿（对齐 pm 主色 #0E7C86） */
+  --color-brand: #0e7c86;
+  --color-brand-deep: #0a5f66;
+  --color-brand-light: #33c3d0;
+  --color-brand-soft: #e6f4f5;
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+}
+
+:root {
+  --neutral-500: var(--color-neutral-500);
+  --neutral-700: var(--color-neutral-700);
+}
+
+html {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei UI",
+    "Noto Sans SC",
+    sans-serif;
+}
