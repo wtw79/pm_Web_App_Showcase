@@ -7,6 +7,9 @@ import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
 import Image from "next/image";
 
+// GitHub Pages 子路径前缀（图片 src 手动拼接）
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 // 快速导航：把站点各入口整合到首页，形成"看介绍 → 看功能 → 体验 → 读文章"完整动线
 const navCards = [
   {
@@ -84,7 +87,7 @@ export default function Home() {
         <Link href="/experience" className="block group">
           <div className="relative rounded-xl overflow-hidden border border-neutral-200 shadow-sm group-hover:shadow-md transition-shadow">
             <Image
-              src="/images/overview.png"
+              src={`${BASE}/images/overview.png`}
               alt="系统界面总览"
               width={1280}
               height={720}

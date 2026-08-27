@@ -56,7 +56,7 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
             </AnimatePresence>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-20">
               <Image
-                src={blog.image}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${blog.image}`}
                 alt="thumbnail"
                 height={200}
                 width={200}

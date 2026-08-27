@@ -4,12 +4,14 @@ import Image from "next/image";
 
 import { motion } from "motion/react";
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function About() {
   const images = [
-    "/images/console-light.png",
-    "/images/bigscreen-bid.png",
-    "/images/console-dark.png",
-    "/images/bigscreen-welcome.png",
+    `${BASE}/images/console-light.png`,
+    `${BASE}/images/bigscreen-bid.png`,
+    `${BASE}/images/console-dark.png`,
+    `${BASE}/images/bigscreen-welcome.png`,
   ];
   return (
     <div>
