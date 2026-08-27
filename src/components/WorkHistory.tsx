@@ -14,11 +14,11 @@ export const WorkHistory = () => {
     <div>
       {timeline.map((item, index) => (
         <div
-          className="flex md:flex-row flex-col space-y-10 md:space-y-0 space-x-10 my-20 relative"
+          className="flex md:flex-row flex-col space-y-4 md:space-y-0 md:space-x-10 my-8 md:my-20 relative"
           key={`timeline-${index}`}
         >
           <Paragraph className="w-40">{item.date}</Paragraph>
-          <div>
+          <div className="flex-1 min-w-0">
             <Heading
               as="h5"
               className="text-lg md:text-lg lg:text-lg text-brand"

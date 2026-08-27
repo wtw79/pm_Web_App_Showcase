@@ -49,3 +49,30 @@ html {
     "Noto Sans SC",
     sans-serif;
 }
+
+/* 移动端基础：防止横向滚动 / 安全区适配 / 触控反馈 */
+html,
+body {
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+@media (min-width: 1024px) {
+  .safe-top {
+    padding-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

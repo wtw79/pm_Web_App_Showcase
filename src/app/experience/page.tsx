@@ -34,7 +34,7 @@ export default function ExperiencePage() {
           <iframe
             src={`${BASE}/demo/`}
             title="拍卖竞价显示系统 · 在线体验"
-            className="w-full h-[calc(100dvh-18rem)] min-h-[420px] md:min-h-[540px] border-0 bg-white"
+            className="w-full h-[calc(100dvh-16rem)] min-h-[60dvh] md:min-h-[540px] border-0 bg-white"
             loading="lazy"
           />
         </div>

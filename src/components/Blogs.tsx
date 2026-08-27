@@ -57,7 +57,7 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
               <img
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${blog.image}`}
                 alt={blog.title}
-                className="rounded-md object-cover h-40 w-60"
+                className="rounded-md object-cover h-40 w-full md:w-60"
               />
               <div className="flex flex-col col-span-3">
                 <Heading className="text-lg md:text-lg lg:text-lg">

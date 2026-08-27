@@ -14,7 +14,7 @@ export default function About() {
   ];
   return (
     <div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10 my-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10 my-10">
         {images.map((image, index) => (
           <motion.div
             key={image}
@@ -33,7 +33,7 @@ export default function About() {
             <img
               src={image}
               alt="系统界面"
-              className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-60 hover:rotate-0 transition duration-200"
+              className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-28 md:h-60 hover:rotate-0 transition duration-200"
             />
           </motion.div>
         ))}

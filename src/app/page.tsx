@@ -60,16 +60,16 @@ export default function Home() {
       </Paragraph>
 
       {/* CTA */}
-      <div className="flex flex-wrap gap-4 mt-8">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-8">
         <Link
           href="/experience"
-          className="inline-flex items-center gap-2 bg-slate-900 text-white text-sm font-semibold rounded-full px-6 py-3 hover:bg-brand transition-colors shadow-sm"
+          className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white text-sm font-semibold rounded-full px-6 py-3.5 hover:bg-brand transition-colors shadow-sm"
         >
           🎮 在线体验系统 →
         </Link>
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 border border-neutral-200 text-neutral-700 text-sm font-semibold rounded-full px-6 py-3 hover:border-brand hover:text-brand transition-colors"
+          className="inline-flex items-center justify-center gap-2 border border-neutral-200 text-neutral-700 text-sm font-semibold rounded-full px-6 py-3.5 hover:border-brand hover:text-brand transition-colors"
         >
           查看核心功能
         </Link>
@@ -101,12 +101,12 @@ export default function Home() {
       >
         快速导航
       </Heading>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
         {navCards.map((card) => (
           <Link
             key={card.title}
             href={card.href}
-            className="group bg-neutral-50 rounded-xl border border-neutral-100 p-5 hover:border-brand/40 hover:shadow-sm transition-all"
+            className="group bg-neutral-50 rounded-xl border border-neutral-100 p-4 md:p-5 hover:border-brand/40 hover:shadow-sm transition-all active:scale-[0.98]"
           >
             <div className="text-2xl">{card.icon}</div>
             <div className="mt-2 font-bold text-neutral-800 group-hover:text-brand transition-colors">
