@@ -1,0 +1,76 @@
+# ============================================================
+# 防御性 .gitignore（权益保护）
+# ============================================================
+# 本仓库为项目展示仓库（Showcase），仅含 README / 展示网页 / 截图 / LICENSE。
+# 源代码、可执行程序、构建产物等核心权益文件不得上传到本仓库的远程。
+#
+# 此 .gitignore 用于防御性拦截：
+#   1. 若开发仓库（pm_Web_App/）的文件被误拷入本仓库，git 将忽略它们
+#   2. 若开发者误将 src/ 等目录添加，本 .gitignore 会立即阻断
+# ============================================================
+
+# ===== 源代码（核心权益） =====
+src/
+electron/
+src/**
+
+#
+electron/**
+
+# ===== 构建产物 =====
+dist/
+build/
+release/
+out/
+
+# ===== 依赖与缓存 =====
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+
+# ===== Vite / 构建工具缓存 =====
+.vite/
+.turbo/
+.cache/
+
+# ===== 环境与密钥 =====
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# ===== 测试产物与报告 =====
+coverage/
+.nyc_output/
+*.log
+
+# ===== IDE 与 OS 临时文件 =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ===== 个人开发临时文件 =====
+_*.mjs
+_*.js
+_*.ts
+vite.config.js.timestamp-*.mjs
+
+# ===== 已构建的打包产物（exe / 压缩包） =====
+*.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+*.zip
+*.tar.gz
+
+# ===== 工具脚本临时输出 =====
+debug-*.log
+*.raw
+test-*.mjs

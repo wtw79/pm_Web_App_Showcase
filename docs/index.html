@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拍卖竞价显示系统 · Auction Bid Console</title>
+<style>
+  :root{
+    --teal-900:#0A5F66; --teal-700:#0E7C86; --teal-500:#1A9AA6;
+    --teal-100:#D8EEF0; --teal-50:#EAF4F5;
+    --accent:#C9956B;
+    --bg:#0E1420; --bg-2:#1A2540; --surface:#F7F5F0; --card:#FFFFFF;
+    --text:#1F2A33; --text-2:#5E6B75; --text-3:#8A949C; --border:#E2DDD3;
+    --shadow:0 4px 14px rgba(14,124,134,.1); --shadow-lg:0 18px 48px rgba(14,124,134,.18);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:'Microsoft YaHei UI','PingFang SC','Noto Sans SC',system-ui,sans-serif;color:var(--text);background:var(--surface);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .hero{background:linear-gradient(135deg,#0A5F66 0%,#0E7C86 50%,#1A9AA6 100%);color:#fff;padding:72px 24px 80px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 400px at 80% 0%,rgba(255,255,255,.08),transparent 60%);}
+  .hero .badge{display:inline-block;padding:6px 14px;border-radius:20px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);font-size:13px;letter-spacing:1px;margin-bottom:18px}
+  .hero h1{font-size:48px;font-weight:800;margin:0 0 14px;letter-spacing:1px;position:relative}
+  .hero .sub{font-size:18px;color:rgba(255,255,255,.85);max-width:760px;margin:0 auto 8px;position:relative}
+  .hero .meta{margin-top:24px;font-size:14px;color:rgba(255,255,255,.7);position:relative}
+  .hero .meta a{color:rgba(255,255,255,.9);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.5)}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  section{padding:72px 0}
+  section h2{font-size:32px;font-weight:800;margin:0 0 8px;color:var(--teal-900)}
+  section .lead{font-size:16px;color:var(--text-2);margin-bottom:36px;max-width:760px}
+  /* Features */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .feat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
+  .feat:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .feat .ico{width:42px;height:42px;border-radius:10px;background:var(--teal-50);color:var(--teal-700);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;margin-bottom:12px}
+  .feat h3{font-size:17px;font-weight:700;margin:0 0 8px;color:var(--teal-900)}
+  .feat p{margin:0;font-size:14px;color:var(--text-2);line-height:1.7}
+  /* Screenshots gallery */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:24px}
+  .shot{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
+  .shot:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .shot .frame{aspect-ratio:16/9.6;background:#F0F2F4;overflow:hidden;display:block}
+  .shot .frame img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot .cap{padding:14px 18px;font-size:14px;color:var(--text-2);border-top:1px solid var(--border);background:#FBFAF7}
+  .shot .cap b{color:var(--teal-900)}
+  /* Stack */
+  .stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+  .tech{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;transition:border-color .2s ease}
+  .tech:hover{border-color:var(--teal-500)}
+  .tech .name{font-weight:700;color:var(--teal-900);font-size:15px;margin-bottom:4px}
+  .tech .role{font-size:13px;color:var(--text-3)}
+  /* Architecture */
+  .arch{background:linear-gradient(135deg,#0E1420,#1A2540);color:#fff;border-radius:18px;padding:36px;font-family:'JetBrains Mono','Consolas',monospace;overflow-x:auto;box-shadow:var(--shadow-lg);font-size:14px;line-height:1.8}
+  .arch .key{color:#5DCAA5}
+  .arch .val{color:#FFB00000;font-weight:700}
+  .arch .dim{color:#A9B5C0}
+  .arch .accent{color:#1A9AA6}
+  /* About */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .about-grid p{color:var(--text-2);font-size:15px}
+  .callout{background:#FBF7F0;border-left:4px solid var(--accent);padding:16px 20px;border-radius:0 10px 10px 0;color:var(--text);font-size:14px}
+  .footer{background:#0E1420;color:#A9B5C0;padding:40px 24px;text-align:center;font-size:14px}
+  .footer a{color:#5DCAA5;text-decoration:none;margin:0 8px}
+  .footer p{margin:6px 0}
+  @media(max-width:760px){.hero h1{font-size:32px}.hero{padding:48px 20px}section{padding:48px 0}.about-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="badge">Auction Bid Console · V2.2.00</div>
+  <h1>拍卖竞价显示系统</h1>
+  <p class="sub">面向拍卖师与现场操作员的桌面管理系统 · 标的批量管理、实时报价、副屏投屏、成交归档</p>
+  <div class="meta">React 18 · Vite 5 · Electron 33 · sql.js · Vitest · 88 业务用例</div>
+</section>
+
+<!-- Overview -->
+<section>
+  <div class="wrap">
+    <h2>📖 项目简介</h2>
+    <p class="lead">拍卖会现场管理系统，提供从标的建档、实时报价、领先计算、成交确认、自动归档到副屏投屏展示的完整业务闭环。本项目是 pm（WPF 桌面端）的 Web/Electron 移植实现，业务逻辑严格对齐 pm，可作为独立产品运行。</p>
+  </div>
+</section>
+
+<!-- Features -->
+<section style="background:#FBFAF7">
+  <div class="wrap">
+    <h2>✨ 核心特性</h2>
+    <p class="lead">面向拍卖现场的高频交互场景设计，所有功能均已通过 88 个自动化测试用例覆盖。</p>
+    <div class="features">
+      <div class="feat"><div class="ico">▤</div><h3>标的管理</h3><p>批量新增 / 导入导出（Excel 13 列模板，可回导）/ 搜索分页 / 批量操作（删除/流拍/暂停/恢复/清空）</p></div>
+      <div class="feat"><div class="ico">$</div><h3>实时报价</h3><p>应价 + 号牌双输入 · 内嵌软键盘（快速/默认双模式）· 报价校验（增价不低于起拍价 / 减价不高于）</p></div>
+      <div class="feat"><div class="ico">↺</div><h3>撤回与撤销</h3><p>撤回上一手 · 删除任意行（精确撤销栈）· 重新开始（快照可恢复）</p></div>
+      <div class="feat"><div class="ico">✓</div><h3>成交 / 流拍</h3><p>成交锁定领先记录（价/号牌/时间落库）· 成交前二次校验 · 状态机（未开始→进行中→暂停/成交/流拍）</p></div>
+      <div class="feat"><div class="ico">∑</div><h3>G4 公式引擎</h3><p>Cn4-Cn7 参数列实时计算（DD/C1、DD/(C1*C2) 等），可配置公式（对齐 pm Config.GongSh）</p></div>
+      <div class="feat"><div class="ico">▢</div><h3>副屏投屏</h3><p>欢迎页（PDF/图片轮播）与竞价页（4 大字卡+报价表）独立投屏，多显示器支持，实时预览</p></div>
+      <div class="feat"><div class="ico">⚙</div><h3>三主题换肤</h3><p>Aurora 现代青绿（默认） / Obsidian 深空科技 / Glass 玻璃渐变 · 控制台+投屏同步</p></div>
+      <div class="feat"><div class="ico">▤</div><h3>成交归档</h3><p>《拍卖记录表》Excel（45 轮/页，多页分页）· 全部成交/流拍汇总 · 数据目录可配置</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshots -->
+<section>
+  <div class="wrap">
+    <h2>📸 界面预览</h2>
+    <p class="lead">三主题控制台与投屏窗真实渲染。控制台采用模块化布局（侧栏导航 + 主操作区 + 状态栏），投屏页全屏适配副屏分辨率。</p>
+    <div class="gallery">
+      <div class="shot"><a href="screenshots/console-light.png" target="_blank"><div class="frame"><img src="screenshots/console-light.png" alt="Aurora 控制台"></div></a><div class="cap"><b>Aurora 现代青绿 · 控制台</b><br>默认主题 · 标的详情、报价输入、操作面板</div></div>
+      <div class="shot"><a href="screenshots/console-dark.png" target="_blank"><div class="frame"><img src="screenshots/console-dark.png" alt="Obsidian 控制台"></div></a><div class="cap"><b>Obsidian 深空科技 · 控制台</b><br>深色霓虹风格，适合弱光拍卖厅</div></div>
+      <div class="shot"><a href="screenshots/console-glass.png" target="_blank"><div class="frame"><img src="screenshots/console-glass.png" alt="Glass 控制台"></div></a><div class="cap"><b>Glass 玻璃渐变 · 控制台</b><br>现代 AI 玻璃质感，多色渐变装饰</div></div>
+      <div class="shot"><a href="screenshots/bigscreen-bid.png" target="_blank"><div class="frame"><img src="screenshots/bigscreen-bid.png" alt="竞价投屏"></div></a><div class="cap"><b>竞价页投屏</b><br>4 大字卡（起拍价/号牌/幅度/最新应价）+ 报价表 · 自适应缩放防溢出</div></div>
+      <div class="shot"><a href="screenshots/bigscreen-welcome.png" target="_blank"><div class="frame"><img src="screenshots/bigscreen-welcome.png" alt="欢迎投屏"></div></a><div class="cap"><b>欢迎页投屏</b><br>PDF + 图片轮播 · 系统级单一背景</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Stack -->
+<section style="background:#FBFAF7">
+  <div class="wrap">
+    <h2>🛠 技术栈</h2>
+    <p class="lead">React 18 + Vite 5 双入口（控制台 + 投屏） · Electron 33 主进程模块化 · sql.js 持久化 · Vitest 测试。</p>
+    <div class="stack">
+      <div class="tech"><div class="name">React 18</div><div class="role">前端 UI</div></div>
+      <div class="tech"><div class="name">Vite 5</div><div class="role">构建与开发服务器</div></div>
+      <div class="tech"><div class="name">Electron 33</div><div class="role">桌面壳与 IPC</div></div>
+      <div class="tech"><div class="name">sql.js</div><div class="role">本地 SQL 持久化</div></div>
+      <div class="tech"><div class="name">SheetJS</div><div class="role">Excel 模板/报表</div></div>
+      <div class="tech"><div class="name">Vitest 4</div><div class="role">自动化测试</div></div>
+      <div class="tech"><div class="name">pdfjs-dist</div><div class="role">PDF 渲染</div></div>
+      <div class="tech"><div class="name">自研 Store</div><div class="role">状态 + 迁移兼容</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Architecture -->
+<section>
+  <div class="wrap">
+    <h2>🏗 架构说明</h2>
+    <p class="lead">单生产者模型：控制台是唯一状态生产者（持久化+广播），投屏窗只读，杜绝双窗口回环。主进程经 IPC 中转持久化（SQLite）与广播。</p>
+    <pre class="arch">
+<span class="dim">┌─────────────────┐  pushState / RELOAD   ┌──────────────────┐</span>
+<span class="dim">│</span>  <span class="key">控制台窗口</span>      <span class="dim">─────────────────────►</span>  <span class="dim">│</span>  <span class="accent">主进程(IPC)</span>      <span class="dim">│</span>
+<span class="dim">│</span> <span class="val">(persist=true)</span>  <span class="dim">◄─────────────────────</span>  <span class="dim">│</span>  <span class="accent">ipc-hub.cjs</span>    <span class="dim">│</span>
+<span class="dim">└─────────────────┘   broadcastToDisplays  └────────┬─────────┘</span>
+                                                  <span class="dim">│</span> <span class="key">状态落 SQL(sql.js) + 广播</span>
+                                     <span class="dim">┌────────────▼────────┐</span>
+                                     <span class="dim">│</span>   <span class="val">投屏窗(只读)</span>      <span class="dim">│</span>
+                                     <span class="dim">│</span>  bigscreen.html    <span class="dim">│</span>
+                                     <span class="dim">└─────────────────────┘</span>
+
+<span class="dim">─ 状态迁移兼容 ─</span>
+<span class="key">normalizeState</span>(s)  <span class="dim">→</span>  <span class="val">旧数据自动升级</span>
+  · 标题 8 字段 → 4 字段（欢迎/竞价共用）
+  · 背景多形态 → 系统级单一
+  · 删除当前标的 → <span class="key">activeId=null</span>（不回退第一个）</pre>
+  </div>
+</section>
+
+<!-- Testing -->
+<section style="background:#FBFAF7">
+  <div class="wrap">
+    <h2>✅ 质量保证</h2>
+    <p class="lead">88 个单元 + 集成测试用例覆盖报价逻辑、状态机、模板导入导出、状态迁移等业务规则。开发本地一键跑通。</p>
+    <div class="features">
+      <div class="feat"><div class="ico">①</div><h3>核心报价</h3><p>32 用例：校验、领先/出局状态机、撤回、删除行+撤销、重新开始、成交规则、报表状态重算</p></div>
+      <div class="feat"><div class="ico">②</div><h3>公式引擎</h3><p>11 用例：默认公式、优先级、除零、calcColumns</p></div>
+      <div class="feat"><div class="ico">③</div><h3>模板闭环</h3><p>12 用例：13 列模板导入（无幅度列继承默认）、拍卖方式识别、导出回导</p></div>
+      <div class="feat"><div class="ico">④</div><h3>状态兼容</h3><p>14 用例：标题合并、背景统一、公式回退、activeId 无效→null、reducer</p></div>
+      <div class="feat"><div class="ico">⑤</div><h3>业务闭环</h3><p>8 集成用例：竞价主流程（起拍→报价→领先→撤回/删除→重新开始→成交→报表）、减价、模板闭环</p></div>
+      <div class="feat"><div class="ico">⑥</div><h3>格式与工具</h3><p>12 用例：千分位、file:// 转换、时间戳</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section>
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <h2>🔒 关于开源与权益</h2>
+        <p>本仓库为<strong>项目展示仓库</strong>，仅含项目介绍、界面截图与展示网页，<strong>不包含源代码、可执行文件及任何核心权益文件</strong>。</p>
+        <p>代码与可执行程序作为核心知识产权保留，不随远程公开。如需业务合作、源码授权或定制开发，请通过下方方式联系。</p>
+        <div class="callout">
+          📌 <strong>权益保护声明</strong>：本仓库采用防御性 .gitignore 配置，对 src/、electron/、dist/、release/ 等目录与可执行产物默认不纳入版本控制；远程仓库仅承担项目展示功能，不构成对源代码的公开授权。
+        </div>
+      </div>
+      <div>
+        <h2>📄 许可与协议</h2>
+        <p>展示内容（README、文档、截图）采用 <strong>MIT License</strong> 开放。</p>
+        <p>源码与可执行程序保留所有权利，未经授权不得复制、分发或商业使用。</p>
+        <p style="margin-top:24px">
+          <a href="LICENSE" style="display:inline-block;padding:10px 20px;background:var(--teal-700);color:#fff;border-radius:8px;text-decoration:none;font-weight:700">查看 LICENSE</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <p>© 拍卖竞价显示系统 · V2.2.00 · 对齐 pm 桌面端业务</p>
+  <p><a href="#">项目主页</a> · <a href="https://github.com">GitHub</a></p>
+  <p style="margin-top:12px;font-size:12px;opacity:0.6">本仓库为项目展示 · 代码与可执行程序保留所有权利</p>
+</div>
+
+</body>
+</html>
