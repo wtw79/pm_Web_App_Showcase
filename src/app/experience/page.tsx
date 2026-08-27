@@ -34,13 +34,14 @@ export default function ExperiencePage() {
           <iframe
             src={`${BASE}/demo/`}
             title="拍卖竞价显示系统 · 在线体验"
-            className="w-full h-[calc(100dvh-15rem)] min-h-[540px] border-0 bg-white"
+            className="w-full h-[calc(100dvh-18rem)] min-h-[420px] md:min-h-[540px] border-0 bg-white"
             loading="lazy"
           />
         </div>
         <p className="mt-3 text-xs text-neutral-400 tracking-wide">
-          <Highlight>提示</Highlight> 若系统内打开「投屏窗」会以浏览器新窗口演示；
-          该演示即仓库 <code className="bg-neutral-100 px-1 rounded">/demo/</code> 静态产物。
+          <Highlight>提示</Highlight> 系统为桌面端设计，建议在电脑上体验完整效果；
+          若系统内打开「投屏窗」会以浏览器新窗口演示。该演示即仓库
+          <code className="bg-neutral-100 px-1 rounded">/demo/</code> 静态产物。
         </p>
       </div>
     </div>

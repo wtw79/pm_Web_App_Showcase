@@ -3,14 +3,14 @@
 > 面向拍卖师与现场操作员的桌面管理系统，提供标的批量管理、实时报价、副屏投屏、成交归档的完整业务闭环。  
 > 本项目为 pm（WPF 桌面端）的 Web/Electron 移植实现，业务逻辑严格对齐 pm。
 
-**👉 查看完整项目介绍与界面预览：[GitHub Pages 展示页](https://wtw79.github.io/pm_Web_App_Showcase/docs/)**
+**👉 唯一入口：[GitHub Pages 品牌站](https://wtw79.github.io/pm_Web_App_Showcase/)**
+（基于 Sidefolio 模板：首页 / 系统介绍 / 核心功能 / 视差演示 / 技术文章 / 系统总览 / 联系·权益 / 在线体验）
 
 ## 🎮 在线体验（纯 Web 演示版）
 
-**打开即用，无需安装：<https://wtw79.github.io/pm_Web_App_Showcase/demo/>**
+**打开即用，无需安装：<https://wtw79.github.io/pm_Web_App_Showcase/experience>**（站内页，Sidefolio 布局内嵌系统演示）
 
-演示版位于仓库 `demo/` 目录（构建产物静态托管），可从 GitHub Pages 首页
-（根目录 `index.html` = README 主入口）通过「🎮 在线体验」跳转进入。可直接体验系统核心功能：
+演示版位于仓库 `demo/` 目录（构建产物静态托管），可从品牌站「在线体验」进入（或直接访问 `/demo/`）。可直接体验系统核心功能：
 
 | 可体验功能 | 说明                                       |
 | ----- | ---------------------------------------- |

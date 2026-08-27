@@ -44,3 +44,4 @@ __next.*
 /out.prev-*
 _build.log
 _build.log
+_legacy/
