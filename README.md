@@ -3,18 +3,36 @@
 > 面向拍卖师与现场操作员的桌面管理系统，提供标的批量管理、实时报价、副屏投屏、成交归档的完整业务闭环。
 > 本项目为 pm（WPF 桌面端）的 Web/Electron 移植实现，业务逻辑严格对齐 pm。
 
-**👉 查看完整项目介绍与界面预览：[GitHub Pages 展示页](https://wtw79.github.io/pm_Web_App_Showcase/)**
+**👉 查看完整项目介绍与界面预览：[GitHub Pages 展示页](https://wtw79.github.io/pm_Web_App_Showcase/docs/)**
+
+## 🎮 在线体验（纯 Web 演示版）
+
+**打开即用，无需安装：https://wtw79.github.io/pm_Web_App_Showcase/**
+
+展示仓库根目录内置了**可运行的纯 Web 演示版**（浏览器静态托管），可直接体验系统核心功能：
+
+| 可体验功能 | 说明 |
+|---|---|
+| 控制台报价 | 标的详情、应价/号牌输入、软键盘、报价记录表、领先高亮 |
+| 标的管理 | 新增/导入/导出（Excel 模板）、搜索分页、批量操作 |
+| 系统设置 | 标题字体、表格列、公式、三主题切换（Aurora/Obsidian/Glass） |
+| 报表 | 报价记录、成交/流拍状态、报表导出 |
+| 投屏预览 | `bigscreen.html` 投屏窗（浏览器新窗口演示） |
+
+> ⚠️ **纯 Web 演示版说明**：浏览器环境下的 `bridge.js` 自动降级（localStorage 持久化 + window.open 投屏演示）。
+> Electron 专属能力（副屏物理投屏、SQLite 持久化、文件系统、托盘/自动更新）仅在桌面版可用。
+> 演示版数据保存在浏览器本地，刷新不丢失，仅供功能体验，不用于生产。
 
 ---
 
 ## ⚠️ 重要声明
 
-本仓库是**项目展示仓库（Showcase Repository）**，仅用于展示项目信息与界面截图：
+本仓库是**项目展示仓库（Showcase Repository）**，用于展示项目信息、界面截图与**在线可运行的演示版**：
 
-- ✅ 包含：项目说明、界面截图、展示网页、LICENSE、文档
-- ❌ 不包含：源代码、可执行文件、构建产物、配置密钥
+- ✅ 包含：项目说明、界面截图、展示网页、**纯 Web 演示版（构建产物）**、LICENSE
+- ❌ 不包含：**源代码**（src/）、**Electron 主进程**（electron/）、**可执行程序**（exe/安装包）
 
-**源代码与可执行程序作为核心知识产权保留**，不随远程公开。如需业务合作、源码授权或定制开发，请通过 GitHub 联系作者。
+**源代码与可执行程序作为核心知识产权保留**，不随远程公开。演示版为编译后的静态产物，仅供功能展示，不构成对源代码的授权。如需业务合作、源码授权或定制开发，请通过 GitHub 联系作者。
 
 ---
 
@@ -49,8 +67,11 @@ pm_Web_App_Showcase/
 ├── README.md              # 本文件（仓库主页）
 ├── LICENSE                 # MIT（展示内容协议）
 ├── .gitignore              # 防御性：拦截敏感文件（src/、electron/、dist/、release/ 等）
-└── docs/                   # GitHub Pages 静态网站根
-    ├── index.html          # 完整展示页
+├── index.html              # 🎮 纯 Web 演示版入口（GitHub Pages 根目录 = 在线体验系统）
+├── bigscreen.html          # 投屏窗（演示）
+├── assets/                 # 演示版静态资源（编译产物，非源码）
+└── docs/                   # GitHub Pages 项目介绍站
+    ├── index.html          # 展示页（介绍 + 截图 + 技术栈 + 架构 + 权益）
     └── screenshots/        # 项目界面截图
 ```
 

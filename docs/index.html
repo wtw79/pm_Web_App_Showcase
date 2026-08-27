@@ -23,6 +23,10 @@
   .hero .sub{font-size:18px;color:rgba(255,255,255,.85);max-width:760px;margin:0 auto 8px;position:relative}
   .hero .meta{margin-top:24px;font-size:14px;color:rgba(255,255,255,.7);position:relative}
   .hero .meta a{color:rgba(255,255,255,.9);text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.5)}
+  .cta{margin-top:28px;position:relative}
+  .cta a{display:inline-block;padding:14px 34px;border-radius:12px;background:#fff;color:var(--teal-900);font-size:17px;font-weight:800;text-decoration:none;box-shadow:0 8px 26px rgba(0,0,0,.22);transition:transform .2s ease,box-shadow .2s ease}
+  .cta a:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(0,0,0,.3)}
+  .cta .hint{margin-top:10px;font-size:13px;color:rgba(255,255,255,.65)}
   .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
   section{padding:72px 0}
   section h2{font-size:32px;font-weight:800;margin:0 0 8px;color:var(--teal-900)}
@@ -70,6 +74,10 @@
   <div class="badge">Auction Bid Console · V2.2.00</div>
   <h1>拍卖竞价显示系统</h1>
   <p class="sub">面向拍卖师与现场操作员的桌面管理系统 · 标的批量管理、实时报价、副屏投屏、成交归档</p>
+  <div class="cta">
+    <a href="../">🎮 在线体验（纯 Web 演示版）</a>
+    <div class="hint">浏览器打开即用 · 无需安装 · 演示版不含源代码</div>
+  </div>
   <div class="meta">React 18 · Vite 5 · Electron 33 · sql.js · Vitest · 88 业务用例</div>
 </section>
 
@@ -178,8 +186,8 @@
     <div class="about-grid">
       <div>
         <h2>🔒 关于开源与权益</h2>
-        <p>本仓库为<strong>项目展示仓库</strong>，仅含项目介绍、界面截图与展示网页，<strong>不包含源代码、可执行文件及任何核心权益文件</strong>。</p>
-        <p>代码与可执行程序作为核心知识产权保留，不随远程公开。如需业务合作、源码授权或定制开发，请通过下方方式联系。</p>
+        <p>本仓库为<strong>项目展示仓库</strong>，含项目介绍、界面截图、展示网页与<strong>纯 Web 演示版（编译产物）</strong>，<strong>不包含源代码、可执行文件及任何核心权益文件</strong>。</p>
+        <p>代码与可执行程序作为核心知识产权保留，不随远程公开。演示版为构建后的静态产物，仅供功能体验，不构成对源代码的授权。如需业务合作、源码授权或定制开发，请通过下方方式联系。</p>
         <div class="callout">
           📌 <strong>权益保护声明</strong>：本仓库采用防御性 .gitignore 配置，对 src/、electron/、dist/、release/ 等目录与可执行产物默认不纳入版本控制；远程仓库仅承担项目展示功能，不构成对源代码的公开授权。
         </div>
