@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拍卖竞价显示系统 · Auction Bid Console</title>
+<style>
+  :root{
+    --teal-900:#0A5F66;--teal-700:#0E7C86;--teal-500:#1A9AA6;--teal-300:#5DCAA5;--teal-100:#D8EEF0;--teal-50:#EAF4F5;
+    --surface:#F7F5F0;--card:#fff;--border:#E2DDD3;--text:#1F2A33;--text-2:#5E6B75;--text-3:#8A949C;
+    --shadow:0 4px 14px rgba(14,124,134,.1);--shadow-lg:0 18px 48px rgba(14,124,134,.18);
+    --grad:linear-gradient(135deg,#0A5F66 0%,#0E7C86 50%,#1A9AA6 100%);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;height:100%}
+  body{font-family:'Microsoft YaHei UI','PingFang SC','Noto Sans SC',system-ui,sans-serif;color:var(--text);background:var(--surface);line-height:1.6;-webkit-font-smoothing:antialiased}
+  /* ===== 顶部导航 + Tab 条 ===== */
+  .topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);box-shadow:0 2px 12px rgba(14,124,134,.06)}
+  .bar{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:14px;height:58px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;color:var(--teal-900);letter-spacing:.3px;white-space:nowrap}
+  .brand .logo{width:34px;height:34px;border-radius:9px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:var(--shadow)}
+  .brand small{color:var(--text-3);font-weight:400;font-size:12px;margin-left:2px}
+  .tabs{display:flex;gap:6px;margin-left:26px}
+  .tab{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:10px;font-size:14px;font-weight:600;color:var(--text-2);cursor:pointer;border:1px solid transparent;transition:all .2s ease;user-select:none;white-space:nowrap}
+  .tab:hover{background:var(--teal-50);color:var(--teal-700)}
+  .tab.on{background:var(--grad);color:#fff;box-shadow:0 4px 14px rgba(14,124,134,.35)}
+  .bar .gh{margin-left:auto;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:10px;text-decoration:none;font-size:13.5px;font-weight:600;color:var(--text-2);border:1px solid var(--border);transition:all .2s ease;white-space:nowrap}
+  .bar .gh:hover{background:var(--teal-50);border-color:var(--teal-500);color:var(--teal-700)}
+  /* ===== Tab 面板 ===== */
+  main{max-width:1280px;margin:0 auto;padding:22px 24px 40px}
+  .pane{display:none;animation:fadeIn .25s ease}
+  .pane.on{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  /* iframe 面板：全高切换（应用内切换体验） */
+  .pane-iframe{height:calc(100vh - 130px);min-height:560px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border);background:#fff}
+  .pane-iframe iframe{width:100%;height:100%;border:none;display:block}
+  /* ===== README 概览面板内容 ===== */
+  .hero{background:var(--grad);color:#fff;border-radius:20px;padding:52px 40px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);margin-bottom:26px}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 300px at 85% 0%,rgba(255,255,255,.12),transparent 60%)}
+  .hero .badge{display:inline-block;padding:5px 14px;border-radius:20px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);font-size:13px;letter-spacing:1px;margin-bottom:14px}
+  .hero h1{font-size:40px;font-weight:800;margin:0 0 10px;letter-spacing:1px}
+  .hero .sub{font-size:16px;color:rgba(255,255,255,.85);max-width:720px;margin:0 auto 22px}
+  .hero .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero .btns button{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;border:none;font-family:inherit;transition:transform .2s ease,box-shadow .2s ease}
+  .hero .btns .go{background:#fff;color:var(--teal-900);box-shadow:0 8px 24px rgba(0,0,0,.22)}
+  .hero .btns .doc{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.4)}
+  .hero .btns button:hover{transform:translateY(-2px)}
+  .overview{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border);background:#000;cursor:pointer;transition:transform .2s ease}
+  .overview:hover{transform:translateY(-2px)}
+  .overview img{width:100%;display:block}
+  h2.sec{font-size:24px;font-weight:800;margin:38px 0 6px;color:var(--teal-900);display:flex;align-items:center;gap:8px}
+  h2.sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--teal-100),transparent)}
+  .lead{font-size:14.5px;color:var(--text-2);margin:0 0 20px;max-width:780px}
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .feat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
+  .feat:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .feat .ico{width:40px;height:40px;border-radius:10px;background:var(--teal-50);color:var(--teal-700);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin-bottom:12px}
+  .feat h3{font-size:15px;font-weight:700;margin:0 0 6px;color:var(--teal-900)}
+  .feat p{margin:0;font-size:13.5px;color:var(--text-2)}
+  .stack{display:flex;flex-wrap:wrap;gap:10px}
+  .tech{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--teal-700);box-shadow:var(--shadow)}
+  .cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .card3{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow);text-decoration:none;color:var(--text);transition:transform .2s ease,box-shadow .2s ease;display:block}
+  .card3:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .card3 h3{margin:0 0 8px;font-size:16px;color:var(--teal-900)}
+  .card3 p{margin:0;font-size:13.5px;color:var(--text-2)}
+  .card3 .u{display:block;margin-top:10px;font-size:12px;color:var(--teal-500);word-break:break-all}
+  .callout{background:#FBF7F0;border-left:4px solid #C9956B;padding:16px 20px;border-radius:0 12px 12px 0;font-size:14px;margin-top:14px}
+  .note-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .note{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:13.5px;color:var(--text-2);line-height:1.7}
+  .note b{color:var(--teal-900)}
+  .footer{text-align:center;color:var(--text-3);font-size:13px;padding:30px 20px;border-top:1px solid var(--border);background:#0E1420;color:#A9B5C0}
+  .footer a{color:#5DCAA5;text-decoration:none;margin:0 8px}
+  .footer p{margin:6px 0}
+  @media(max-width:900px){.bar{flex-wrap:wrap;height:auto;padding:10px 16px;gap:8px}.tabs{margin-left:0;width:100%;overflow-x:auto}.bar .gh{margin-left:auto}.hero{padding:38px 22px}.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+
+<!-- ===== 顶部导航 + Tab ===== -->
+<header class="topbar">
+  <div class="bar">
+    <div class="brand"><span class="logo">拍</span>拍卖竞价显示系统<small>V2.2.00</small></div>
+    <nav class="tabs" id="tabs">
+      <div class="tab on" data-tab="readme">🏠 项目概览 <small style="opacity:.7">README</small></div>
+      <div class="tab" data-tab="demo">🎮 在线体验</div>
+      <div class="tab" data-tab="docs">📄 项目介绍</div>
+    </nav>
+    <a class="gh" href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener">🔗 GitHub</a>
+  </div>
+</header>
+
+<main>
+  <!-- ===== Tab 1 · README 概览 ===== -->
+  <section class="pane on" id="pane-readme">
+    <div class="hero">
+      <div class="badge">Auction Bid Console · Showcase</div>
+      <h1>拍卖竞价显示系统</h1>
+      <p class="sub">面向拍卖师与现场操作员的桌面管理系统 · 标的批量管理、实时报价、副屏投屏、成交归档</p>
+      <div class="btns">
+        <button class="go" data-goto="demo">🎮 在线体验系统</button>
+        <button class="doc" data-goto="docs">📄 查看项目介绍</button>
+      </div>
+    </div>
+
+    <div class="overview" data-goto="demo" title="点击进入在线体验">
+      <img src="docs/screenshots/overview.png" alt="系统界面总览">
+    </div>
+
+    <h2 class="sec">✨ 核心特性</h2>
+    <div class="feats">
+      <div class="feat"><div class="ico">▤</div><h3>标的管理</h3><p>批量新增 / 导入导出（Excel 13 列模板，可回导）/ 搜索分页 / 批量操作（删除/流拍/暂停/恢复/清空）</p></div>
+      <div class="feat"><div class="ico">$</div><h3>实时报价</h3><p>应价 + 号牌双输入 · 内嵌软键盘（快速/默认双模式）· 报价校验（增价不低于起拍价 / 减价不高于）</p></div>
+      <div class="feat"><div class="ico">↺</div><h3>撤回与撤销</h3><p>撤回上一手 · 删除任意行（精确撤销栈）· 重新开始（快照可恢复）</p></div>
+      <div class="feat"><div class="ico">✓</div><h3>成交 / 流拍</h3><p>成交锁定领先记录（价/号牌/时间落库）· 成交前二次校验 · 状态机完整</p></div>
+      <div class="feat"><div class="ico">∑</div><h3>G4 公式引擎</h3><p>Cn4-Cn7 参数列实时计算（DD/C1、DD/(C1*C2) 等），可配置公式（对齐 pm Config.GongSh）</p></div>
+      <div class="feat"><div class="ico">▢</div><h3>副屏投屏</h3><p>欢迎页（PDF/图片轮播）与竞价页（4 大字卡+报价表）独立投屏 · 多显示器 · 实时预览</p></div>
+    </div>
+
+    <h2 class="sec">🛠 技术栈</h2>
+    <div class="stack">
+      <span class="tech">React 18</span><span class="tech">Vite 5</span><span class="tech">Electron 33</span>
+      <span class="tech">sql.js</span><span class="tech">SheetJS</span><span class="tech">pdfjs-dist</span>
+      <span class="tech">Vitest 4 · 88 用例</span><span class="tech">自研 Store（迁移兼容）</span>
+    </div>
+
+    <h2 class="sec">✅ 质量保证</h2>
+    <div class="note-grid">
+      <div class="note"><b>单元测试（82 用例）</b><br>报价逻辑 32 · 公式引擎 11 · 格式化 12 · 模板解析 9 · 报表 4 · 状态迁移 14 —— 覆盖报价校验/状态机/成交规则/模板导入导出/迁移兼容</div>
+      <div class="note"><b>集成测试（8 用例）</b><br>竞价业务主流程闭环（起拍→报价→领先→撤回/删除→重新开始→成交→报表）· 减价模式 · 模板下载→导入→导出回导</div>
+      <div class="note"><b>历史 Bug 回归</b><br>报表「轮次残留领先」重算 · 模板无幅度列继承默认 · 删除当前标的回未选态（activeId=null）</div>
+    </div>
+
+    <h2 class="sec">🧭 快速导航</h2>
+    <div class="cards3">
+      <a class="card3" data-goto-card="demo" href="demo/" style="cursor:pointer"><h3>🎮 在线体验（纯 Web 演示版）</h3><p>浏览器打开即用的可运行系统：控制台报价、标的管理、系统设置、三主题、投屏演示。</p><span class="u">/demo/</span></a>
+      <a class="card3" data-goto-card="docs" href="docs/" style="cursor:pointer"><h3>📄 项目介绍页</h3><p>功能特性、技术栈、架构说明、测试体系、截图画廊、权益说明。</p><span class="u">/docs/</span></a>
+      <a class="card3" href="https://github.com/wtw79/pm_Web_App_Showcase" target="_blank" rel="noopener"><h3>🔗 GitHub 仓库</h3><p>README、LICENSE、权益保护声明；源代码与可执行程序不公开。</p><span class="u">github.com/wtw79/pm_Web_App_Showcase</span></a>
+    </div>
+
+    <h2 class="sec">🔒 权益声明</h2>
+    <div class="callout">
+      📌 本仓库为<strong>项目展示仓库</strong>：含项目说明、界面截图、展示网页与<strong>纯 Web 演示版（编译产物）</strong>，
+      不包含<strong>源代码</strong>（src/electron）、<strong>可执行程序</strong>（exe/安装包）等核心权益文件。演示版为构建后的静态产物，
+      仅供功能体验，不构成对源代码的授权。如需业务合作、源码授权或定制开发，请通过 GitHub 联系作者。
+    </div>
+  </section>
+
+  <!-- ===== Tab 2 · 在线体验（iframe demo/） ===== -->
+  <section class="pane" id="pane-demo">
+    <div class="pane-iframe"><iframe id="frame-demo" data-src="demo/" title="在线体验系统" loading="lazy"></iframe></div>
+  </section>
+
+  <!-- ===== Tab 3 · 项目介绍（iframe docs/） ===== -->
+  <section class="pane" id="pane-docs">
+    <div class="pane-iframe"><iframe id="frame-docs" data-src="docs/" title="项目介绍" loading="lazy"></iframe></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 拍卖竞价显示系统 · V2.2.00 · 对齐 pm 桌面端业务</p>
+  <p><a href="demo/">在线体验</a> · <a href="docs/">项目介绍</a> · <a href="https://github.com/wtw79/pm_Web_App_Showcase">GitHub</a></p>
+  <p style="margin-top:8px;font-size:12px;opacity:.6">远程仅含展示内容 · 源代码与可执行程序保留所有权利</p>
+</footer>
+
+<script>
+(function () {
+  var tabs = document.querySelectorAll('#tabs .tab');
+  var panes = { readme: document.getElementById('pane-readme'), demo: document.getElementById('pane-demo'), docs: document.getElementById('pane-docs') };
+  var frames = { demo: document.getElementById('frame-demo'), docs: document.getElementById('frame-docs') };
+  var loaded = { demo: false, docs: false };
+
+  function show(name) {
+    Object.keys(panes).forEach(function (k) { panes[k].classList.toggle('on', k === name); });
+    tabs.forEach(function (t) { t.classList.toggle('on', t.getAttribute('data-tab') === name); });
+    // 首次激活时加载 iframe（懒加载，切回不重载）
+    if (name !== 'readme' && frames[name] && !loaded[name]) {
+      var f = frames[name];
+      var src = f.getAttribute('data-src');
+      if (src && !f.getAttribute('src')) { f.setAttribute('src', src); }
+      loaded[name] = true;
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.getAttribute('data-tab')); }); });
+
+  // README 面板内按钮/图片/卡片跳转 tab
+  document.querySelectorAll('[data-goto]').forEach(function (el) {
+    el.addEventListener('click', function () { show(el.getAttribute('data-goto')); });
+  });
+  document.querySelectorAll('[data-goto-card]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      var name = el.getAttribute('data-goto-card');
+      if (name === 'demo' || name === 'docs') { e.preventDefault(); show(name); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
