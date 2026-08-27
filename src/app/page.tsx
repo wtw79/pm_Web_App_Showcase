@@ -59,9 +59,8 @@ export default function Home() {
         <Highlight>"从开场到落槌"</Highlight>的完整流程。
       </Paragraph>
       <Paragraph className="max-w-xl mt-4">
-        本项目为 pm（WPF 桌面端）的
-        <Highlight>Web / Electron 移植实现</Highlight>，竞价逻辑、状态机、报表格式
-        逐行对齐原版，同时获得三主题换肤、公式列配置与多屏投屏等增强能力。
+        全新打造的 <Highlight>Web / Electron 桌面应用</Highlight>：
+        三主题换肤、公式列配置、多屏投屏，88 个自动化测试用例护航，开箱即用。
       </Paragraph>
 
       {/* CTA */}

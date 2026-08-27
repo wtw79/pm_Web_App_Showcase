@@ -7,7 +7,7 @@ export const Footer = () => {
       <span className="font-semibold">
         © {new Date().getFullYear()} 拍卖竞价显示系统 · V2.2.00
       </span>
-      {"  "}— 对齐 pm 桌面端业务 · 展示仓库不含源代码
+      {"  "}— 全新 Web/Electron 桌面应用 · 展示仓库不含源代码
     </div>
   );
 };

@@ -61,8 +61,8 @@ export const Contact = () => {
             <span className="font-semibold text-neutral-800">V2.2.00</span>
           </div>
           <div className="flex justify-between border-b border-neutral-100 pb-2">
-            <span>对齐基准</span>
-            <span className="font-semibold text-neutral-800">pm 桌面端（WPF）</span>
+            <span>技术架构</span>
+            <span className="font-semibold text-neutral-800">React + Electron</span>
           </div>
           <div className="flex justify-between border-b border-neutral-100 pb-2">
             <span>技术栈</span>

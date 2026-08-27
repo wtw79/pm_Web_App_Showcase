@@ -11,7 +11,7 @@ export const meta = {
 
 export default (props) => <BlogLayout meta={meta} {...props} />;
 
-竞价核心逻辑逐行移植自 WPF 桌面端。一个标的的生命周期是一条清晰的状态机：
+竞价核心逻辑按拍卖行业标准流程严谨实现。一个标的的生命周期是一条清晰的状态机：
 
 ```text
 未开始 → 进行中（isBeginPaiMai）→ 暂停（isPaused）
@@ -33,7 +33,7 @@ export default (props) => <BlogLayout meta={meta} {...props} />;
 
 - **报价校验**：号牌纯数字、价格有效、增价不低于起拍价、减价不高于起拍价
 - **撤回上一手**：`records.shift()`，次席自动晋升领先
-- **删除任意行可撤销**：删除时压入 `deletedRows` 撤销栈 `{ record, index }`，可精确还原到原位置与领先态（对齐 pm 的 `UndoDeleteTableItem`）
+- **删除任意行可撤销**：删除时压入 `deletedRows` 撤销栈 `{ record, index }`，可精确还原到原位置与领先状态
 - **重新开始带快照**：清空前保存 `restartSnapshot`，可随时恢复
 - **成交前二次校验**：确认成交时再次执行 `validatePriceRules` 复核领先记录，非法数据进不了归档
 

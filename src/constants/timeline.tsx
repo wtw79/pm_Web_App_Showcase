@@ -1,12 +1,12 @@
 export const timeline = [
   {
     company: "Web · Electron 版",
-    title: "React + Vite + Electron 移植",
+    title: "React + Vite + Electron 重构",
     date: "2026",
-    description: "从 WPF 迁移到 Web 技术栈，桌面能力由 Electron 提供",
+    description: "以 Web 技术栈重构，桌面能力由 Electron 提供",
     responsibilities: [
-      "React 18 + Vite 5 重写全部界面，业务逻辑从 WPF 后端逐行移植",
-      "Electron 主进程封装：多屏投屏、SQLite 持久化（sql.js）、系统托盘、自动更新",
+      "React 18 + Vite 5 构建全新界面，Electron 主进程封装桌面能力",
+      "主进程权威态 + 集中式 IPC：多屏投屏、SQLite 持久化（sql.js）、系统托盘、自动更新",
       "三主题换肤（青绿 / 深空 / 玻璃）、G4 公式列配置、投屏信息实时预览",
       "88 个自动化测试用例护航：报价逻辑 / 公式引擎 / 状态迁移 / 模板闭环",
     ],
@@ -19,7 +19,7 @@ export const timeline = [
     responsibilities: [
       "初始化 → 系统设置入口统一，减少操作层级",
       "成交归档流程调整：一个动作完成报表 + 截图 + 归档",
-      "导入导出模板精简并对齐 pm 标的管理模板（13 列）",
+      "导入导出模板精简（13 列，支持回导）",
     ],
   },
   {
@@ -48,7 +48,7 @@ export const timeline = [
     company: "V2.1.55 及更早",
     title: "核心功能奠基",
     date: "2021 起",
-    description: "自 2021 年起持续迭代的 WPF 桌面版",
+    description: "早期桌面版，自 2021 年起持续迭代",
     responsibilities: [
       "标的体系：增删改查、设为当前、各标的独立数据",
       "竞价流程：报价、领先/出局状态、增价/减价模式",

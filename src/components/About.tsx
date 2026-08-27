@@ -64,9 +64,9 @@ export default function About() {
           不依赖网络，开箱即用）。
         </Paragraph>
         <Paragraph className=" mt-4">
-          <b className="text-neutral-700">版本与对齐</b>：产品版本 V2.2.00，web 工程
-          package.json 2.2.0，与原 pm 桌面端（WPF/C#，2.2.00）功能完全对齐；
-          竞价逻辑、状态机、报表格式、软键盘行为逐行移植，老用户无需重新学习。
+          <b className="text-neutral-700">版本</b>：产品版本 V2.2.00；报价校验、
+          状态机、报表格式、软键盘等核心规则按拍卖行业标准流程严谨实现，
+          行为稳定可靠。
         </Paragraph>
         <Paragraph className=" mt-4">
           通过本展示站，你可以在线体验纯 Web 演示版（<b className="text-neutral-700">左侧「在线体验系统」</b>），
