@@ -96,6 +96,39 @@ export const SingleProduct = ({ product }: { product: Product }) => {
           <path d="M13 6l6 6"></path>
         </svg>
       </a>
+
+      {/* 延伸阅读：功能页与站内其他内容联动 */}
+      <div className="mt-12 pt-6 border-t border-neutral-100">
+        <div className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-3">
+          延伸阅读
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/blog"
+            className="text-xs bg-neutral-50 border border-neutral-200 text-neutral-600 px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors"
+          >
+            📝 技术文章
+          </Link>
+          <Link
+            href="/resume"
+            className="text-xs bg-neutral-50 border border-neutral-200 text-neutral-600 px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors"
+          >
+            📊 系统总览 · 版本演进
+          </Link>
+          <Link
+            href="/about"
+            className="text-xs bg-neutral-50 border border-neutral-200 text-neutral-600 px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors"
+          >
+            💬 系统介绍
+          </Link>
+          <a
+            href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/demo/`}
+            className="text-xs bg-neutral-50 border border-neutral-200 text-neutral-600 px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors"
+          >
+            🎮 完整在线体验
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
