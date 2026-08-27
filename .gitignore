@@ -42,3 +42,5 @@ __next.*
 /_not-found.txt
 *.txt
 /out.prev-*
+_build.log
+_build.log
