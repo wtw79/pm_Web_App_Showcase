@@ -1,0 +1,22 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/blog/architecture-overview/page": "/blog/architecture-overview",
+  "/blog/auction-state-machine/page": "/blog/auction-state-machine",
+  "/blog/data-model/page": "/blog/data-model",
+  "/blog/electron-architecture/page": "/blog/electron-architecture",
+  "/blog/excel-import-export/page": "/blog/excel-import-export",
+  "/blog/formula-engine/page": "/blog/formula-engine",
+  "/blog/page": "/blog",
+  "/blog/projection-rendering/page": "/blog/projection-rendering",
+  "/blog/state-management/page": "/blog/state-management",
+  "/blog/test-system/page": "/blog/test-system",
+  "/contact/page": "/contact",
+  "/experience/page": "/experience",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/projects/[slug]/page": "/projects/[slug]",
+  "/projects/page": "/projects",
+  "/resume/page": "/resume"
+}

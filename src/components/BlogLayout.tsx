@@ -1,7 +1,6 @@
 "use client";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { formatDate } from "../../lib/formatDate";
 import { Prose } from "@/components/Prose";
 import { Container } from "./Container";
@@ -53,11 +52,9 @@ export function BlogLayout({
             </Paragraph>
           </time>
           <div className="w-full mt-4 aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
-            <Image
+            <img
               src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${meta.image}`}
-              alt="thumbnail"
-              height={800}
-              width={800}
+              alt={meta.title}
               className={`object-cover object-left-top w-full max-h-96`}
             />
           </div>

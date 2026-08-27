@@ -1,0 +1,61 @@
+{
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/about/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/architecture-overview/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/auction-state-machine/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/data-model/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/electron-architecture/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/excel-import-export/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/formula-engine/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/projection-rendering/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/state-management/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/blog/test-system/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/contact/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/experience/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/projects/[slug]/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/projects/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ],
+    "[project]/src/app/resume/page": [
+      "static/media/CalSans_SemiBold-s.p.339l157_0_ui6.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

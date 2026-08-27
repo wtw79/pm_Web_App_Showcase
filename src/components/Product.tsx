@@ -1,53 +1,32 @@
 "use client";
 import { Product } from "@/types/products";
-import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 import { Heading } from "./Heading";
 import { Paragraph } from "./Paragraph";
 import Link from "next/link";
-import { motion } from "motion/react";
 
 export const SingleProduct = ({ product }: { product: Product }) => {
-  const [activeImage, setActiveImage] = useState<StaticImageData | string>(
-    product.thumbnail
-  );
+  const [activeImage, setActiveImage] = useState<string>(product.thumbnail);
   return (
     <div className="py-10">
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 30,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.5,
-        }}
-        key={product.slug}
-        className="relative"
-      >
-        <Image
+      <div className="relative">
+        {/* 原生 img：src 已带 basePath 前缀；next/image 在 unoptimized + client 组件下 SSR 不输出 img */}
+        <img
           src={activeImage}
           alt="thumbnail"
-          height={1000}
-          width={1000}
-          className="rounded-md object-contain"
+          className="rounded-md object-contain w-full"
         />
         <div className="absolute bottom-0 bg-white h-40 w-full [mask-image:linear-gradient(to_bottom,transparent,white)]" />
-      </motion.div>
+      </div>
       <div className="flex flex-row justify-center my-8 flex-wrap">
         {product.images.map((image, idx) => (
           <button
             onClick={() => setActiveImage(image)}
             key={`image-thumbnail-${idx}`}
           >
-            <Image
+            <img
               src={image}
               alt="product thumbnail"
-              height={1000}
-              width={1000}
               className="h-14 w-16 md:h-40 md:w-60 object-cover object-top mr-4 mb-r border rounded-lg border-neutral-100"
             />
           </button>

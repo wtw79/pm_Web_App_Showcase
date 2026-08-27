@@ -4,7 +4,6 @@ import { Heading } from "./Heading";
 import { Product } from "@/types/products";
 import { products } from "@/constants/products";
 import Link from "next/link";
-import Image from "next/image";
 import { Paragraph } from "./Paragraph";
 import { motion } from "motion/react";
 
@@ -30,12 +29,10 @@ export const Products = () => {
               key={product.href}
               className="group flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 hover:bg-gray-50 rounded-2xl transition duration-200 pt-4"
             >
-              <Image
+              <img
                 src={product.thumbnail}
-                alt="thumbnail"
-                height={200}
-                width={200}
-                className="rounded-md"
+                alt={product.title}
+                className="rounded-md h-40 md:h-44 w-full md:w-64 object-cover object-top"
               />
               <div className="flex flex-col justify-between">
                 <div>

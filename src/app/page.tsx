@@ -5,7 +5,6 @@ import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
-import Image from "next/image";
 
 // GitHub Pages 子路径前缀（图片 src 手动拼接）
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -80,11 +79,9 @@ export default function Home() {
       <div className="mt-12">
         <Link href="/experience" className="block group">
           <div className="relative rounded-xl overflow-hidden border border-neutral-200 shadow-sm group-hover:shadow-md transition-shadow">
-            <Image
+            <img
               src={`${BASE}/images/overview.png`}
               alt="系统界面总览"
-              width={1280}
-              height={720}
               className="w-full object-cover"
             />
             <div className="absolute inset-x-0 bottom-0 py-3 px-4 text-center text-xs font-medium text-white bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">

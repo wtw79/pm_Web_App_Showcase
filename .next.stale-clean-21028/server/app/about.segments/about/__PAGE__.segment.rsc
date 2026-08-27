@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[55786,["/pm_Web_App_Showcase/_next/static/chunks/38ljmaaylhntv.js","/pm_Web_App_Showcase/_next/static/chunks/3gnwqullmbdyz.js","/pm_Web_App_Showcase/_next/static/chunks/12twb7f52yj08.js","/pm_Web_App_Showcase/_next/static/chunks/14mrh2-p_w84d.js","/pm_Web_App_Showcase/_next/static/chunks/1m56asn3pk4p0.js"],"default"]
+3:I[97367,["/pm_Web_App_Showcase/_next/static/chunks/38ljmaaylhntv.js","/pm_Web_App_Showcase/_next/static/chunks/3gnwqullmbdyz.js","/pm_Web_App_Showcase/_next/static/chunks/12twb7f52yj08.js","/pm_Web_App_Showcase/_next/static/chunks/14mrh2-p_w84d.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"max-w-4xl w-full mx-auto py-20 px-4 md:px-10","children":[["$","span",null,{"className":"text-4xl","children":"💬"}],["$","h1",null,{"className":"calsans_62a4ef40-module__rkVMKG__className text-3xl md:text-4xl lg:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary font-black","children":"系统介绍"}],["$","$L2",null,{}]]}],[["$","script","script-0",{"src":"/pm_Web_App_Showcase/_next/static/chunks/1m56asn3pk4p0.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"pEVCHcpdQDD1gkrVW2f9J"}
+5:null

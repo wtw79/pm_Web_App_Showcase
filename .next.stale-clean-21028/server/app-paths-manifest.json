@@ -1,0 +1,22 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/blog/architecture-overview/page": "app/blog/architecture-overview/page.js",
+  "/blog/auction-state-machine/page": "app/blog/auction-state-machine/page.js",
+  "/blog/data-model/page": "app/blog/data-model/page.js",
+  "/blog/electron-architecture/page": "app/blog/electron-architecture/page.js",
+  "/blog/excel-import-export/page": "app/blog/excel-import-export/page.js",
+  "/blog/formula-engine/page": "app/blog/formula-engine/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/blog/projection-rendering/page": "app/blog/projection-rendering/page.js",
+  "/blog/state-management/page": "app/blog/state-management/page.js",
+  "/blog/test-system/page": "app/blog/test-system/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/experience/page": "app/experience/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/projects/[slug]/page": "app/projects/[slug]/page.js",
+  "/projects/page": "app/projects/page.js",
+  "/resume/page": "app/resume/page.js"
+}
