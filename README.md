@@ -7,11 +7,10 @@
 
 ## 🎮 在线体验（纯 Web 演示版）
 
-**打开即用，无需安装：<https://wtw79.github.io/pm_Web_App_Showcase/>**
+**打开即用，无需安装：<https://wtw79.github.io/pm_Web_App_Showcase/demo/>**
 
-![系统界面总览](docs/screenshots/overview.png)
-
-展示仓库根目录内置了**可运行的纯 Web 演示版**（浏览器静态托管），可直接体验系统核心功能：
+演示版位于仓库 `demo/` 目录（构建产物静态托管），可从 GitHub Pages 首页
+（根目录 `index.html` = README 主入口）通过「🎮 在线体验」跳转进入。可直接体验系统核心功能：
 
 | 可体验功能 | 说明                                       |
 | ----- | ---------------------------------------- |
@@ -54,10 +53,12 @@
 | Obsidian 深空科技   | [console-dark.png](docs/screenshots/console-dark.png)   | [bigscreen-welcome.png](docs/screenshots/bigscreen-welcome.png) |
 | Glass 玻璃渐变      | [console-glass.png](docs/screenshots/console-glass.png) |                                                                 |
 
-完整展示请访问 GitHub Pages：
+完整展示请访问 GitHub Pages（README 主入口）：
 
 ```
-https://wtw79.github.io/pm_Web_App_Showcase/
+https://wtw79.github.io/pm_Web_App_Showcase/      # 主入口（README 首页，链接路由各页面）
+https://wtw79.github.io/pm_Web_App_Showcase/demo/ # 🎮 在线体验系统（纯 Web 演示版）
+https://wtw79.github.io/pm_Web_App_Showcase/docs/ # 📄 项目介绍页
 ```
 
 ---
@@ -66,18 +67,18 @@ https://wtw79.github.io/pm_Web_App_Showcase/
 
 ```
 pm_Web_App_Showcase/
-├── README.md              # 本文件（仓库主页）
+├── README.md              # 本文件（仓库主页 + GitHub Pages 主入口，链接路由各页面）
 ├── LICENSE                 # MIT（展示内容协议）
 ├── .gitignore              # 防御性：拦截敏感文件（src/、electron/、dist/、release/ 等）
-├── index.html              # 🎮 纯 Web 演示版入口（GitHub Pages 根目录 = 在线体验系统）
-├── bigscreen.html          # 投屏窗（演示）
-├── assets/                 # 演示版静态资源（编译产物，非源码）
-└── docs/                   # GitHub Pages 项目介绍站
+├── index.html              # 🏠 GitHub Pages 首页 = README 主入口（导航页，链接 demo/docs/GitHub）
+├── demo/                   # 🎮 纯 Web 演示版（构建产物静态托管）
+│   ├── index.html          #   系统入口（控制台）
+│   ├── bigscreen.html      #   投屏窗（演示）
+│   └── assets/             #   演示版静态资源（编译产物，非源码）
+└── docs/                   # 📄 GitHub Pages 项目介绍站
     ├── index.html          # 展示页（介绍 + 截图 + 技术栈 + 架构 + 权益）
-    └── screenshots/        # 项目界面截图
+    └── screenshots/        # 项目界面截图（含组合总览图 overview.png）
 ```
-
-
 
 ---
 
