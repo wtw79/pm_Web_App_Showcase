@@ -1,26 +1,28 @@
 # 拍卖竞价显示系统 · 项目展示仓库
 
-> 面向拍卖师与现场操作员的桌面管理系统，提供标的批量管理、实时报价、副屏投屏、成交归档的完整业务闭环。
+> 面向拍卖师与现场操作员的桌面管理系统，提供标的批量管理、实时报价、副屏投屏、成交归档的完整业务闭环。  
 > 本项目为 pm（WPF 桌面端）的 Web/Electron 移植实现，业务逻辑严格对齐 pm。
 
 **👉 查看完整项目介绍与界面预览：[GitHub Pages 展示页](https://wtw79.github.io/pm_Web_App_Showcase/docs/)**
 
 ## 🎮 在线体验（纯 Web 演示版）
 
-**打开即用，无需安装：https://wtw79.github.io/pm_Web_App_Showcase/**
+**打开即用，无需安装：<https://wtw79.github.io/pm_Web_App_Showcase/>**
+
+![系统界面总览](docs/screenshots/overview.png)
 
 展示仓库根目录内置了**可运行的纯 Web 演示版**（浏览器静态托管），可直接体验系统核心功能：
 
-| 可体验功能 | 说明 |
-|---|---|
-| 控制台报价 | 标的详情、应价/号牌输入、软键盘、报价记录表、领先高亮 |
-| 标的管理 | 新增/导入/导出（Excel 模板）、搜索分页、批量操作 |
-| 系统设置 | 标题字体、表格列、公式、三主题切换（Aurora/Obsidian/Glass） |
-| 报表 | 报价记录、成交/流拍状态、报表导出 |
-| 投屏预览 | `bigscreen.html` 投屏窗（浏览器新窗口演示） |
+| 可体验功能 | 说明                                       |
+| ----- | ---------------------------------------- |
+| 控制台报价 | 标的详情、应价/号牌输入、软键盘、报价记录表、领先高亮              |
+| 标的管理  | 新增/导入/导出（Excel 模板）、搜索分页、批量操作             |
+| 系统设置  | 标题字体、表格列、公式、三主题切换（Aurora/Obsidian/Glass） |
+| 报表    | 报价记录、成交/流拍状态、报表导出                        |
+| 投屏预览  | `bigscreen.html` 投屏窗（浏览器新窗口演示）           |
 
-> ⚠️ **纯 Web 演示版说明**：浏览器环境下的 `bridge.js` 自动降级（localStorage 持久化 + window.open 投屏演示）。
-> Electron 专属能力（副屏物理投屏、SQLite 持久化、文件系统、托盘/自动更新）仅在桌面版可用。
+> ⚠️ **纯 Web 演示版说明**：浏览器环境下的 `bridge.js` 自动降级（localStorage 持久化 + window.open 投屏演示）。  
+> Electron 专属能力（副屏物理投屏、SQLite 持久化、文件系统、托盘/自动更新）仅在桌面版可用。  
 > 演示版数据保存在浏览器本地，刷新不丢失，仅供功能体验，不用于生产。
 
 ---
@@ -46,11 +48,11 @@
 
 ## 📸 界面预览
 
-| 主题 | 控制台 | 投屏页 |
-|---|---|---|
-| Aurora 现代青绿（默认） | [console-light.png](docs/screenshots/console-light.png) | [bigscreen-bid.png](docs/screenshots/bigscreen-bid.png) |
-| Obsidian 深空科技 | [console-dark.png](docs/screenshots/console-dark.png) | [bigscreen-welcome.png](docs/screenshots/bigscreen-welcome.png) |
-| Glass 玻璃渐变 | [console-glass.png](docs/screenshots/console-glass.png) | |
+| 主题              | 控制台                                                     | 投屏页                                                             |
+| --------------- | ------------------------------------------------------- | --------------------------------------------------------------- |
+| Aurora 现代青绿（默认） | [console-light.png](docs/screenshots/console-light.png) | [bigscreen-bid.png](docs/screenshots/bigscreen-bid.png)         |
+| Obsidian 深空科技   | [console-dark.png](docs/screenshots/console-dark.png)   | [bigscreen-welcome.png](docs/screenshots/bigscreen-welcome.png) |
+| Glass 玻璃渐变      | [console-glass.png](docs/screenshots/console-glass.png) |                                                                 |
 
 完整展示请访问 GitHub Pages：
 
@@ -74,6 +76,8 @@ pm_Web_App_Showcase/
     ├── index.html          # 展示页（介绍 + 截图 + 技术栈 + 架构 + 权益）
     └── screenshots/        # 项目界面截图
 ```
+
+
 
 ---
 
