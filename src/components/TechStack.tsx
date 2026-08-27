@@ -10,7 +10,7 @@ export const TechStack = () => {
     "SheetJS",
     "pdfjs-dist",
     "Vitest 4",
-    "自研 Store",
+    "React Context",
   ];
   return (
     <div>

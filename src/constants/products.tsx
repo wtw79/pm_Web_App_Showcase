@@ -50,7 +50,7 @@ export const products = [
       "一场拍卖的核心操作区：投屏状态条、起拍设置（增/减价）、竞价区（应价+号牌输入即提交）、操作面板（成交/流拍/撤回/撤销删除/暂停/重开）与实时报价记录表。",
     thumbnail: `${BASE}/images/overview.png`,
     images: [`${BASE}/images/overview.png`, `${BASE}/images/overview.png`],
-    stack: ["React", "自研 Store"],
+    stack: ["React", "React Context"],
     slug: "console-bid",
     content: (
       <div>
