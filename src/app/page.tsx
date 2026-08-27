@@ -7,16 +7,13 @@ import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
 import Image from "next/image";
 
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 // 快速导航：把站点各入口整合到首页，形成"看介绍 → 看功能 → 体验 → 读文章"完整动线
 const navCards = [
   {
-    href: `${BASE}/demo/`,
+    href: "/experience",
     icon: "🎮",
     title: "在线体验",
     desc: "浏览器打开即用的纯 Web 演示版：控制台报价、标的管理、三主题、投屏演示",
-    external: true,
   },
   {
     href: "/projects",
@@ -69,12 +66,12 @@ export default function Home() {
 
       {/* CTA */}
       <div className="flex flex-wrap gap-4 mt-8">
-        <a
-          href={`${BASE}/demo/`}
+        <Link
+          href="/experience"
           className="inline-flex items-center gap-2 bg-slate-900 text-white text-sm font-semibold rounded-full px-6 py-3 hover:bg-brand transition-colors shadow-sm"
         >
           🎮 在线体验系统 →
-        </a>
+        </Link>
         <Link
           href="/projects"
           className="inline-flex items-center gap-2 border border-neutral-200 text-neutral-700 text-sm font-semibold rounded-full px-6 py-3 hover:border-brand hover:text-brand transition-colors"
@@ -85,7 +82,7 @@ export default function Home() {
 
       {/* 系统总览图：点击进入在线体验 */}
       <div className="mt-12">
-        <a href={`${BASE}/demo/`} className="block group">
+        <Link href="/experience" className="block group">
           <div className="relative rounded-xl overflow-hidden border border-neutral-200 shadow-sm group-hover:shadow-md transition-shadow">
             <Image
               src="/images/overview.png"
@@ -101,7 +98,7 @@ export default function Home() {
           <p className="mt-2 text-xs text-neutral-400 font-medium tracking-wide uppercase">
             FIG.01 — Overview · 三主题控制台与投屏页 · 点击在线体验
           </p>
-        </a>
+        </Link>
       </div>
 
       {/* 快速导航：整合入口 */}
@@ -112,37 +109,21 @@ export default function Home() {
         快速导航
       </Heading>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {navCards.map((card) =>
-          card.external ? (
-            <a
-              key={card.title}
-              href={card.href}
-              className="group bg-neutral-50 rounded-xl border border-neutral-100 p-5 hover:border-brand/40 hover:shadow-sm transition-all"
-            >
-              <div className="text-2xl">{card.icon}</div>
-              <div className="mt-2 font-bold text-neutral-800 group-hover:text-brand transition-colors">
-                {card.title} →
-              </div>
-              <p className="mt-1 text-sm text-neutral-500 leading-relaxed">
-                {card.desc}
-              </p>
-            </a>
-          ) : (
-            <Link
-              key={card.title}
-              href={card.href}
-              className="group bg-neutral-50 rounded-xl border border-neutral-100 p-5 hover:border-brand/40 hover:shadow-sm transition-all"
-            >
-              <div className="text-2xl">{card.icon}</div>
-              <div className="mt-2 font-bold text-neutral-800 group-hover:text-brand transition-colors">
-                {card.title} →
-              </div>
-              <p className="mt-1 text-sm text-neutral-500 leading-relaxed">
-                {card.desc}
-              </p>
-            </Link>
-          )
-        )}
+        {navCards.map((card) => (
+          <Link
+            key={card.title}
+            href={card.href}
+            className="group bg-neutral-50 rounded-xl border border-neutral-100 p-5 hover:border-brand/40 hover:shadow-sm transition-all"
+          >
+            <div className="text-2xl">{card.icon}</div>
+            <div className="mt-2 font-bold text-neutral-800 group-hover:text-brand transition-colors">
+              {card.title} →
+            </div>
+            <p className="mt-1 text-sm text-neutral-500 leading-relaxed">
+              {card.desc}
+            </p>
+          </Link>
+        ))}
       </div>
 
       <Heading

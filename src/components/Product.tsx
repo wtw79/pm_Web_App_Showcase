@@ -73,9 +73,8 @@ export const SingleProduct = ({ product }: { product: Product }) => {
         {product?.content}
       </div>
 
-      <a
-        href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}${product.href}`}
-        target="__blank"
+      <Link
+        href="/experience"
         className="inline-flex items-center gap-1 group/button rounded-full hover:scale-105 focus:outline-none transition ring-offset-gray-900 bg-gray-800 text-white shadow-lg shadow-black/20 sm:backdrop-blur-sm group-hover/button:bg-gray-50/15 group-hover/button:scale-105 focus-visible:ring-1 focus-visible:ring-offset-2 ring-gray-50/60 text-sm font-medium px-4 py-2 mt-auto origin-left"
       >
         在线体验
@@ -95,7 +94,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
           <path d="M13 18l6 -6"></path>
           <path d="M13 6l6 6"></path>
         </svg>
-      </a>
+      </Link>
 
       {/* 延伸阅读：功能页与站内其他内容联动 */}
       <div className="mt-12 pt-6 border-t border-neutral-100">
@@ -121,12 +120,12 @@ export const SingleProduct = ({ product }: { product: Product }) => {
           >
             💬 系统介绍
           </Link>
-          <a
-            href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/demo/`}
+          <Link
+            href="/experience"
             className="text-xs bg-neutral-50 border border-neutral-200 text-neutral-600 px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors"
           >
             🎮 完整在线体验
-          </a>
+          </Link>
         </div>
       </div>
     </div>
