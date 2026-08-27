@@ -36,9 +36,9 @@ next-env.d.ts
 .npm-cache/
 
 # Next 16 静态导出调试产物（页面快照/清单，非站点内容）
-/__next.*
+__next.*
 /_not-found/
 /_not-found.html
 /_not-found.txt
-/*.txt
+*.txt
 /out.prev-*
