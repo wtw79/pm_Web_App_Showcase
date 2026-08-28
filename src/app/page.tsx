@@ -61,7 +61,7 @@ export default function Home() {
           </span>
 
           <h1 className="mt-6 text-4xl md:text-5xl lg:text-[3.2rem] font-black text-primary tracking-tight leading-[1.15]">
-            为拍卖现场写的一个小系统
+            拍卖竞价显示系统
           </h1>
 
           <p className="mt-6 text-[15px] md:text-base text-secondary leading-relaxed max-w-[30rem]">
