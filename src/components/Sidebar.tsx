@@ -77,7 +77,7 @@ export const Sidebar = () => {
                 className="bg-slate-900 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block w-full"
               >
                 <div className="relative flex space-x-2 items-center justify-center z-10 rounded-full bg-transparent py-2.5 px-4 ring-1 ring-white/10">
-                  <span>在线体验系统</span>
+                  <span>在线体验演示版</span>
                   <span aria-hidden="true">→</span>
                 </div>
               </Link>

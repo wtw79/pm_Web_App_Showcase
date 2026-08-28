@@ -68,7 +68,14 @@ export default function About() {
           行为稳定可靠。
         </Paragraph>
         <Paragraph className=" mt-4">
-          通过本展示站，你可以在线体验纯 Web 演示版（<b className="text-neutral-700">左侧「在线体验系统」</b>），
+          <b className="text-neutral-700">关于作者</b>：这个项目由我一个人独立开发和维护。
+          早期版本是一个内部使用的桌面工具，后来逐步整理成现在的 Web / Electron 版本。
+          它不算大，也不追求覆盖所有场景，但每一个功能都在真实的拍卖现场里跑过、
+          被验证过。如果你在实际使用中发现问题，或有什么想法，
+          欢迎在 GitHub 上提 issue 或直接联系我。
+        </Paragraph>
+        <Paragraph className=" mt-4">
+          通过本展示站，你可以在线体验纯 Web 演示版（<b className="text-neutral-700">左侧「在线体验」</b>），
           或浏览技术文章了解架构与实现。如需业务合作、源码授权或定制开发，
           请通过 GitHub 联系作者。
         </Paragraph>

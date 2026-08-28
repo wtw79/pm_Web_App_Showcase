@@ -4,23 +4,22 @@ import { CtaBanner } from "@/components/CtaBanner";
 import { timeline } from "@/constants/timeline";
 
 export const metadata: Metadata = {
-  title: "版本发布记录 | 拍卖竞价显示系统",
+  title: "更新记录 | 拍卖竞价显示系统",
   description:
-    "持续迭代的证明：从 2021 年桌面版到 Web/Electron 重构版，每一次版本更新都看得见。",
+    "从 2021 年桌面版到 Web/Electron 重构版的更新记录，每次改动都记在这里。",
 };
 
 export default function UpdatesPage() {
   return (
     <div className="max-w-4xl w-full mx-auto px-4 md:px-10 pt-10 md:pt-14 pb-10">
       <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">
-        Updates · 版本发布
+        Updates · 更新记录
       </p>
       <h1 className="mt-4 text-3xl md:text-4xl font-black text-primary tracking-tight">
-        持续迭代，看得见
+        更新记录
       </h1>
       <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-2xl">
-        从 2021 年的桌面版奠基，到今天的 Web / Electron 重构版，
-        产品始终在演进——这是我们对"买完有人维护"最直接的承诺。
+        从 2021 年的桌面版到现在，这个项目一直在改。每次更新都记录在这里。
       </p>
 
       {/* 最新版本徽章 */}
@@ -28,7 +27,7 @@ export default function UpdatesPage() {
         <StripeMark />
         <div className="flex-1">
           <p className="text-sm font-black text-primary">
-            最新版本 V2.2.00 · 功能整合版
+            当前版本 V2.2.00 · 功能整合版
           </p>
           <p className="mt-0.5 text-[13px] text-secondary">
             初始化入口统一、成交归档一键完成、导入导出模板精简

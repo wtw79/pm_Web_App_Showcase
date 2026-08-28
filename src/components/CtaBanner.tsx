@@ -1,29 +1,29 @@
 import React from "react";
 import Link from "next/link";
 
-// 行动区 CTA Banner（转化收口：体验 / 预约）
+// 行动区：引导体验 / 联系，文案务实不夸大
 export const CtaBanner = ({
-  title = "还没有体验过？3 分钟，感受一场顺畅的拍卖。",
+  title = "感兴趣的话，可以先在线体验看看。",
+  sub = "浏览器直接打开演示版，无需安装。",
   primaryHref = "/experience",
-  primaryLabel = "立即在线体验",
+  primaryLabel = "在线体验",
   secondaryHref = "/contact",
-  secondaryLabel = "预约演示",
+  secondaryLabel = "联系我",
 }: {
   title?: string;
   primaryHref?: string;
   primaryLabel?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  sub?: string;
 }) => {
   return (
     <section className="my-10 md:my-16">
-      <div className="rounded-2xl bg-gradient-to-br from-brand to-brand-deep px-6 py-12 md:px-12 md:py-16 text-center shadow-lg">
+      <div className="rounded-2xl bg-gradient-to-br from-brand to-brand-deep px-6 py-12 md:px-12 md:py-14 text-center shadow-lg">
         <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">
           {title}
         </h2>
-        <p className="mt-3 text-sm md:text-base text-white/80">
-          无需安装、无需联网、数据留在本地——打开即用。
-        </p>
+        <p className="mt-3 text-sm md:text-base text-white/80">{sub}</p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <Link
             href={primaryHref}

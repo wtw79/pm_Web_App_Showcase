@@ -4,9 +4,9 @@ import { CtaBanner } from "@/components/CtaBanner";
 import { solutions } from "@/constants/solutions";
 
 export const metadata: Metadata = {
-  title: "行业解决方案 | 拍卖竞价显示系统",
+  title: "适用场景 | 拍卖竞价显示系统",
   description:
-    "按行业痛点定制：艺术品拍卖、资产房产、二手车二手物资、典当与司法辅助——找到属于你的那一页。",
+    "艺术品拍卖、资产房产、二手车二手物资、典当与司法辅助——这个系统在哪些场景下用得上。",
 };
 
 export default function SolutionsPage() {
@@ -15,18 +15,18 @@ export default function SolutionsPage() {
       {/* 首屏定位 */}
       <section>
         <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">
-          Solutions · 行业方案
+          Scenarios · 适用场景
         </p>
         <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.6rem] font-black text-primary tracking-tight leading-tight">
-          你的行业，我们知道痛在哪。
+          哪些场景用得上
         </h1>
         <p className="mt-5 text-[15px] md:text-base text-secondary leading-relaxed max-w-2xl">
-          不同细分行业的流程与痛点各不相同。按行业对号入座，
-          看看系统如何解决你的具体问题。
+          这个系统不挑行业，只要流程是「标的 + 现场竞价 + 落槌归档」，
+          基本都能用。下面列几种常见场景。
         </p>
 
-        {/* 行业 Tab 导航 */}
-        <nav aria-label="行业目录" className="mt-8 flex gap-2.5 flex-wrap">
+        {/* 场景目录 */}
+        <nav aria-label="场景目录" className="mt-8 flex gap-2.5 flex-wrap">
           {solutions.map((s) => (
             <a
               key={s.id}
@@ -42,7 +42,7 @@ export default function SolutionsPage() {
         </nav>
       </section>
 
-      {/* 行业方案模块：痛点 → 方案 → 改造前后 */}
+      {/* 场景模块：常见问题 → 能帮上忙的地方 → 改动前后 */}
       <section className="mt-10 space-y-10">
         {solutions.map((s) => (
           <article
@@ -62,11 +62,11 @@ export default function SolutionsPage() {
               </div>
             </header>
 
-            {/* 痛点 → 方案 一一对应 */}
+            {/* 常见问题 → 能帮上忙的地方 */}
             <div className="mt-8 grid md:grid-cols-2 gap-4">
               <div className="rounded-xl bg-neutral-50 border border-neutral-100 p-5">
                 <h3 className="text-xs font-bold tracking-wider text-neutral-400 uppercase">
-                  行业痛点
+                  常见的麻烦
                 </h3>
                 <ul className="mt-3 space-y-2.5">
                   {s.pain.map((p) => (
@@ -84,7 +84,7 @@ export default function SolutionsPage() {
               </div>
               <div className="rounded-xl bg-brand-soft/50 border border-brand/20 p-5">
                 <h3 className="text-xs font-bold tracking-wider text-brand uppercase">
-                  对应方案
+                  能帮上忙的地方
                 </h3>
                 <ul className="mt-3 space-y-2.5">
                   {s.fix.map((f) => (
@@ -102,11 +102,11 @@ export default function SolutionsPage() {
               </div>
             </div>
 
-            {/* 改造前后对比 */}
+            {/* 改动前后对比 */}
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="rounded-xl border border-neutral-200 px-5 py-4">
                 <p className="text-[11px] font-bold text-neutral-400 tracking-wider">
-                  改造前
+                  以前
                 </p>
                 <p className="mt-1.5 text-sm text-secondary line-through decoration-neutral-300">
                   {s.before}
@@ -114,7 +114,7 @@ export default function SolutionsPage() {
               </div>
               <div className="rounded-xl border border-brand/30 bg-white px-5 py-4">
                 <p className="text-[11px] font-bold text-brand tracking-wider">
-                  改造后
+                  现在
                 </p>
                 <p className="mt-1.5 text-sm font-bold text-primary">
                   {s.after}
@@ -128,17 +128,17 @@ export default function SolutionsPage() {
       {/* CTA */}
       <div className="mt-10">
         <CtaBanner
-          title="你的行业不在列表里？"
-          secondaryLabel="联系我们"
-          primaryLabel="在线体验通用版"
+          title="你的场景不在上面？"
+          secondaryLabel="联系我"
+          primaryLabel="在线体验看看"
         />
       </div>
       <p className="text-center text-xs text-neutral-400 mt-4">
-        其他场景（展会活动、公益拍卖等）同样适用——
+        展会活动、公益拍卖等其他场合，只要流程类似基本都能用——
         <Link href="/contact" className="text-brand font-semibold hover:underline">
-          联系我们
+          联系我
         </Link>
-        讨论你的具体流程。
+        聊聊你的具体流程。
       </p>
     </div>
   );

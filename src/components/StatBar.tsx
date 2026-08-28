@@ -1,12 +1,12 @@
 import React from "react";
 
-// 关键指标条：把产品事实翻译成客户信任（IA 信任条组件）
+// 一些事实（不夸大，只说真实的数字）
 const stats = [
-  { num: "88", unit: "个", label: "自动化测试护航" },
-  { num: "3", unit: "套", label: "主题换肤" },
+  { num: "88", unit: "个", label: "自动化测试用例" },
+  { num: "3", unit: "套", label: "界面主题" },
   { num: "2", unit: "屏", label: "独立投屏" },
-  { num: "1", unit: "键", label: "成交归档" },
-  { num: "0", unit: "", label: "网络依赖，离线可用" },
+  { num: "1", unit: "步", label: "完成成交归档" },
+  { num: "0", unit: "", label: "网络依赖 · 离线可用" },
 ];
 
 export const StatBar = () => {

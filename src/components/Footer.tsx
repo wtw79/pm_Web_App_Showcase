@@ -18,7 +18,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="mt-3 text-xs text-secondary leading-relaxed">
-              Auction Bid Console · V2.2.00
+              Auction Bid Console · V2.2.00 · 个人维护项目
               <br />
               标的管理、实时报价、副屏投屏、成交归档
             </p>
@@ -31,9 +31,9 @@ export const Footer = () => {
             </p>
             <ul className="mt-3 space-y-2 text-[13px] font-medium text-secondary">
               <li><Link href="/features" className="hover:text-brand transition-colors">产品功能</Link></li>
-              <li><Link href="/solutions" className="hover:text-brand transition-colors">行业方案</Link></li>
+              <li><Link href="/solutions" className="hover:text-brand transition-colors">适用场景</Link></li>
               <li><Link href="/experience" className="hover:text-brand transition-colors">在线演示</Link></li>
-              <li><Link href="/updates" className="hover:text-brand transition-colors">版本发布记录</Link></li>
+              <li><Link href="/updates" className="hover:text-brand transition-colors">更新记录</Link></li>
               <li><Link href="/blog" className="hover:text-brand transition-colors">文档中心</Link></li>
             </ul>
           </div>
@@ -70,7 +70,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} 拍卖竞价显示系统 · 保留所有权利
           </p>
           <p className="text-xs text-neutral-400">
-            展示站点 · 不含源代码 ｜ 数据保存在本地 · 离线可用
+            展示站点 · 不含源代码 ｜ 个人维护项目 · 数据保存在本地
           </p>
         </div>
       </div>

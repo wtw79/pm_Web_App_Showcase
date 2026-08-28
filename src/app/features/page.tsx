@@ -19,13 +19,11 @@ export default function FeaturesPage() {
           Products · 产品功能
         </p>
         <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.6rem] font-black text-primary tracking-tight leading-tight">
-          为你的下一场拍卖，
-          <br />
-          换一套不操心的流程。
+          这个系统能做什么
         </h1>
         <p className="mt-5 text-[15px] md:text-base text-secondary leading-relaxed max-w-2xl">
-          标的管理 → 现场报价 → 大屏投屏 → 成交归档，覆盖从开场到落槌的
-          全部环节，一个人也能从容开拍。
+          标的管理 → 现场报价 → 大屏投屏 → 成交归档，覆盖从开场到落槌的主要环节，
+          一个人也能操作。
         </p>
 
         {/* 页面锚点导航（sticky） */}
@@ -56,9 +54,9 @@ export default function FeaturesPage() {
 
       {/* 页末汇总 CTA */}
       <CtaBanner
-        title="哪一块解决了你的问题？"
-        primaryLabel="立即在线体验"
-        secondaryLabel="预约演示"
+        title="看完了，想试试实际效果？"
+        primaryLabel="在线体验"
+        secondaryLabel="联系我"
       />
       <p className="text-center text-xs text-neutral-400 mt-4">
         需要技术细节？前往

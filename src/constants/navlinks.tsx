@@ -24,7 +24,7 @@ export const navlinks = [
   },
   {
     href: "/solutions",
-    label: "行业方案",
+    label: "适用场景",
     icon: IconBuildingBank,
   },
   {

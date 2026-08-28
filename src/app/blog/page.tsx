@@ -22,8 +22,8 @@ export default async function Blog() {
       </p>
       <Heading className="font-black pb-4">文档中心</Heading>
       <Paragraph className="pb-6 max-w-2xl">
-        面向技术评估者：架构总览、竞价状态机、公式引擎、数据模型与测试体系——
-        工程质量，这里看得见。
+        架构总览、竞价状态机、公式引擎、数据模型与测试体系——
+        这个系统是怎么实现的，都在这里。
       </Paragraph>
       <Blogs blogs={data} />
     </Container>
