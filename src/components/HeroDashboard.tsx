@@ -19,9 +19,9 @@ export const HeroDashboard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-[118px_1fr] bg-white text-left">
-        {/* 侧边导航 */}
-        <aside className="bg-neutral-50 border-r border-neutral-100 py-4 px-3 flex flex-col gap-0.5">
+      <div className="grid grid-cols-1 sm:grid-cols-[118px_1fr] bg-white text-left">
+        {/* 侧边导航（移动端隐藏，节省空间） */}
+        <aside className="hidden sm:flex bg-neutral-50 border-r border-neutral-100 py-4 px-3 flex-col gap-0.5">
           <div className="flex items-center gap-2 px-2 pb-3 mb-1 border-b border-neutral-100">
             <StripeMark barClassName="!h-3 !w-1" />
             <span className="text-xs font-black text-primary">竞拍台</span>
@@ -68,8 +68,8 @@ export const HeroDashboard = () => {
             </span>
           </div>
 
-          {/* 4 大字卡 */}
-          <div className="grid grid-cols-4 gap-2">
+          {/* 4 大字卡（移动端 2×2） */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {[
               ["起拍价", "¥1,200,000", false],
               ["当前号牌", "038", true],

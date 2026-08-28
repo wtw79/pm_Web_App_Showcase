@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+import { MobileDemoGate } from "@/components/MobileDemoGate";
 
 export const metadata: Metadata = {
   title: "在线体验 | 拍卖竞价显示系统",
@@ -21,16 +20,9 @@ export default function ExperiencePage() {
         </p>
       </header>
 
-      {/* 演示主体：全宽铺满内容区 */}
+      {/* 演示主体：全宽铺满（移动端自动门控） */}
       <div className="w-full px-3 md:px-4 pt-3 pb-4 flex-1">
-        <div className="rounded-xl overflow-hidden border border-neutral-200 shadow-sm h-full">
-          <iframe
-            src={`${BASE}/demo/`}
-            title="拍卖竞价显示系统 · 在线体验"
-            className="w-full h-[calc(100dvh-9rem)] min-h-[70vh] border-0 bg-white"
-            loading="lazy"
-          />
-        </div>
+        <MobileDemoGate />
         <p className="mt-2 text-[11px] text-neutral-400">
           提示：系统按桌面端设计；在系统内打开「投屏窗」会以浏览器新窗口演示。
         </p>
