@@ -27,10 +27,10 @@ export default function UpdatesPage() {
         <StripeMark />
         <div className="flex-1">
           <p className="text-sm font-black text-primary">
-            当前版本 V2.2.00 · Web / Electron 重构版
+            当前版本 V2.3.00 · Web / Electron 重构版
           </p>
           <p className="mt-0.5 text-[13px] text-secondary">
-            三主题换肤 · 软键盘重构 · 成交归档一键完成 · 88 个自动化测试
+            文件管理 Tab 上线 · 标的详情单开一页 · 投屏 PDF 渲染兼容 · 88 个自动化测试
           </p>
         </div>
         <a
