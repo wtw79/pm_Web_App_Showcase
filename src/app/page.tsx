@@ -33,14 +33,32 @@ export default function Home() {
   return (
     <div className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-10 md:pt-14 pb-10">
       {/* ═══════ 01 这是什么 ═══════ */}
-      <section className="grid lg:grid-cols-[42%_58%] gap-10 lg:gap-12 items-center">
+      <section className="relative overflow-hidden">
+        {/* 柔和背景：细网格 + 品牌光斑（纯 CSS，克制装饰） */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(14,124,134,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(14,124,134,0.055) 1px, transparent 1px)",
+            backgroundSize: "38px 38px",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 75% 65% at 50% 0%, black, transparent 72%)",
+            maskImage:
+              "radial-gradient(ellipse 75% 65% at 50% 0%, black, transparent 72%)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -top-28 right-[-6rem] h-96 w-96 rounded-full bg-brand/10 blur-3xl pointer-events-none"
+        />
+
+        <div className="relative grid lg:grid-cols-[42%_58%] gap-10 lg:gap-12 items-center py-10 md:py-14">
         <div>
-          <div className="flex items-center gap-3">
-            <StripeMark />
-            <span className="text-xs font-bold tracking-[0.18em] text-brand uppercase">
-              Auction Bid Console · 个人维护项目
-            </span>
-          </div>
+          <span className="inline-flex items-center gap-2.5 rounded-full border border-brand/20 bg-brand-soft/60 pl-2 pr-4 py-1.5 text-xs font-bold text-brand">
+            <StripeMark barClassName="!h-3.5 !w-1" />
+            Auction Bid Console · 个人维护项目
+          </span>
 
           <h1 className="mt-6 text-4xl md:text-5xl lg:text-[3.2rem] font-black text-primary tracking-tight leading-[1.15]">
             为拍卖现场写的一个小系统
@@ -54,13 +72,13 @@ export default function Home() {
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
               href="/experience"
-              className="inline-flex items-center justify-center gap-2 bg-brand text-white text-sm font-bold rounded-full px-7 py-3.5 hover:bg-brand-deep transition-colors shadow-sm"
+              className="inline-flex items-center justify-center gap-2 bg-brand text-white text-sm font-bold rounded-full px-7 py-3.5 hover:bg-brand-deep hover:shadow-md hover:-translate-y-0.5 transition-all shadow-sm"
             >
               在线体验演示版 →
             </Link>
             <Link
               href="/features"
-              className="inline-flex items-center justify-center gap-2 border border-neutral-300 text-primary text-sm font-bold rounded-full px-7 py-3.5 hover:border-brand hover:text-brand transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-neutral-300 bg-white text-primary text-sm font-bold rounded-full px-7 py-3.5 hover:border-brand hover:text-brand hover:-translate-y-0.5 transition-all"
             >
               看它有哪些功能
             </Link>
@@ -93,6 +111,7 @@ export default function Home() {
               在线体验 →
             </Link>
           </p>
+        </div>
         </div>
       </section>
 
@@ -138,18 +157,31 @@ export default function Home() {
           desc="标的管理 → 现场报价 → 大屏投屏 → 成交归档，覆盖一场拍卖的主要环节。"
         />
         <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
-          {features.map((f) => (
+          {features.map((f, i) => (
             <Link
               key={f.id}
               href={`/features#${f.id}`}
-              className="group rounded-xl border border-neutral-200 bg-white overflow-hidden hover:border-brand/40 hover:shadow-md transition-all"
+              className={
+                "group relative rounded-xl border border-neutral-200 bg-white overflow-hidden hover:border-brand/40 hover:shadow-md transition-all " +
+                (i === 0 ? "sm:col-span-2" : "")
+              }
             >
-              <div className="relative overflow-hidden bg-neutral-50">
+              {/* hover 顶部条纹光条（呼应品牌条纹） */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-brand via-brand-light to-brand transition-transform duration-300 group-hover:scale-x-100"
+              />
+              <div
+                className={
+                  "relative overflow-hidden bg-neutral-50 " +
+                  (i === 0 ? "h-52 md:h-64" : "h-40 md:h-44")
+                }
+              >
                 <img
                   src={f.image}
                   alt={f.alt}
                   loading="lazy"
-                  className="w-full h-40 md:h-44 object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
+                  className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
                 />
               </div>
               <div className="p-5">

@@ -15,7 +15,9 @@ export const StatBar = () => {
       {stats.map((s) => (
         <div key={s.label} className="text-center">
           <dd className="font-black text-primary tabular-nums text-3xl md:text-4xl tracking-tight">
-            {s.num}
+            <span className="bg-gradient-to-br from-brand to-brand-deep bg-clip-text text-transparent">
+              {s.num}
+            </span>
             <span className="text-base md:text-lg text-brand font-bold ml-0.5">
               {s.unit}
             </span>
