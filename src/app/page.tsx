@@ -247,12 +247,17 @@ export default function Home() {
         />
         <div className="rounded-2xl border border-neutral-200 bg-neutral-50/60 px-6 py-10 md:px-10">
           <p className="text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
-            这个系统最初是因为一次现场拍卖的手忙脚乱开始写的：报价要喊、记录要手写、
-            大屏要人盯着，散场还得加班整台账。后来一点点把这些事做进了程序里。
+            拍卖现场的传统流程里，报价靠喊、记录靠手写、大屏展示需要专人盯守、
+            散场后还要手工整理成交台账——每个环节都依赖现场人员的专注与经验，
+            在紧张节奏下容易出错，事后也难以追溯。这套系统把
+            「标的管理 → 现场报价 → 大屏投屏 → 成交归档」的完整流程
+            <b className="text-primary">结构化、标准化</b>：每个环节都有明确的规则，
+            每一步操作都有可追溯的记录，让一场拍卖从头到尾清晰可控。
           </p>
           <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
-            它由<b className="text-primary">我一个人维护</b>，不追求大而全，只想把拍卖现场
-            那几件麻烦事做扎实。核心逻辑对齐行业里成熟的桌面版流程，写有自动化测试；
+            系统由<b className="text-primary">我个人维护</b>，不追求大而全，
+            只把该做好的内容结构化、标准化，并把每一步改进做扎实。
+            核心逻辑对齐行业里成熟的桌面版流程，写有自动化测试；
             如果你在实际使用中发现什么问题，欢迎在
             <a
               href="https://github.com/wtw79/pm_Web_App_Showcase"
