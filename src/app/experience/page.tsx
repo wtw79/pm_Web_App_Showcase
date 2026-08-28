@@ -12,7 +12,7 @@ export default function ExperiencePage() {
   return (
     <div className="flex flex-col min-h-full">
       {/* 极简标题区：不占演示空间 */}
-      <header className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-5 md:pt-6">
+      <header className="w-full px-3 md:px-4 pt-4 md:pt-5">
         <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">
           Live Demo · 在线体验
         </p>
@@ -21,17 +21,17 @@ export default function ExperiencePage() {
         </p>
       </header>
 
-      {/* 演示主体：尽量撑满视口 */}
-      <div className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-4 pb-6 flex-1">
+      {/* 演示主体：全宽铺满内容区 */}
+      <div className="w-full px-3 md:px-4 pt-3 pb-4 flex-1">
         <div className="rounded-xl overflow-hidden border border-neutral-200 shadow-sm h-full">
           <iframe
             src={`${BASE}/demo/`}
             title="拍卖竞价显示系统 · 在线体验"
-            className="w-full h-[calc(100dvh-12rem)] min-h-[70vh] border-0 bg-white"
+            className="w-full h-[calc(100dvh-9rem)] min-h-[70vh] border-0 bg-white"
             loading="lazy"
           />
         </div>
-        <p className="mt-2.5 text-[11px] text-neutral-400">
+        <p className="mt-2 text-[11px] text-neutral-400">
           提示：系统按桌面端设计；在系统内打开「投屏窗」会以浏览器新窗口演示。
         </p>
       </div>
