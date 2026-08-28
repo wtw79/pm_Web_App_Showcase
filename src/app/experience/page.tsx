@@ -1,7 +1,3 @@
-import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
-import { Paragraph } from "@/components/Paragraph";
 import { Metadata } from "next";
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
@@ -14,34 +10,29 @@ export const metadata: Metadata = {
 
 export default function ExperiencePage() {
   return (
-    <div>
-      <Container>
-        <span className="text-4xl">🎮</span>
-        <Heading className="font-black">在线体验</Heading>
-        <Paragraph className="max-w-2xl mt-4">
-          纯 Web 演示版（构建产物），<b className="text-neutral-700">浏览器打开即用</b>
-          ：控制台报价、标的管理、系统设置、三主题换肤与投屏演示。
-          浏览器环境下自动降级（localStorage 持久化 + window.open 投屏演示）；
-          Electron 专属能力（副屏物理投屏、SQLite、托盘）仅在桌面版可用。
-        </Paragraph>
-        <Paragraph className="max-w-2xl mt-2 text-sm text-neutral-400">
-          演示版数据保存在浏览器本地，刷新不丢失；操作完成后可通过右上角「返回展示站」回到本页。
-        </Paragraph>
-      </Container>
+    <div className="flex flex-col min-h-full">
+      {/* 极简标题区：不占演示空间 */}
+      <header className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-5 md:pt-6">
+        <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">
+          Live Demo · 在线体验
+        </p>
+        <p className="mt-1 text-[13px] text-neutral-400">
+          浏览器打开即用的演示版 · 数据保存在本地 · 建议电脑上体验
+        </p>
+      </header>
 
-      <div className="px-4 md:px-10 pb-10">
-        <div className="rounded-xl overflow-hidden border border-neutral-200 shadow-sm">
+      {/* 演示主体：尽量撑满视口 */}
+      <div className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-4 pb-6 flex-1">
+        <div className="rounded-xl overflow-hidden border border-neutral-200 shadow-sm h-full">
           <iframe
             src={`${BASE}/demo/`}
             title="拍卖竞价显示系统 · 在线体验"
-            className="w-full h-[calc(100dvh-16rem)] min-h-[60dvh] md:min-h-[540px] border-0 bg-white"
+            className="w-full h-[calc(100dvh-12rem)] min-h-[70vh] border-0 bg-white"
             loading="lazy"
           />
         </div>
-        <p className="mt-3 text-xs text-neutral-400 tracking-wide">
-          <Highlight>提示</Highlight> 系统为桌面端设计，建议在电脑上体验完整效果；
-          若系统内打开「投屏窗」会以浏览器新窗口演示。该演示即仓库
-          <code className="bg-neutral-100 px-1 rounded">/demo/</code> 静态产物。
+        <p className="mt-2.5 text-[11px] text-neutral-400">
+          提示：系统按桌面端设计；在系统内打开「投屏窗」会以浏览器新窗口演示。
         </p>
       </div>
     </div>
