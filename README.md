@@ -45,6 +45,48 @@ pm_Web_App_Showcase/
 
 ---
 
+## 📁 文件用途与依赖
+
+### Next.js 源码（品牌站，公开开源）
+
+| 路径 | 用途 | 依赖 |
+|---|---|---|
+| `src/app/layout.tsx` | 全局布局（导航/主题/字体） | 全部页面 |
+| `src/app/page.tsx` | 首页（Hero/特性/截图） | components |
+| `src/app/experience/page.tsx` | **在线体验页**（内嵌 `demo/` 系统） | 根 `demo/`（构建产物） |
+| `src/app/about\|blog\|contact\|projects\|resume/` | 系统介绍/技术文章/联系/项目/总览路由 | components + lib |
+| `src/app/not-found.tsx` | 品牌 404 页 | 自包含 |
+| `src/components/` | 组件库（About/Blog/Circles/CodeWindow 等） | Tailwind + Motion |
+| `src/lib/` `src/types/` `src/constants/` | 站内工具/类型/常量 | 组件引用 |
+| `lib/`（根） | 内容渲染工具（MDX 等） | 文章页面 |
+| `mdx-components.tsx` | MDX 组件映射 | blog/projects 内容 |
+| `next.config.mjs` `postcss.config.mjs` `tsconfig.json` | Next.js/PostCSS/TS 配置 | 构建 |
+| `images/` `fonts/` `public/` | 截图素材/字体/静态资源 | 页面引用 |
+
+### 运行产物
+
+| 目录 | 用途 | 可清理？ |
+|---|---|---|
+| `demo/` | 系统在线演示（构建产物，被 experience 页内嵌） | ❌ 品牌站功能依赖 |
+| `out/` | Next.js 静态导出（GitHub Pages 部署源） | 可重建（`npm run build`） |
+| `_next/` | 构建缓存/导出资源 | 可重建 |
+| `node_modules/` | 依赖 | 可重装（`npm install`） |
+
+### 🔗 依赖关系
+
+```
+sidefolio-template（原版模板）
+   └──► pm_Web_App_Showcase（品牌站 = 模板改造 + 拍卖内容）
+            ├── src/app/experience ←── 引用根 demo/（pm_Web_App 构建产物）
+            ├── images/ ←── 产品截图（与 pm_Web_App 界面一致）
+            └── out/ ──► GitHub Pages 部署（basePath=/pm_Web_App_Showcase）
+```
+
+- **部署链**：`npm run build`（静态导出 `out/`）→ 产物合并根目录 → GitHub Pages（main / root）
+- **与 pm_Web_App 关系**：演示版 `demo/` 来自 pm_Web_App 构建产物；站点内容基于拍卖系统真实功能
+
+---
+
 ## ⚠️ 权益声明
 
 本仓库为**品牌展示仓库**：包含展示站源码（Next.js，开源）、界面素材与**在线演示版（构建产物）**。
