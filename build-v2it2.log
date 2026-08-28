@@ -1,0 +1,51 @@
+
+> sidefolio@0.1.0 build
+> next build && node -e "require('fs').cpSync('demo','out/demo',{recursive:true})"
+
+▲ Next.js 16.2.10 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.4s
+  Running TypeScript ...
+  Finished TypeScript in 2.4s ...
+  Collecting page data using 13 workers ...
+  Generating static pages using 13 workers (0/29) ...
+  Generating static pages using 13 workers (7/29) 
+  Generating static pages using 13 workers (14/29) 
+  Generating static pages using 13 workers (21/29) 
+✓ Generating static pages using 13 workers (29/29) in 653ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /blog
+├ ○ /blog/architecture-overview
+├ ○ /blog/auction-state-machine
+├ ○ /blog/data-model
+├ ○ /blog/electron-architecture
+├ ○ /blog/excel-import-export
+├ ○ /blog/file-management
+├ ○ /blog/formula-engine
+├ ○ /blog/projection-rendering
+├ ○ /blog/state-management
+├ ○ /blog/test-system
+├ ○ /contact
+├ ○ /experience
+├ ○ /features
+├ ○ /projects
+├ ● /projects/[slug]
+│ ├ /projects/lots
+│ ├ /projects/console-bid
+│ ├ /projects/projection
+│ └ [+3 more paths]
+├ ○ /resume
+├ ○ /solutions
+└ ○ /updates
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+
+EXIT=0
