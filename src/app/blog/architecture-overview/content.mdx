@@ -1,53 +1,56 @@
 import { BlogLayout } from "@/components/BlogLayout";
 
 export const meta = {
-  date: "2026-08-10",
-  title: "项目架构与技术栈全景",
+  date: "2026-08-28",
+  title: "项目架构与技术栈",
   description:
-    "React 18 + Vite 5 + Electron 33 + sql.js 的三层架构：渲染进程、主进程与数据层的职责边界，双入口构建与多宿主兼容。",
+    "React 18 + Vite 5 + Electron 33 + sql.js 的三层架构：渲染进程、主进程与数据层的职责划分，双入口构建与多宿主兼容。",
   image: "/images/overview.png",
   tags: ["架构", "技术栈"],
 };
 
 export default (props) => <BlogLayout meta={meta} {...props} />;
 
-项目采用 **React（渲染层）+ Electron（桌面壳）+ SQLite（数据层）** 的三层架构，源码按职责清晰分层：
+本项目是 **拍卖竞价显示系统**（`D:\dev\Projects\auction\pm_Web_App`）的技术说明，结构为 React 渲染层 + Electron 桌面壳 + SQLite 数据层：
 
 ```text
-pm/web
-├── electron/          # Electron 主进程（CommonJS）
-│   ├── main.cjs            # 入口：装配层（initDb → registerIpc → 主窗 → 托盘 → 更新）
-│   ├── ipc-hub.cjs         # 集中式 IPC 中转（全部 ipcMain.handle 登记）
-│   ├── db.cjs              # sql.js（纯 WASM SQLite）：kv/targets/media/deal_artifacts 表
-│   ├── window-manager.cjs  # 统一窗口管理（主窗/投屏窗/崩溃恢复/广播）
-│   ├── storage-layout.cjs  # AuctionData 目录树
-│   ├── preload.cjs         # contextBridge 暴露受控 API（contextIsolation）
+pm_Web_App
+├── electron/              # Electron 主进程（CommonJS）
+│   ├── main.cjs                # 入口：装配层（initDb → registerIpc → 主窗 → 托盘 → 更新）
+│   ├── ipc-hub.cjs             # 集中式 IPC 中转（全部 ipcMain.handle 登记）
+│   ├── db.cjs                  # sql.js（纯 WASM SQLite）：kv / targets / media / deal_artifacts 四表
+│   ├── window-manager.cjs      # 统一窗口管理（主窗 / 投屏窗 / 崩溃恢复 / 广播）
+│   ├── storage-layout.cjs      # AuctionData 目录树
+│   ├── preload.cjs             # contextBridge 暴露受控 API（contextIsolation）
 │   ├── tray.cjs / updater.cjs / dev-runner.cjs
-├── src/               # React 渲染进程（ESM）
-│   ├── main.jsx / bigscreen.jsx   # 双 HTML 入口（主控台 / 投屏页）
-│   ├── bridge.js       # 多宿主兼容层（Electron / WebView2 / 浏览器）
-│   ├── store/          # Context + useReducer 全局状态
-│   ├── logic/          # 纯业务逻辑：auction.ts（竞价状态机）、formula.ts（公式引擎）
-│   ├── modules/        # 四大视图：Console / Lots / Settings / Reports
-│   └── components/     # 通用组件 + bigscreen 投屏组件族
-└── vite.config.js      # 双入口构建，base './'，单一 dist
+│   ├── prep-installer.cjs      # 打包前预解压 winCodeSign（跳过符号链接）
+│   └── after-pack.cjs          # 打包后注入应用图标与版本信息（rcedit）
+├── src/                  # React 渲染进程（ESM）
+│   ├── main.jsx / bigscreen.jsx # 双 HTML 入口（主控台 / 投屏页）
+│   ├── bridge.js               # 多宿主兼容层（Electron / WebView2 / 浏览器）
+│   ├── store/                  # Context + useReducer 全局状态
+│   ├── logic/                  # 纯业务逻辑：auction.ts（竞价）、formula.ts（公式引擎）
+│   ├── models/                 # 标的工厂与默认配置
+│   ├── modules/                # 控制台页面：Console / Lots / Reports / Settings
+│   └── components/             # 通用组件 + bigscreen/ 投屏组件族
+└── vite.config.js              # 双入口构建，base './'，单一 dist
 ```
 
 ## 技术选型
 
-| 依赖 | 版本 | 选型理由 |
-|------|------|---------|
-| React | 18.3 | 组件化 UI，生态成熟 |
-| Vite | 5.4 | 双 HTML 入口构建，秒级 HMR |
+| 依赖 | 版本 | 用途 |
+|------|------|------|
+| React | 18.3 | UI 层 |
+| Vite | 5.4 | 双 HTML 入口构建 |
 | Electron | 33 | 桌面能力（多屏投屏、本地文件、托盘、自动更新） |
 | sql.js | 1.14 | 纯 WASM SQLite，免 native 重编译，asarUnpack 后可访问 |
 | SheetJS (xlsx) | 0.18 | Excel 导入导出（13 列模板闭环） |
-| pdfjs-dist | 6.2 | 投屏页 PDF canvas 纯净渲染 |
-| Vitest | 4.x | 88 个自动化测试用例 |
+| pdfjs-dist | 6.2 | 投屏页 PDF canvas 渲染 |
+| Vitest | 4.x | 单元 / 集成测试 |
 
-## 核心架构原则
+## 架构约定
 
 1. **主进程权威态**：`ipc-hub.cjs` 持有 `canonicalState`，控制台 `push-state` → 落库 + 广播，投屏窗只读订阅；
-2. **窗口间通信一律经主进程中转**：`broadcastToDisplays` 统一广播，投屏窗崩溃自动重启（≤3 次）；
-3. **三宿主兼容**：`bridge.js` 统一抽象 Electron / WebView2 / 纯浏览器，方法名刻意一致（`LoadState` / `OpenProjection` / `PickFile`…），浏览器端自动降级 localStorage + window.open；
-4. **双入口构建**：`index.html`（主控台）+ `bigscreen.html`（投屏页）独立打包，互不干扰。
+2. **窗口间通信经主进程中转**：`broadcastToDisplays` 统一广播，投屏窗崩溃自动重启（最多 3 次）；
+3. **三宿主兼容**：`bridge.js` 统一抽象 Electron / WebView2 / 纯浏览器，方法名保持一致（`LoadState` / `OpenProjection` / `PickFile`…），浏览器端自动降级为 localStorage + window.open；
+4. **双入口构建**：`index.html`（主控台）+ `bigscreen.html`（投屏页）独立打包。

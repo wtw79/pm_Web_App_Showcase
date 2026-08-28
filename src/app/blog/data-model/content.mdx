@@ -1,17 +1,17 @@
 import { BlogLayout } from "@/components/BlogLayout";
 
 export const meta = {
-  date: "2026-08-08",
+  date: "2026-08-28",
   title: "标的数据模型与持久化",
   description:
-    "标的模型字段分组、报价记录 {round, d1..d8} 结构、删除撤销栈与重开快照，以及 sql.js 的 kv/targets/media/deal_artifacts 四表与增量 upsert + prune 机制。",
+    "标的字段分组、报价记录结构、删除撤销栈与重开快照，以及 sql.js 四表的增量 upsert、prune 兜底与首次启动迁移。",
   image: "/images/lots.png",
   tags: ["数据模型", "持久化"],
 };
 
 export default (props) => <BlogLayout meta={meta} {...props} />;
 
-一个标的由 `models/target.ts` 的 `createTarget()` 工厂创建，字段按职责分组：
+标的由 `src/models/target.ts` 的 `createTarget()` 工厂创建，字段按职责分组：
 
 ```ts
 {
@@ -28,9 +28,9 @@ export default (props) => <BlogLayout meta={meta} {...props} />;
   isBeginPaiMai, isPaused, isClosed, closeReason,
   dealPrice, dealPlate, dealAt,   // 成交字段
 
-  // 报价记录
+  // 报价记录（结构见《竞价状态机与报价规则》）
   records: [],         // 最新在前，records[0] 为当前领先
-  deletedRows: [],     // 删除任意行撤销栈
+  deletedRows: [],     // 删除任意行的撤销栈
   restartSnapshot,     // 重新开始快照
 
   // 展示 / 媒体 / 公式参数 / 键盘
@@ -40,22 +40,24 @@ export default (props) => <BlogLayout meta={meta} {...props} />;
 }
 ```
 
-## 报价记录结构
-
-每条报价 `{ round, d1, d2, d3, d4..d8 }`：`d1` 状态（领先/出局/成交）、`d2` 号牌、`d3` 金额、`d4..d8` 自定义参数列。数组**最新在前**，新报价 `unshift` 到头部，旧领先自动转出局。
-
 ## 可逆操作的数据支撑
 
-- **deletedRows 撤销栈**：`deleteBid` 删除任意行时压入 `{ record, index }`，`undoDeleteBid` 按原位置精确还原（含领先状态）；
-- **restartSnapshot 快照**：`restart` 清空前保存 `records + roundCounter`，`restoreRestart` 一键恢复。
+- **deletedRows 撤销栈**：删除任意行时压入 `{ record, index }`，撤销时按原位置还原（含领先状态）；
+- **restartSnapshot 快照**：重新开始时保存 `records + roundCounter`，可一键恢复。
 
 ## 持久化：sql.js 四表
 
 | 表 | 内容 |
 |----|------|
 | `kv` | config / projection / projCtl / meta 键值 |
-| `targets` | 标的（data 字段存完整 JSON，增量 upsert） |
+| `targets` | 标的（data 字段存完整 JSON） |
 | `media` | 媒体台账（关联 target_id） |
 | `deal_artifacts` | 成交归档台账（report / screenshot） |
 
-关键机制：**增量 upsert**（按 id `INSERT OR REPLACE`，避免全表重写）+ **pruneTargets 兜底清理孤儿行**；sql.js 不自动持久化，需手动 `flush()`（内存库 `export()` 写文件）；首次启动自动迁移旧 `auction-state.json` → 改名 `.migrated` 归档。文件层面按 `AuctionData/数据/{标的名}/`、`欢迎页/`、`竞价页/` 目录树归档媒体与报表。
+机制要点：
+
+- **增量 upsert**：按 id `INSERT OR REPLACE`，避免全表重写；
+- **prune 兜底**：清理孤儿行；
+- **手动 flush**：sql.js 不自动持久化，内存库通过 `export()` 写文件；
+- **首次启动迁移**：旧 `auction-state.json` 自动迁移后改名 `.migrated` 归档；
+- **文件目录树**：按 `AuctionData/数据/{标的名}/`、`欢迎页/`、`竞价页/` 归档媒体与报表。

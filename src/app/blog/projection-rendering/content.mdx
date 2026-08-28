@@ -1,46 +1,48 @@
 import { BlogLayout } from "@/components/BlogLayout";
 
 export const meta = {
-  date: "2026-08-06",
-  title: "投屏渲染技术：无黑边、大字自适应与远程驱动",
+  date: "2026-08-28",
+  title: "投屏渲染：无黑边、大字自适应与远程驱动",
   description:
-    "Viewbox Uniform 等比缩放、FitText 大字卡自适应（width:max-content 测量）、PDF canvas 纯净渲染、projCtl 远程驱动与三阶段背景的实现细节。",
+    "Viewbox Uniform 等比缩放、FitText 大字卡自适应、PDF canvas 渲染、projCtl 远程驱动与投屏窗崩溃恢复的实现。",
   image: "/images/welcome.jpg",
   tags: ["投屏", "渲染"],
 };
 
 export default (props) => <BlogLayout meta={meta} {...props} />;
 
-拍卖现场的投屏页（`bigscreen.html`）是**独立渲染进程**，与主控台分离。它的渲染质量直接决定现场观感。
+投屏页（`bigscreen.html`）是独立渲染进程，与主控台分离，渲染质量直接决定现场观感。相关组件位于 `src/components/bigscreen/`。
 
 ## Viewbox Uniform 等比缩放
 
-对齐 Viewbox `Stretch=Uniform` 的语义：固定**设计高 1080**，按窗口宽高比计算设计面宽，整体 `transform: scale()` 填满任意屏幕——跨屏比例一致、无黑边，`ResizeObserver` 监听窗口变化实时重算。分辨率从 1366×768 到 4K 表现一致。
+对齐 Viewbox `Stretch=Uniform` 语义：固定设计高 1080，按窗口宽高比计算设计面宽，整体 `transform: scale()` 填满任意屏幕——跨屏比例一致、无黑边，`ResizeObserver` 监听窗口变化实时重算。分辨率从 1366×768 到 4K 表现一致。
 
 ## FitText 大字卡自适应
 
-竞价页的 2×2 大字卡（起拍价 / 当前号牌 / 增价幅度 / 最新应价）可能遇到超长数字（如 `99999999`），需要自动缩字防溢出。实现要点：
+竞价页的 2×2 大字卡（起拍价 / 当前号牌 / 增价幅度 / 最新应价）对超长数字（如 `99999999`）自动缩字防溢出。实现位于 `src/components/bigscreen/FitText.jsx`：
 
 ```ts
-// 卡片是 flex 子项，宽度会被拉伸 → 必须临时 width:max-content 测真实宽高
+// 卡片是 flex 子项，宽度会被拉伸 → 临时 width:max-content 测真实宽高
 el.style.width = "max-content";
 const { scrollWidth, scrollHeight } = el;
 el.style.width = "";
 // scale = min(1, 卡片宽/文本宽, 卡片高/文本高)
 ```
 
+测量要点：
+
 - `useLayoutEffect` 在 paint 前测量，无闪烁；
 - 依赖 `[value, style.fontSize]`，内容或字号变化重测；
-- `ResizeObserver` 观察**卡片**而非元素本身（避免 fit 内改 width 触发 RO 死循环）；
+- `ResizeObserver` 观察**卡片**而非元素本身（避免 fit 内改 width 触发递归）；
 - 监听 `document.fonts.ready`，字体加载完成后重测。
 
-## PDF canvas 纯净渲染
+## PDF canvas 渲染
 
-欢迎页 PDF 使用 pdfjs-dist 在 canvas 上逐页渲染——刻意**不直接 `loadURL(pdf)`**，因为那会启动 Chromium 内置 PDF 查看器（下载 / 打印 / 双页工具栏），破坏现场观感。翻页 / 缩放 / 全屏 / 页码跳转全部由主控台远程驱动。
+欢迎页 PDF 使用 pdfjs-dist 在 canvas 上逐页渲染，不直接 `loadURL(pdf)`（避免 Chromium 内置 PDF 查看器的下载 / 打印 / 双页工具栏）。翻页 / 缩放 / 全屏 / 页码跳转由主控台远程驱动。
 
 ## projCtl 远程驱动
 
-投屏窗**无控制条**（防误触）：所有翻页 / 缩放 / 全屏 / 自动间隔由主控台写入共享态 `projCtl`，经主进程广播到投屏窗。背景图按阶段切换（索引 0=欢迎、1=竞价、2=成交），成交时红底蒙层自动弹出显示成交号牌与价格。
+投屏窗无控制条（防误触）：所有翻页 / 缩放 / 全屏 / 自动间隔由主控台写入共享态 `projCtl`，经主进程广播到投屏窗。背景按阶段切换（索引 0=欢迎、1=竞价、2=成交），成交时红底蒙层自动显示成交号牌与价格。
 
 ## 可靠性
 
