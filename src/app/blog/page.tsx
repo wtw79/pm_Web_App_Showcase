@@ -1,15 +1,14 @@
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
 import { getAllBlogs } from "../../../lib/getAllBlogs";
 import { Blogs } from "@/components/Blogs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "技术文章 | 拍卖竞价显示系统",
+  title: "文档中心 | 拍卖竞价显示系统",
   description:
-    "架构设计、竞价状态机、公式引擎与测试体系——拍卖竞价显示系统的工程实践笔记。",
+    "架构总览、竞价状态机、数据模型、公式引擎、Electron 架构、测试体系——拍卖竞价显示系统的工程实践与实现细节。",
 };
 
 export default async function Blog() {
@@ -18,11 +17,13 @@ export default async function Blog() {
 
   return (
     <Container>
-      <span className="text-4xl">📝</span>
-      <Heading className="font-black pb-4">技术文章</Heading>
-      <Paragraph className="pb-10">
-        从 <Highlight>架构选型</Highlight> 到业务状态机，记录拍卖竞价显示系统的
-        工程实践与取舍。
+      <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase mb-3">
+        Docs · 文档中心
+      </p>
+      <Heading className="font-black pb-4">文档中心</Heading>
+      <Paragraph className="pb-6 max-w-2xl">
+        面向技术评估者：架构总览、竞价状态机、公式引擎、数据模型与测试体系——
+        工程质量，这里看得见。
       </Paragraph>
       <Blogs blogs={data} />
     </Container>

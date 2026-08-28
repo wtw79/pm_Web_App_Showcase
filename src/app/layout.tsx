@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "拍卖竞价显示系统 · Auction Bid Console",
   description:
-    "面向拍卖师与现场操作员的桌面管理系统：标的管理、实时报价、副屏投屏、成交归档。全新打造的 Web/Electron 桌面应用，开箱即用。",
+    "从起拍到落槌，一气呵成。面向拍卖行与现场操作员的一体化系统：标的管理、实时报价、副屏投屏、成交归档。离线可用，开箱即用。",
 };
 
 export default function RootLayout({

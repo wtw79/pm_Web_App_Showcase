@@ -1,14 +1,16 @@
 import {
   IconArticle,
   IconBolt,
-  IconBriefcase2,
+  IconBuildingBank,
   IconChartBar,
-  IconInfoCircle,
+  IconHistory,
+  IconLayoutDashboard,
   IconMail,
-  IconSparkles,
+  IconPlayerPlay,
 } from "@tabler/icons-react";
 
-// 完整路由导航：覆盖站点全部页面（首页 / 系统介绍 / 核心功能 / 演示 / 系统总览 / 技术文章 / 联系·权益）
+// 产品站导航（IA 蓝图：识别 → 理解 → 信任 → 试用 → 联系）
+// 首页 / 产品功能 / 行业方案 / 在线演示 / 文档中心 / 版本发布 / 联系
 export const navlinks = [
   {
     href: "/",
@@ -16,33 +18,33 @@ export const navlinks = [
     icon: IconBolt,
   },
   {
-    href: "/about",
-    label: "系统介绍",
-    icon: IconInfoCircle,
+    href: "/features",
+    label: "产品功能",
+    icon: IconLayoutDashboard,
   },
   {
-    href: "/projects",
-    label: "核心功能",
-    icon: IconBriefcase2,
+    href: "/solutions",
+    label: "行业方案",
+    icon: IconBuildingBank,
   },
   {
     href: "/experience",
-    label: "演示",
-    icon: IconSparkles,
-  },
-  {
-    href: "/resume",
-    label: "系统总览",
-    icon: IconChartBar,
+    label: "在线演示",
+    icon: IconPlayerPlay,
   },
   {
     href: "/blog",
-    label: "技术文章",
+    label: "文档中心",
     icon: IconArticle,
   },
   {
+    href: "/updates",
+    label: "版本发布",
+    icon: IconHistory,
+  },
+  {
     href: "/contact",
-    label: "联系·权益",
+    label: "联系",
     icon: IconMail,
   },
 ];
