@@ -1,14 +1,29 @@
 export const timeline = [
   {
-    company: "Web · Electron 版",
-    title: "React + Vite + Electron 重构",
+    company: "2026 · Web / Electron 重构版",
+    title: "从 WPF 到 Web 技术栈重构",
     date: "2026",
-    description: "以 Web 技术栈重构，桌面能力由 Electron 提供",
+    description: "React 18 + Vite 5 + Electron 33 全新实现，业务逻辑对齐桌面版，浏览器可直接运行",
     responsibilities: [
-      "React 18 + Vite 5 构建全新界面，Electron 主进程封装桌面能力",
-      "主进程权威态 + 集中式 IPC：多屏投屏、SQLite 持久化（sql.js）、系统托盘、自动更新",
-      "三主题换肤（青绿 / 深空 / 玻璃）、G4 公式列配置、投屏信息实时预览",
-      "88 个自动化测试用例护航：报价逻辑 / 公式引擎 / 状态迁移 / 模板闭环",
+      "三主题换肤升级（Aurora 青绿 / Obsidian 深空 / Glass 玻璃），控制台与投屏全套统一",
+      "软键盘重构为自适应页面浮窗：尺寸随内容、锚定触发输入框，牌号键盘 digitsOnly 快速报价",
+      "成交归档增强：一键完成报表 + 现场截图 + 按标的归档，截图失败自动降级 canvas 快照",
+      "报表改为「保存 pm 模板 + 填充」：45 轮/页、买受人签名区，可直接对外交付",
+      "投屏媒体渲染加固：消除裂图闪烁、失败可见、PDF 渲染资源（CMap/标准字体/wasm）配置修复",
+      "成交弹窗修复（ARGB→CSS alpha 顺序）与红色半透明 UI 升级",
+    ],
+  },
+  {
+    company: "2026 · 工程质量",
+    title: "自动化测试体系与安装包",
+    date: "2026",
+    description: "88 个自动化用例护航核心逻辑，NSIS 安装包一键化构建",
+    responsibilities: [
+      "Vitest 单元 + 集成测试体系：报价逻辑 / 公式引擎 / 状态迁移 / 模板闭环，共 88 个用例",
+      "NSIS 安装包升级：pm 应用图标注入、安装目录归档、快捷方式含版本号，构建一键化",
+      "修复运行时崩溃（缺失 import 导致整页 ReferenceError）与报表领先逻辑重算",
+      "修复删除当前标的后异常恢复、删除标的同步清理磁盘归档",
+      "修复 electron:dev 残留僵尸 vite 占 5173 端口导致白屏",
     ],
   },
   {

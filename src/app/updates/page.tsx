@@ -22,15 +22,15 @@ export default function UpdatesPage() {
         从 2021 年的桌面版到现在，这个项目一直在改。每次更新都记录在这里。
       </p>
 
-      {/* 最新版本徽章 */}
+      {/* 当前版本徽章 */}
       <div className="mt-8 flex items-center gap-3 rounded-2xl border border-brand/25 bg-brand-soft/40 px-6 py-5">
         <StripeMark />
         <div className="flex-1">
           <p className="text-sm font-black text-primary">
-            当前版本 V2.2.00 · 功能整合版
+            当前版本 V2.2.00 · Web / Electron 重构版
           </p>
           <p className="mt-0.5 text-[13px] text-secondary">
-            初始化入口统一、成交归档一键完成、导入导出模板精简
+            三主题换肤 · 软键盘重构 · 成交归档一键完成 · 88 个自动化测试
           </p>
         </div>
         <a
