@@ -30,7 +30,7 @@ export default function UpdatesPage() {
             当前版本 V2.3.00 · Web / Electron 重构版
           </p>
           <p className="mt-0.5 text-[13px] text-secondary">
-            文件管理 Tab 上线 · 标的详情单开一页 · 投屏 PDF 渲染兼容 · 88 个自动化测试
+            文件管理 Tab（三视图 + 回收站删除 + 整理）· 标的详情单开一页 · 88 个自动化测试
           </p>
         </div>
         <a
