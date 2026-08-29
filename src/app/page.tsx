@@ -4,7 +4,6 @@ import { StripeMark } from "@/components/StripeMark";
 import { HeroDashboard } from "@/components/HeroDashboard";
 import { StatBar } from "@/components/StatBar";
 import { SectionHead } from "@/components/SectionHead";
-import { CtaBanner } from "@/components/CtaBanner";
 import { solutions } from "@/constants/solutions";
 
 export const metadata: Metadata = {
@@ -109,9 +108,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      {/* ═══════ 07 行动区 ═══════ */}
-      <CtaBanner />
     </div>
   );
 }
