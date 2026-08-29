@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { StripeMark } from "@/components/StripeMark";
-import { HeroDashboard } from "@/components/HeroDashboard";
 import { StatBar } from "@/components/StatBar";
 import { SectionHead } from "@/components/SectionHead";
 import { solutions } from "@/constants/solutions";
@@ -18,8 +17,7 @@ export default function Home() {
     <div className="max-w-6xl w-full mx-auto px-4 md:px-10 pt-8 md:pt-12 pb-12">
       {/* 01 这是什么（深色氛围 hero） */}
       <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#041e23] via-[#0a5f66] to-brand text-white shadow-xl shadow-brand/10">
-        <div className="relative grid lg:grid-cols-[42%_58%] gap-10 lg:gap-12 items-center py-10 md:py-16 px-6 md:px-12">
-        <div className="animate-fade-up">
+        <div className="relative flex flex-col items-center text-center py-14 md:py-24 px-6 md:px-12 animate-fade-up">
           <span className="inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 pl-2 pr-4 py-1.5 text-xs font-bold text-white">
             <StripeMark barClassName="!h-3.5 !w-1" />
             Auction Bid Console · 个人维护项目
@@ -29,7 +27,7 @@ export default function Home() {
             拍卖竞价显示系统
           </h1>
 
-          <p className="mt-6 text-[15px] md:text-lg text-white/85 leading-relaxed max-w-[30rem]">
+          <p className="mt-6 text-[15px] md:text-lg text-white/85 leading-relaxed max-w-[32rem]">
             标的管理、实时报价、副屏投屏、成交归档，
             <b className="text-white font-bold">一个程序跑完。</b>
           </p>
@@ -48,17 +46,6 @@ export default function Home() {
               看它有哪些功能
             </Link>
           </div>
-        </div>
-
-        <div className="min-w-0 animate-fade-up" style={{ animationDelay: "0.12s" }}>
-          <HeroDashboard />
-          <p className="mt-3 text-[11px] text-white/60 tracking-wide">
-            界面截图：控制台 · 起拍设置 / 实时报价 / 操作面板
-            <Link href="/experience" className="text-white font-semibold hover:underline">
-              看它工作 →
-            </Link>
-          </p>
-        </div>
         </div>
       </section>
 
