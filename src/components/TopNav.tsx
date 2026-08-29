@@ -106,6 +106,13 @@ export const TopNav = () => {
                   </Link>
                 );
               })}
+              <Link
+                href="/experience"
+                onClick={() => setOpen(false)}
+                className="mt-3 flex items-center justify-center gap-2 bg-brand text-white text-sm font-bold rounded-full py-2.5 hover:bg-brand-deep transition-colors shadow-sm"
+              >
+                看它工作 →
+              </Link>
             </nav>
           </motion.div>
         )}
