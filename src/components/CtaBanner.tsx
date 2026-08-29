@@ -4,7 +4,7 @@ import Link from "next/link";
 // 行动区：看它工作 / 与作者聊聊，文案克制不夸大
 export const CtaBanner = ({
   title = "去看看它怎么工作。",
-  sub = "浏览器直接打开，隔窗看一场拍卖如何被数字化。",
+  sub = "浏览器直接打开，隔窗看它走完一场拍卖。",
   primaryHref = "/experience",
   primaryLabel = "看它工作",
   secondaryHref = "/contact",

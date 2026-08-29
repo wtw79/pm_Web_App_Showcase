@@ -19,7 +19,7 @@ export default function ExperiencePage() {
           Live Demo · 看它工作
         </p>
         <p className="mt-1 text-[13px] text-neutral-400">
-          起拍 → 应价 → 落槌 → 归档，隔窗看一场拍卖如何被数字化
+          起拍 → 应价 → 落槌 → 归档，隔窗看它把一场拍卖走完
         </p>
       </header>
 
