@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <body className="antialiased bg-white min-h-dvh flex flex-col">
         <TopNav />
-        <main className="flex-1 w-full">{children}</main>
+        <main className="flex-1 w-full bg-gradient-to-b from-brand-soft/40 via-white to-white">{children}</main>
         <Footer />
       </body>
     </html>

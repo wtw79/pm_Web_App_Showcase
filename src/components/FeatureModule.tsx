@@ -33,7 +33,7 @@ export const FeatureModule = ({
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
         {/* 截图 */}
         <div className={reverse ? "lg:order-2" : ""}>
-          <div className="rounded-xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
+          <div className="rounded-xl border border-neutral-200 bg-white shadow-sm overflow-hidden group-hover:shadow-md transition-shadow">
             <div className="flex items-center gap-3 px-4 py-2.5 border-b border-neutral-100 bg-neutral-50/60">
               <div className="flex gap-1.5" aria-hidden="true">
                 <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
@@ -72,7 +72,7 @@ export const FeatureModule = ({
             {fab.map((row) => (
               <div
                 key={row.f}
-                className="grid grid-cols-1 sm:grid-cols-[1.2fr_1fr] gap-1.5 sm:gap-4 rounded-lg border border-neutral-100 bg-neutral-50/50 px-4 py-3"
+                className="grid grid-cols-1 sm:grid-cols-[1.2fr_1fr] gap-1.5 sm:gap-4 rounded-lg border border-neutral-100 bg-neutral-50/50 px-4 py-3 hover:border-brand/30 hover:bg-brand-soft/40 transition-colors"
               >
                 <span className="text-[13px] font-bold text-primary leading-snug">
                   {row.f}

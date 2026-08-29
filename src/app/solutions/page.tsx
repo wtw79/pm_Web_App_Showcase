@@ -32,9 +32,9 @@ export default function SolutionsPage() {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-brand transition-colors border border-neutral-200 bg-white rounded-full px-4 py-2 hover:border-brand/50"
+              className="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-brand transition-colors border border-neutral-200 bg-white rounded-full px-4 py-2 hover:border-brand/50 hover:shadow-sm"
             >
-              <span className="h-5 w-5 rounded-md bg-brand-soft text-brand text-[11px] flex items-center justify-center font-black">
+              <span className="h-5 w-5 rounded-md bg-gradient-to-br from-brand to-brand-deep text-white text-[11px] flex items-center justify-center font-black">
                 {s.icon}
               </span>
               {s.title}
@@ -52,7 +52,7 @@ export default function SolutionsPage() {
             className="scroll-mt-24 rounded-2xl border border-neutral-200 bg-white p-6 md:p-10"
           >
             <header className="flex items-center gap-4">
-              <span className="h-12 w-12 rounded-xl bg-brand-soft text-brand flex items-center justify-center text-xl font-black">
+              <span className="h-12 w-12 rounded-xl bg-gradient-to-br from-brand to-brand-deep text-white flex items-center justify-center text-xl font-black shadow-sm">
                 {s.icon}
               </span>
               <div>

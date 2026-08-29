@@ -65,7 +65,7 @@ export default function Home() {
               className="group rounded-xl border border-neutral-200 bg-neutral-50/60 p-6 hover:border-brand/40 hover:bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className="flex items-center gap-3">
-                <span className="h-10 w-10 rounded-lg bg-white border border-neutral-200 text-brand flex items-center justify-center text-base font-black group-hover:bg-brand group-hover:text-white transition-colors">
+                <span className="h-11 w-11 rounded-xl bg-gradient-to-br from-brand to-brand-deep text-white flex items-center justify-center text-base font-black shadow-sm group-hover:shadow-md group-hover:-translate-y-0.5 transition-all">
                   {s.icon}
                 </span>
                 <h3 className="text-base font-black text-primary">

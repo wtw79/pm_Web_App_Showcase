@@ -153,8 +153,8 @@ export const features = [
     benefit: "归档整理不用再开文件管理器",
     pain: "成交报表、现场截图、欢迎页媒体散落在系统目录里，每次核对、导出都要手动找文件夹。",
     desc: "系统内嵌文件管理器：按标的聚合浏览归档，图片/PDF 直接预览，删除进回收站。",
-    image: `${BASE}/images/console-light.png`,
-    alt: "文件管理功能界面",
+    image: `${BASE}/images/file-mgmt.png`,
+    alt: "文件管理界面",
     scene: "散场后核对归档、导出报表交给委托方、清理过期资料。",
     fab: [
       {
