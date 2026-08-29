@@ -40,27 +40,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-10 md:pt-14 pb-10">
-      {/* ═══════ 01 这是什么 ═══════ */}
+      {/* 01 这是什么 */}
       <section className="relative overflow-hidden">
-        {/* 柔和背景：细网格 + 品牌光斑（纯 CSS，克制装饰） */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(14,124,134,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(14,124,134,0.055) 1px, transparent 1px)",
-            backgroundSize: "38px 38px",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 75% 65% at 50% 0%, black, transparent 72%)",
-            maskImage:
-              "radial-gradient(ellipse 75% 65% at 50% 0%, black, transparent 72%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -top-28 right-[-6rem] h-96 w-96 rounded-full bg-brand/10 blur-3xl pointer-events-none"
-        />
-
         <div className="relative grid lg:grid-cols-[42%_58%] gap-10 lg:gap-12 items-center py-10 md:py-14">
         <div>
           <span className="inline-flex items-center gap-2.5 rounded-full border border-brand/20 bg-brand-soft/60 pl-2 pr-4 py-1.5 text-xs font-bold text-brand">
@@ -80,13 +61,13 @@ export default function Home() {
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
               href="/experience"
-              className="inline-flex items-center justify-center gap-2 bg-brand text-white text-sm font-bold rounded-full px-7 py-3.5 hover:bg-brand-deep hover:shadow-md hover:-translate-y-0.5 transition-all shadow-sm"
+              className="inline-flex items-center justify-center gap-2 bg-brand text-white text-sm font-bold rounded-full px-7 py-3.5 hover:bg-brand-deep hover:shadow-md transition-all shadow-sm"
             >
               看它工作 →
             </Link>
             <Link
               href="/features"
-              className="inline-flex items-center justify-center gap-2 border border-neutral-300 bg-white text-primary text-sm font-bold rounded-full px-7 py-3.5 hover:border-brand hover:text-brand hover:-translate-y-0.5 transition-all"
+              className="inline-flex items-center justify-center gap-2 border border-neutral-300 bg-white text-primary text-sm font-bold rounded-full px-7 py-3.5 hover:border-brand hover:text-brand transition-all"
             >
               看它有哪些功能
             </Link>
@@ -149,7 +130,7 @@ export default function Home() {
               <p className="mt-2 text-sm text-secondary leading-relaxed">
                 {v.desc}
               </p>
-              <span className="inline-block mt-4 text-sm font-bold text-brand opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="inline-block mt-4 text-sm font-bold text-brand">
                 看实现 →
               </span>
             </Link>
@@ -174,11 +155,6 @@ export default function Home() {
                 (i === 0 ? "sm:col-span-2" : "")
               }
             >
-              {/* hover 顶部条纹光条（呼应品牌条纹） */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gradient-to-r from-brand via-brand-light to-brand transition-transform duration-300 group-hover:scale-x-100"
-              />
               <div
                 className={
                   "relative overflow-hidden bg-neutral-50 " +
@@ -189,7 +165,7 @@ export default function Home() {
                   src={f.image}
                   alt={f.alt}
                   loading="lazy"
-                  className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="p-5">
@@ -238,7 +214,7 @@ export default function Home() {
               <p className="mt-3 text-[13px] text-secondary leading-relaxed line-clamp-3">
                 {s.intro}
               </p>
-              <span className="inline-block mt-4 text-sm font-bold text-brand opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="inline-block mt-4 text-sm font-bold text-brand">
                 看场景说明 →
               </span>
             </Link>
@@ -255,17 +231,14 @@ export default function Home() {
         />
         <div className="rounded-2xl border border-neutral-200 bg-neutral-50/60 px-6 py-10 md:px-10">
           <p className="text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
-            拍卖现场的传统流程里，报价靠喊、记录靠手写、大屏展示需要专人盯守、
-            散场后还要手工整理成交台账——每个环节都依赖现场人员的专注与经验，
-            在紧张节奏下容易出错，事后也难以追溯。这套系统把
-            「标的管理 → 现场报价 → 大屏投屏 → 成交归档」的完整流程
-            <b className="text-primary">结构化、标准化</b>：每个环节都有明确的规则，
-            每一步操作都有可追溯的记录，让一场拍卖从头到尾清晰可控。
+            拍卖现场靠喊报价、靠笔记录，大屏要专人盯守，散场还得手工整理成交台账——越到关键轮次越容易出错。
+            这套系统把「标的管理 → 现场报价 → 大屏投屏 → 成交归档」收进一个程序：
+            报价落屏、成交归档，每一步都留得下记录。
           </p>
           <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
             系统由<b className="text-primary">我一个人维护</b>，不追求大而全，
-            只把现场该做的事做扎实。核心流程每一步都有记录，
-            错了可以撤回，不会让你带着糊涂散场；
+            只把现场该做的事做扎实。它 2021 年就在拍卖现场干活，2025 年年中起由我接手维护；
+            核心流程每一步都有记录，错了可以撤回，不会让你带着糊涂散场。
             如果你在实际使用中发现什么问题，欢迎在
             <a
               href="https://github.com/wtw79/pm_Web_App_Showcase"

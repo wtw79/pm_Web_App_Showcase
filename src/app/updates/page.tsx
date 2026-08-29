@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Fragment } from "react";
 import { StripeMark } from "@/components/StripeMark";
 import { CtaBanner } from "@/components/CtaBanner";
 import { timeline } from "@/constants/timeline";
@@ -20,7 +21,7 @@ export default function UpdatesPage() {
         更新记录
       </h1>
       <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-2xl">
-        从 2021 年的桌面版到现在，这个项目一直在改。每次更新都记录在这里。
+        系统从 2021 年活到现在，2025 年年中起由我接手维护。每次更新都记录在这里。
       </p>
 
       {/* 当前版本徽章 */}
@@ -47,7 +48,19 @@ export default function UpdatesPage() {
       {/* 版本时间线 */}
       <ol className="relative mt-12 space-y-10 border-l border-neutral-200 ml-3">
         {timeline.map((v, i) => (
-          <li key={v.company} className="relative pl-8 md:pl-10">
+          <Fragment key={v.company}>
+          {i === timeline.length - 1 && (
+            <li className="relative pl-8 md:pl-10">
+              <span
+                className="absolute top-2 h-3.5 w-3.5 rounded-full border-2 bg-neutral-100 border-neutral-300"
+                aria-hidden="true"
+              />
+              <p className="text-xs font-bold text-neutral-400 tracking-wide">
+                以下为系统早期记录（2021 年起）
+              </p>
+            </li>
+          )}
+          <li className="relative pl-8 md:pl-10">
             <span
               className={
                 "absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-2 " +
@@ -77,6 +90,7 @@ export default function UpdatesPage() {
               ))}
             </ul>
           </li>
+          </Fragment>
         ))}
       </ol>
 

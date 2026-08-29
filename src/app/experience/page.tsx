@@ -4,7 +4,7 @@ import { MobileDemoGate } from "@/components/MobileDemoGate";
 export const metadata: Metadata = {
   title: "在线演示 | 拍卖竞价显示系统",
   description:
-    "隔窗看它工作：控制台报价、标的管理、副屏投屏，浏览器打开即用，无需安装。",
+    "在线体验：控制台报价、副屏投屏，浏览器打开即用，无需安装。",
   alternates: { canonical: "/experience" },
 };
 

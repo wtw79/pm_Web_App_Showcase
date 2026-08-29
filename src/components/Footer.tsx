@@ -18,7 +18,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="mt-3 text-xs text-secondary leading-relaxed">
-              Auction Bid Console · V2.3.00 · 个人维护项目
+              Auction Bid Console · V2.3.00
               <br />
               标的管理、实时报价、副屏投屏、成交归档
             </p>
@@ -71,7 +71,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} 拍卖竞价显示系统 · 保留所有权利
           </p>
           <p className="text-xs text-neutral-400">
-            展示站点 · 不含源代码 ｜ 个人维护项目 · 数据保存在本地
+            展示站点 · 不含源代码 ｜ 数据保存在本地
           </p>
         </div>
       </div>
