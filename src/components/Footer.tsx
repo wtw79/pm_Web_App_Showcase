@@ -7,7 +7,7 @@ import { StripeMark } from "./StripeMark";
 export const Footer = () => {
   return (
     <footer className="border-t border-neutral-200 bg-neutral-50/60">
-      <div className="max-w-5xl w-full mx-auto px-4 md:px-10 py-10">
+      <div className="max-w-6xl w-full mx-auto px-4 md:px-10 py-10">
         <div className="flex flex-col md:flex-row gap-8 md:items-start md:justify-between">
           {/* 品牌 */}
           <div className="max-w-xs">

@@ -16,46 +16,46 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-10 md:pt-14 pb-10">
-      {/* 01 这是什么 */}
-      <section className="relative overflow-hidden">
-        <div className="relative grid lg:grid-cols-[42%_58%] gap-10 lg:gap-12 items-center py-10 md:py-14">
-        <div>
-          <span className="inline-flex items-center gap-2.5 rounded-full border border-brand/20 bg-brand-soft/60 pl-2 pr-4 py-1.5 text-xs font-bold text-brand">
+    <div className="max-w-6xl w-full mx-auto px-4 md:px-10 pt-8 md:pt-12 pb-12">
+      {/* 01 这是什么（深色氛围 hero） */}
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#041e23] via-[#0a5f66] to-brand text-white shadow-xl shadow-brand/10">
+        <div className="relative grid lg:grid-cols-[42%_58%] gap-10 lg:gap-12 items-center py-10 md:py-16 px-6 md:px-12">
+        <div className="animate-fade-up">
+          <span className="inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-white/10 pl-2 pr-4 py-1.5 text-xs font-bold text-white">
             <StripeMark barClassName="!h-3.5 !w-1" />
             Auction Bid Console · 个人维护项目
           </span>
 
-          <h1 className="mt-6 text-4xl md:text-5xl lg:text-[3.2rem] font-black text-primary tracking-tight leading-[1.15]">
+          <h1 className="mt-6 text-4xl md:text-6xl lg:text-[3.6rem] font-black text-white tracking-tight leading-[1.08]">
             拍卖竞价显示系统
           </h1>
 
-          <p className="mt-6 text-[15px] md:text-base text-secondary leading-relaxed max-w-[30rem]">
+          <p className="mt-6 text-[15px] md:text-lg text-white/85 leading-relaxed max-w-[30rem]">
             标的管理、实时报价、副屏投屏、成交归档，
-            <b className="text-primary font-bold">一个程序跑完。</b>
+            <b className="text-white font-bold">一个程序跑完。</b>
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
               href="/experience"
-              className="inline-flex items-center justify-center gap-2 bg-brand text-white text-sm font-bold rounded-full px-7 py-3.5 hover:bg-brand-deep hover:shadow-md transition-all shadow-sm"
+              className="inline-flex items-center justify-center gap-2 bg-white text-brand text-sm font-bold rounded-full px-7 py-3.5 hover:bg-brand-soft transition-all shadow-md"
             >
               看它工作 →
             </Link>
             <Link
               href="/features"
-              className="inline-flex items-center justify-center gap-2 border border-neutral-300 bg-white text-primary text-sm font-bold rounded-full px-7 py-3.5 hover:border-brand hover:text-brand transition-all"
+              className="inline-flex items-center justify-center gap-2 border border-white/40 bg-white/5 text-white text-sm font-bold rounded-full px-7 py-3.5 hover:bg-white/15 transition-all"
             >
               看它有哪些功能
             </Link>
           </div>
         </div>
 
-        <div className="min-w-0">
+        <div className="min-w-0 animate-fade-up" style={{ animationDelay: "0.12s" }}>
           <HeroDashboard />
-          <p className="mt-3 text-[11px] text-neutral-400 tracking-wide">
+          <p className="mt-3 text-[11px] text-white/60 tracking-wide">
             界面截图：控制台 · 起拍设置 / 实时报价 / 操作面板
-            <Link href="/experience" className="text-brand font-semibold hover:underline">
+            <Link href="/experience" className="text-white font-semibold hover:underline">
               看它工作 →
             </Link>
           </p>
@@ -76,7 +76,7 @@ export default function Home() {
             <Link
               key={s.id}
               href={`/solutions#${s.id}`}
-              className="group rounded-xl border border-neutral-200 bg-neutral-50/60 p-6 hover:border-brand/40 hover:bg-white hover:shadow-md transition-all"
+              className="group rounded-xl border border-neutral-200 bg-neutral-50/60 p-6 hover:border-brand/40 hover:bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className="flex items-center gap-3">
                 <span className="h-10 w-10 rounded-lg bg-white border border-neutral-200 text-brand flex items-center justify-center text-base font-black group-hover:bg-brand group-hover:text-white transition-colors">

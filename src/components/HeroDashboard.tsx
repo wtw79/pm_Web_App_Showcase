@@ -5,7 +5,7 @@ import { StripeMark } from "./StripeMark";
 // 仅作视觉示意，正式上线可替换为真实系统截图
 export const HeroDashboard = () => {
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-white shadow-xl overflow-hidden">
+    <div className="rounded-2xl bg-white shadow-2xl shadow-black/30 ring-1 ring-white/10 overflow-hidden">
       {/* 浏览器窗口 chrome */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-100 bg-white">
         <div className="flex gap-1.5" aria-hidden="true">

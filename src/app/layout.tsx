@@ -1,7 +1,6 @@
-import { Sidebar } from "@/components/Sidebar";
+import { TopNav } from "@/components/TopNav";
 import "./globals.css";
 import type { Metadata } from "next";
-import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -35,18 +34,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body
-        className={twMerge(
-          "flex antialiased h-dvh overflow-hidden bg-gray-100"
-        )}
-      >
-        <Sidebar />
-        <div className="lg:pl-2 lg:pt-2 bg-gray-100 flex-1 overflow-y-auto pt-14 lg:pt-2">
-          <div className="flex-1 bg-white min-h-dvh lg:rounded-tl-xl border border-transparent lg:border-neutral-200 overflow-y-auto pb-16 lg:pb-0">
-            {children}
-            <Footer />
-          </div>
-        </div>
+      <body className="antialiased bg-white min-h-dvh flex flex-col">
+        <TopNav />
+        <main className="flex-1 w-full">{children}</main>
+        <Footer />
       </body>
     </html>
   );

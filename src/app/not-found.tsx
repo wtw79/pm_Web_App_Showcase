@@ -6,7 +6,7 @@ const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
 // 提供品牌风视觉 + 返回首页入口，避免默认白屏 "This page could not be found."
 export default function NotFound() {
   return (
-    <main className="max-w-4xl w-full mx-auto py-20 px-4 md:px-10 flex flex-col items-center justify-center text-center min-h-[60dvh]">
+    <main className="max-w-5xl w-full mx-auto py-20 px-4 md:px-10 flex flex-col items-center justify-center text-center min-h-[60dvh]">
       <div className="text-7xl md:text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-brand to-brand/40 tracking-tight">
         404
       </div>

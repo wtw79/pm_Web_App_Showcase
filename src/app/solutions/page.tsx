@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function SolutionsPage() {
   return (
-    <div className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-10 md:pt-14 pb-10">
+    <div className="max-w-6xl w-full mx-auto px-4 md:px-10 pt-8 md:pt-12 pb-10">
       {/* 首屏定位 */}
       <section>
         <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">

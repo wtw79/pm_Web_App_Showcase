@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function FeaturesPage() {
   return (
-    <div className="max-w-5xl w-full mx-auto px-4 md:px-10 pt-10 md:pt-14 pb-10">
+    <div className="max-w-6xl w-full mx-auto px-4 md:px-10 pt-8 md:pt-12 pb-10">
       {/* 首屏定位 */}
       <section>
         <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">
@@ -30,7 +30,7 @@ export default function FeaturesPage() {
         {/* 页面锚点导航（sticky） */}
         <nav
           aria-label="功能目录"
-          className="sticky top-0 z-40 -mx-4 md:-mx-10 px-4 md:px-10 mt-8 py-3 bg-[#f9f9fb]/95 backdrop-blur border-b border-neutral-200"
+          className="sticky top-16 z-40 -mx-4 md:-mx-10 px-4 md:px-10 mt-8 py-3 bg-white/95 backdrop-blur border-b border-neutral-200"
         >
           <div className="flex gap-2 overflow-x-auto pb-1">
             {features.map((f) => (

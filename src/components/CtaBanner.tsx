@@ -19,7 +19,7 @@ export const CtaBanner = ({
 }) => {
   return (
     <section className="my-10 md:my-16">
-      <div className="rounded-2xl bg-gradient-to-br from-brand to-brand-deep px-6 py-12 md:px-12 md:py-14 text-center shadow-lg">
+      <div className="rounded-2xl bg-gradient-to-br from-[#041e23] via-[#0a5f66] to-brand px-6 py-12 md:px-12 md:py-14 text-center shadow-lg shadow-brand/10">
         <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">
           {title}
         </h2>
