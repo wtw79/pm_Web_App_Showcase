@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "适用场景 | 拍卖竞价显示系统",
   description:
     "艺术品拍卖、资产房产、二手车二手物资、典当与司法辅助——这个系统在哪些场景下用得上。",
+  alternates: { canonical: "/solutions" },
 };
 
 export default function SolutionsPage() {

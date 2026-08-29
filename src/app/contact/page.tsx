@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "联系·权益 | 拍卖竞价显示系统",
   description:
     "项目展示仓库的 GitHub 链接、权益声明与产品信息。源代码与可执行程序保留所有权利。",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

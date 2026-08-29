@@ -3,6 +3,9 @@ import type { MetadataRoute } from "next";
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const ORIGIN = "https://wtw79.github.io";
 
+// output: export 下 sitemap 路由必须是静态的（lastModified 在构建期求值）
+export const dynamic = "force-static";
+
 const pages = [
   "",
   "/about",

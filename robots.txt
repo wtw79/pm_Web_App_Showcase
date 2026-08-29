@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wtw79.github.io/pm_Web_App_Showcase/sitemap.xml

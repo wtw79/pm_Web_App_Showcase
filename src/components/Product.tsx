@@ -88,10 +88,10 @@ export const SingleProduct = ({ product }: { product: Product }) => {
             📝 技术文章
           </Link>
           <Link
-            href="/resume"
+            href="/updates"
             className="text-xs bg-neutral-50 border border-neutral-200 text-neutral-600 px-3 py-1.5 rounded-full hover:border-brand hover:text-brand transition-colors"
           >
-            📊 系统总览 · 版本演进
+            📊 版本演进 · 更新记录
           </Link>
           <Link
             href="/about"

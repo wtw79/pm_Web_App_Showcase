@@ -4,9 +4,12 @@ import { MobileDemoGate } from "@/components/MobileDemoGate";
 export const metadata: Metadata = {
   title: "在线演示 | 拍卖竞价显示系统",
   description:
-    "隔窗看它工作：控制台报价、标的管理、系统设置、三主题、投屏演示，浏览器打开即用。",
+    "隔窗看它工作：控制台报价、标的管理、副屏投屏，浏览器打开即用，无需安装。",
+  alternates: { canonical: "/experience" },
 };
 
+// 静态导出页：预览切换（控制台 / 投屏）为纯客户端交互（?tab= 深链由客户端读取），
+// 不使用 searchParams 等动态 API，保证 output: export 下整页静态渲染。
 export default function ExperiencePage() {
   return (
     <div className="flex flex-col min-h-full">
@@ -20,12 +23,9 @@ export default function ExperiencePage() {
         </p>
       </header>
 
-      {/* 演示主体：全宽铺满（移动端自动门控） */}
+      {/* 演示主体：全宽铺满（切换器 + 移动端门控都在组件内） */}
       <div className="w-full px-3 md:px-4 pt-3 pb-4 flex-1">
         <MobileDemoGate />
-        <p className="mt-2 text-[11px] text-neutral-400">
-          提示：系统按桌面端设计；在系统内打开「投屏窗」会以浏览器新窗口演示。
-        </p>
       </div>
     </div>
   );

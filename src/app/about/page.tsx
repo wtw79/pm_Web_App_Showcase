@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "系统介绍 | 拍卖竞价显示系统",
   description:
     "面向拍卖师与现场操作员的桌面管理系统：标的管理、实时报价、副屏投屏、成交归档。",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

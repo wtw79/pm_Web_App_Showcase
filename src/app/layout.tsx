@@ -4,8 +4,6 @@ import type { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
 import { Footer } from "@/components/Footer";
 
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://wtw79.github.io/pm_Web_App_Showcase/"),
   title: "拍卖竞价显示系统 · Auction Bid Console",
@@ -19,13 +17,14 @@ export const metadata: Metadata = {
     locale: "zh_CN",
     url: "https://wtw79.github.io/pm_Web_App_Showcase/",
     siteName: "拍卖竞价显示系统",
-    images: [{ url: `${BASE}/images/console-light.png`, width: 1200, height: 800, alt: "拍卖竞价显示系统 · 控制台" }],
+    // 相对路径由 metadataBase 解析，避免出现 basePath 叠加（/pm_Web_App_Showcase/pm_Web_App_Showcase）
+    images: [{ url: "images/console-light.png", width: 1200, height: 800, alt: "拍卖竞价显示系统 · 控制台" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "拍卖竞价显示系统 · Auction Bid Console",
     description: "标的管理、实时报价、副屏投屏、成交归档，都在一个程序里。",
-    images: [`${BASE}/images/console-light.png`],
+    images: ["images/console-light.png"],
   },
 };
 

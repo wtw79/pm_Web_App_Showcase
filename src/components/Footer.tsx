@@ -30,6 +30,7 @@ export const Footer = () => {
               站点
             </p>
             <ul className="mt-3 space-y-2 text-[13px] font-medium text-secondary">
+              <li><Link href="/about" className="hover:text-brand transition-colors">系统介绍</Link></li>
               <li><Link href="/features" className="hover:text-brand transition-colors">产品功能</Link></li>
               <li><Link href="/solutions" className="hover:text-brand transition-colors">适用场景</Link></li>
               <li><Link href="/experience" className="hover:text-brand transition-colors">在线演示</Link></li>

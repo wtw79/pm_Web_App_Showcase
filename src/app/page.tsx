@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import { StripeMark } from "@/components/StripeMark";
 import { HeroDashboard } from "@/components/HeroDashboard";
 import { StatBar } from "@/components/StatBar";
@@ -19,7 +20,7 @@ const valueProps = [
     icon: "🖥",
     title: "报价实时上大屏",
     desc: "报价一落，副屏立刻刷新。大字卡、报价表、领先号牌一目了然，操作台和投屏互不干扰。",
-    href: "/features#screen",
+    href: "/experience?tab=screen",
   },
   {
     icon: "📁",
@@ -28,6 +29,13 @@ const valueProps = [
     href: "/features#archive",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "拍卖竞价显示系统 · Auction Bid Console",
+  description:
+    "从起拍到落槌，一气呵成。面向拍卖行与现场操作员的一体化系统：标的管理、实时报价、副屏投屏、成交归档。离线可用，开箱即用。",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

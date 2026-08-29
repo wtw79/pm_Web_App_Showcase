@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "文档中心 | 拍卖竞价显示系统",
   description:
     "架构总览、竞价状态机、数据模型、公式引擎、Electron 架构、测试体系——拍卖竞价显示系统的工程实践与实现细节。",
+  alternates: { canonical: "/blog" },
 };
 
 export default async function Blog() {

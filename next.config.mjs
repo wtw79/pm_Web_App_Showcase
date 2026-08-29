@@ -16,6 +16,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // 构建期 TS 检查在受限环境（DSH 沙箱）下 spawn tsc 会被 EPERM 拦截；
+  // 类型把关以独立 `npx tsc --noEmit` 为准（0 错误才允许发布），故跳过构建内复检。
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   pageExtensions: ["ts", "tsx", "mdx"],
 };
 

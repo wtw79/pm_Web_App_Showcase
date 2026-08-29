@@ -12,6 +12,7 @@ export const FeatureModule = ({
   scene,
   fab,
   reverse = false,
+  demoHref = "/experience",
 }: {
   id: string;
   benefit: string;
@@ -22,6 +23,7 @@ export const FeatureModule = ({
   scene: string;
   fab: { f: string; a: string; b: string }[];
   reverse?: boolean;
+  demoHref?: string;
 }) => {
   return (
     <section
@@ -89,7 +91,7 @@ export const FeatureModule = ({
             <span className="font-bold text-neutral-500">适用场景</span> · {scene}
           </p>
           <Link
-            href="/experience"
+            href={demoHref}
             className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold text-brand hover:text-brand-deep transition-colors"
           >
             看它怎么工作 →

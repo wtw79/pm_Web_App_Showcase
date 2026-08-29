@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "产品功能 | 拍卖竞价显示系统",
   description:
     "控制台报价、副屏大屏同步、落槌即归档报表——七个模块覆盖一场拍卖的主要环节。",
+  alternates: { canonical: "/features" },
 };
 
 export default function FeaturesPage() {
@@ -48,7 +49,12 @@ export default function FeaturesPage() {
       {/* 7 大功能模块（FAB 叙述） */}
       <section className="mt-6">
         {features.map((f, i) => (
-          <FeatureModule key={f.id} {...f} reverse={i % 2 === 1} />
+          <FeatureModule
+            key={f.id}
+            {...f}
+            reverse={i % 2 === 1}
+            demoHref={f.id === "screen" ? "/experience?tab=screen" : "/experience"}
+          />
         ))}
       </section>
 

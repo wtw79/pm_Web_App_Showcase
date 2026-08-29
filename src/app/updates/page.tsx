@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "更新记录 | 拍卖竞价显示系统",
   description:
     "从 2021 年桌面版到 Web/Electron 重构版的更新记录，每次改动都记在这里。",
+  alternates: { canonical: "/updates" },
 };
 
 export default function UpdatesPage() {
