@@ -21,7 +21,7 @@ export default function UpdatesPage() {
         更新记录
       </h1>
       <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-2xl">
-        系统从 2021 年活到现在，2025 年年中起由我接手维护。每次更新记一行。
+        系统从 2021 年活到现在，2025 年年中起由我接手维护。改动都记在这里。
       </p>
 
       {/* 当前版本徽章 */}
@@ -77,6 +77,19 @@ export default function UpdatesPage() {
                 · {v.title}
               </span>
             </p>
+            {v.content.length > 0 && (
+              <ul className="mt-1.5 space-y-1">
+                {v.content.map((c) => (
+                  <li
+                    key={c}
+                    className="flex gap-2 text-[13px] text-secondary leading-relaxed"
+                  >
+                    <span className="text-brand font-black flex-none">·</span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
           </Fragment>
         ))}
