@@ -21,7 +21,7 @@ export const FeatureModule = ({
   image: string;
   alt: string;
   scene: string;
-  fab: { f: string; a: string; b: string }[];
+  fab: { f: string; a: string }[];
   reverse?: boolean;
   demoHref?: string;
 }) => {
@@ -72,16 +72,13 @@ export const FeatureModule = ({
             {fab.map((row) => (
               <div
                 key={row.f}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-4 rounded-lg border border-neutral-100 bg-neutral-50/50 px-4 py-3"
+                className="grid grid-cols-1 sm:grid-cols-[1.2fr_1fr] gap-1.5 sm:gap-4 rounded-lg border border-neutral-100 bg-neutral-50/50 px-4 py-3"
               >
                 <span className="text-[13px] font-bold text-primary leading-snug">
                   {row.f}
                 </span>
                 <span className="text-[13px] text-secondary leading-snug">
                   {row.a}
-                </span>
-                <span className="text-[13px] font-semibold text-brand leading-snug">
-                  {row.b}
                 </span>
               </div>
             ))}

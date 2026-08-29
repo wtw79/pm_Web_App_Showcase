@@ -21,7 +21,7 @@ export default function UpdatesPage() {
         更新记录
       </h1>
       <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-2xl">
-        系统从 2021 年活到现在，2025 年年中起由我接手维护。每次更新都记录在这里。
+        系统从 2021 年活到现在，2025 年年中起由我接手维护。每次更新记一行。
       </p>
 
       {/* 当前版本徽章 */}
@@ -32,7 +32,7 @@ export default function UpdatesPage() {
             当前版本 V2.3.00 · Web / Electron 重构版
           </p>
           <p className="mt-0.5 text-[13px] text-secondary">
-            文件管理 Tab（按标的聚合浏览 + 分组导入设置标的 + 回收站删除）· PDF 内嵌预览
+            文件管理 Tab · PDF 内嵌预览
           </p>
         </div>
         <a
@@ -68,27 +68,15 @@ export default function UpdatesPage() {
               }
               aria-hidden="true"
             />
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h2 className="text-lg md:text-xl font-black text-primary">
-                {v.company}
-              </h2>
-              <span className="text-xs font-bold text-neutral-400">
-                {v.date}
+            <p className="text-sm md:text-[15px] font-bold text-primary leading-relaxed">
+              {v.company}
+              <span className="ml-2 text-xs font-bold text-neutral-400">
+                · {v.date}
               </span>
-            </div>
-            <p className="mt-1 text-sm font-semibold text-brand">{v.title}</p>
-            <p className="mt-1 text-[13px] text-secondary">{v.description}</p>
-            <ul className="mt-3 space-y-1.5">
-              {v.responsibilities.map((r) => (
-                <li
-                  key={r}
-                  className="flex gap-2 text-[13px] text-secondary leading-relaxed"
-                >
-                  <span className="text-brand font-black flex-none">·</span>
-                  {r}
-                </li>
-              ))}
-            </ul>
+              <span className="ml-2 font-medium text-neutral-600">
+                · {v.title}
+              </span>
+            </p>
           </li>
           </Fragment>
         ))}
