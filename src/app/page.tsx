@@ -5,7 +5,6 @@ import { HeroDashboard } from "@/components/HeroDashboard";
 import { StatBar } from "@/components/StatBar";
 import { SectionHead } from "@/components/SectionHead";
 import { CtaBanner } from "@/components/CtaBanner";
-import { features } from "@/constants/features";
 import { solutions } from "@/constants/solutions";
 
 export const metadata: Metadata = {
@@ -69,56 +68,9 @@ export default function Home() {
         <StatBar />
       </section>
 
-      {/* ═══════ 03 功能一览 ═══════ */}
+      {/* ═══════ 03 适用场景 ═══════ */}
       <section className="mt-14 md:mt-20">
-        <SectionHead index="03" title="功能一览" />
-        <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
-          {features.map((f, i) => (
-            <Link
-              key={f.id}
-              href={`/features#${f.id}`}
-              className={
-                "group relative rounded-xl border border-neutral-200 bg-white overflow-hidden hover:border-brand/40 hover:shadow-md transition-all " +
-                (i === 0 ? "sm:col-span-2" : "")
-              }
-            >
-              <div
-                className={
-                  "relative overflow-hidden bg-neutral-50 " +
-                  (i === 0 ? "h-52 md:h-64" : "h-40 md:h-44")
-                }
-              >
-                <img
-                  src={f.image}
-                  alt={f.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="text-base font-black text-primary group-hover:text-brand transition-colors">
-                  {f.title}
-                </h3>
-                <p className="mt-1.5 text-[13px] text-secondary leading-relaxed line-clamp-1">
-                  {f.desc}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-6 text-center">
-          <Link
-            href="/features"
-            className="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-deep transition-colors"
-          >
-            看每个功能的具体说明 →
-          </Link>
-        </div>
-      </section>
-
-      {/* ═══════ 04 适用场景 ═══════ */}
-      <section className="mt-14 md:mt-20">
-        <SectionHead index="04" title="哪些场景用得上" />
+        <SectionHead index="03" title="哪些场景用得上" />
         <div className="grid md:grid-cols-3 gap-4 md:gap-5">
           {solutions.map((s) => (
             <Link
@@ -145,12 +97,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ 05 关于这个项目 ═══════ */}
+      {/* ═══════ 04 关于这个项目 ═══════ */}
       <section className="mt-14 md:mt-20">
-        <SectionHead index="05" title="关于这个项目" />
+        <SectionHead index="04" title="关于这个项目" />
         <div className="rounded-2xl border border-neutral-200 bg-neutral-50/60 px-6 py-8 md:px-10">
           <p className="text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
-            系统从 2021 年活到现在，2025 年年中起由我接手维护。一个人维护，只把现场该做的事做扎实。
+            系统从 2021 年活到现在，2025 年年末起由我接手维护。一个人维护，只把现场该做的事做扎实。
             <Link href="/updates" className="text-brand font-semibold hover:underline">
               看更新记录 →
             </Link>

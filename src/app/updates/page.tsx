@@ -21,7 +21,7 @@ export default function UpdatesPage() {
         更新记录
       </h1>
       <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-2xl">
-        系统从 2021 年活到现在，2025 年年中起由我接手维护。改动都记在这里。
+        系统从 2021 年活到现在，2025 年年末起由我接手维护。改动都记在这里。
       </p>
 
       {/* 当前版本徽章 */}
