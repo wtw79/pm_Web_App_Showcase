@@ -129,16 +129,16 @@ export default function SolutionsPage() {
       <div className="mt-10">
         <CtaBanner
           title="你的场景不在上面？"
-          secondaryLabel="联系我"
-          primaryLabel="在线体验看看"
+          secondaryLabel="与作者聊聊"
+          primaryLabel="看它工作"
         />
       </div>
       <p className="text-center text-xs text-neutral-400 mt-4">
         展会活动、公益拍卖等其他场合，只要流程类似基本都能用——
         <Link href="/contact" className="text-brand font-semibold hover:underline">
-          联系我
+          与作者聊聊
         </Link>
-        聊聊你的具体流程。
+        你的具体流程。
       </p>
     </div>
   );

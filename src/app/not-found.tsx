@@ -15,7 +15,7 @@ export default function NotFound() {
       </h1>
       <p className="mt-3 text-sm text-neutral-500 max-w-md">
         您访问的地址不存在或已被移除。请返回首页，或通过左侧导航进入
-        系统介绍 / 核心功能 / 在线体验 / 技术文章。
+        首页 / 产品功能 / 在线演示 / 文档中心。
       </p>
       <div className="mt-8 flex flex-col sm:flex-row gap-3">
         <Link
@@ -28,7 +28,7 @@ export default function NotFound() {
           href="/experience"
           className="inline-flex items-center justify-center gap-2 border border-neutral-200 text-neutral-700 text-sm font-semibold rounded-full px-7 py-3.5 hover:border-brand hover:text-brand transition-colors"
         >
-          🎮 在线体验系统
+          看它工作
         </Link>
       </div>
     </main>

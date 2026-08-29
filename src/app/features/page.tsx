@@ -7,7 +7,7 @@ import { features } from "@/constants/features";
 export const metadata: Metadata = {
   title: "产品功能 | 拍卖竞价显示系统",
   description:
-    "控制台报价零失误、副屏专业大屏同步、落槌即归档报表——六大核心模块覆盖拍卖会完整流程。",
+    "控制台报价、副屏大屏同步、落槌即归档报表——七个模块覆盖一场拍卖的主要环节。",
 };
 
 export default function FeaturesPage() {
@@ -45,7 +45,7 @@ export default function FeaturesPage() {
         </nav>
       </section>
 
-      {/* 6 大功能模块（FAB 叙述） */}
+      {/* 7 大功能模块（FAB 叙述） */}
       <section className="mt-6">
         {features.map((f, i) => (
           <FeatureModule key={f.id} {...f} reverse={i % 2 === 1} />
@@ -54,16 +54,16 @@ export default function FeaturesPage() {
 
       {/* 页末汇总 CTA */}
       <CtaBanner
-        title="看完了，想试试实际效果？"
-        primaryLabel="在线体验"
-        secondaryLabel="联系我"
+        title="看见它怎么工作了吗？"
+        primaryLabel="看它工作"
+        secondaryLabel="与作者聊聊"
       />
       <p className="text-center text-xs text-neutral-400 mt-4">
-        需要技术细节？前往
+        想看看它的构造？前往
         <Link href="/blog" className="text-brand font-semibold hover:underline">
           文档中心
         </Link>
-        ——架构总览、竞价状态机、公式引擎、测试体系。
+        ——架构、状态机、公式引擎。
       </p>
     </div>
   );

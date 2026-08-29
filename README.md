@@ -100,7 +100,7 @@ sidefolio-template（原版模板）
 
 ## 🏷 版本信息
 
-- 产品版本：**V2.2.00**（对齐 pm 桌面端，三端业务规则严格一致）
+- 产品版本：**V2.3.00**（对齐 pm 桌面端，三端业务规则严格一致）
 - 品牌站技术栈：Next.js 16 · Tailwind v4 · Motion · MDX（Sidefolio 模板）
 - 系统技术栈：React 18 · Vite 5 · Electron 33 · sql.js · Vitest（88 用例）
 

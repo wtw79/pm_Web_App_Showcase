@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import { MobileDemoGate } from "@/components/MobileDemoGate";
 
 export const metadata: Metadata = {
-  title: "在线体验 | 拍卖竞价显示系统",
+  title: "在线演示 | 拍卖竞价显示系统",
   description:
-    "浏览器打开即用的纯 Web 演示版：控制台报价、标的管理、系统设置、三主题、投屏演示。",
+    "隔窗看它工作：控制台报价、标的管理、系统设置、三主题、投屏演示，浏览器打开即用。",
 };
 
 export default function ExperiencePage() {
@@ -13,10 +13,10 @@ export default function ExperiencePage() {
       {/* 极简标题区：不占演示空间 */}
       <header className="w-full px-3 md:px-4 pt-4 md:pt-5">
         <p className="text-xs font-bold tracking-[0.18em] text-brand uppercase">
-          Live Demo · 在线体验
+          Live Demo · 看它工作
         </p>
         <p className="mt-1 text-[13px] text-neutral-400">
-          浏览器打开即用的演示版 · 数据保存在本地 · 建议电脑上体验
+          起拍 → 应价 → 落槌 → 归档，隔窗看一场拍卖如何被数字化
         </p>
       </header>
 

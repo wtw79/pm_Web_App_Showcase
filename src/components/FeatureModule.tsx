@@ -92,7 +92,7 @@ export const FeatureModule = ({
             href="/experience"
             className="inline-flex items-center gap-1.5 mt-4 text-sm font-bold text-brand hover:text-brand-deep transition-colors"
           >
-            在线体验此功能 →
+            看它怎么工作 →
           </Link>
         </div>
       </div>

@@ -11,6 +11,7 @@ async function importBlog(slug: string) {
 
 export async function getAllBlogs() {
   const slugs = [
+    "file-management",
     "architecture-overview",
     "electron-architecture",
     "state-management",

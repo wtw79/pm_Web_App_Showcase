@@ -74,7 +74,7 @@ export default function Home() {
               href="/experience"
               className="inline-flex items-center justify-center gap-2 bg-brand text-white text-sm font-bold rounded-full px-7 py-3.5 hover:bg-brand-deep hover:shadow-md hover:-translate-y-0.5 transition-all shadow-sm"
             >
-              在线体验演示版 →
+              看它工作 →
             </Link>
             <Link
               href="/features"
@@ -87,8 +87,8 @@ export default function Home() {
           <ul className="mt-8 space-y-2.5">
             {[
               "纯桌面程序，数据存在本机，不上传",
-              "核心流程有 88 个自动化测试覆盖（逻辑 / 接口 / 性能分层）",
-              "V2.3.00 · 从 2021 年持续更新到现在",
+              "落槌即归档，报表和现场截图自动躺进标的的文件夹",
+              "V2.3.00 · 从 2021 年活到现在",
             ].map((t) => (
               <li
                 key={t}
@@ -108,7 +108,7 @@ export default function Home() {
           <p className="mt-3 text-[11px] text-neutral-400 tracking-wide">
             界面截图：控制台 · 起拍设置 / 实时报价 / 操作面板
             <Link href="/experience" className="text-brand font-semibold hover:underline">
-              在线体验 →
+              看它工作 →
             </Link>
           </p>
         </div>
@@ -255,9 +255,9 @@ export default function Home() {
             每一步操作都有可追溯的记录，让一场拍卖从头到尾清晰可控。
           </p>
           <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
-            系统由<b className="text-primary">我个人维护</b>，不追求大而全，
-            只把该做好的内容结构化、标准化，并把每一步改进做扎实。
-            核心逻辑对齐行业里成熟的桌面版流程，写有自动化测试；
+            系统由<b className="text-primary">我一个人维护</b>，不追求大而全，
+            只把现场该做的事做扎实。核心流程每一步都有记录，
+            错了可以撤回，不会让你带着糊涂散场；
             如果你在实际使用中发现什么问题，欢迎在
             <a
               href="https://github.com/wtw79/pm_Web_App_Showcase"

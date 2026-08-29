@@ -41,7 +41,7 @@ export const Contact = () => {
           </p>
           <p>
             ❌ 不包含：<strong className="text-neutral-800">源代码</strong>（src/）、
-            <strong className="text-neutral-800">Electron 主进程</strong>（electron/）、
+            <strong className="text-neutral-800">桌面端主体程序</strong>（electron/）、
             <strong className="text-neutral-800">可执行程序</strong>（exe/安装包）等核心权益文件。
           </p>
           <p>
@@ -61,16 +61,16 @@ export const Contact = () => {
             <span className="font-semibold text-neutral-800">V2.3.00</span>
           </div>
           <div className="flex justify-between border-b border-neutral-100 pb-2">
-            <span>技术架构</span>
-            <span className="font-semibold text-neutral-800">React + Electron</span>
+            <span>运行方式</span>
+            <span className="font-semibold text-neutral-800">桌面应用 · 离线可用</span>
           </div>
           <div className="flex justify-between border-b border-neutral-100 pb-2">
-            <span>技术栈</span>
-            <span className="font-semibold text-neutral-800">React · Vite · Electron · sql.js</span>
+            <span>界面主题</span>
+            <span className="font-semibold text-neutral-800">青绿 / 深空 / 玻璃</span>
           </div>
           <div className="flex justify-between border-b border-neutral-100 pb-2">
-            <span>测试保障</span>
-            <span className="font-semibold text-neutral-800">88 自动化用例 · 逻辑 / 接口 / 性能分层</span>
+            <span>数据存储</span>
+            <span className="font-semibold text-neutral-800">本机私有 · 不上传</span>
           </div>
         </div>
       </div>

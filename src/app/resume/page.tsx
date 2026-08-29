@@ -10,17 +10,17 @@ export default function ResumePage() {
       <span className="text-4xl">📊</span>
       <Heading className="font-black">系统总览</Heading>
       <Paragraph className="max-w-xl mt-4">
-        一场拍卖的全流程数字化：<Highlight>88 个自动化测试用例</Highlight>
-        护航核心竞价逻辑，3 套主题换肤，45 行/页的规范报表，6 大核心特性
-        覆盖标的管理、报价、投屏、归档的完整业务闭环。
+        一场拍卖的全流程数字化：<Highlight>7 大核心模块</Highlight>
+        覆盖标的管理、报价、投屏、归档的完整业务闭环，
+        3 套主题换肤，45 轮/页的规范报表。
       </Paragraph>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-10">
         {[
-          ["88", "自动化测试用例"],
+          ["7", "核心模块"],
           ["3", "主题换肤"],
           ["45", "报表每页轮次"],
-          ["6", "核心特性"],
+          ["0", "网络依赖"],
         ].map(([num, label]) => (
           <div
             key={label}

@@ -69,7 +69,7 @@ export default function About() {
         </Paragraph>
         <Paragraph className=" mt-4">
           <b className="text-neutral-700">系统维护</b>：本系统由个人独立开发和维护，
-          早期版本为内部使用的桌面工具，后逐步整理为现在的 Web / Electron 版本。
+          早期版本是内部用的桌面工具，后来整理成现在的样子。
           功能范围聚焦拍卖现场的核心流程，每个功能都在真实场景中经过验证。
           使用中如有问题或建议，欢迎在 GitHub 上提 issue 或直接联系。
         </Paragraph>
