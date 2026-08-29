@@ -1,7 +1,6 @@
 import {
   IconArticle,
   IconBolt,
-  IconBuildingBank,
   IconChartBar,
   IconHistory,
   IconLayoutDashboard,
@@ -10,7 +9,6 @@ import {
 } from "@tabler/icons-react";
 
 // 产品站导航（IA 蓝图：识别 → 理解 → 信任 → 试用 → 联系）
-// 首页 / 产品功能 / 行业方案 / 在线演示 / 文档中心 / 版本发布 / 联系
 export const navlinks = [
   {
     href: "/",
@@ -21,11 +19,6 @@ export const navlinks = [
     href: "/features",
     label: "产品功能",
     icon: IconLayoutDashboard,
-  },
-  {
-    href: "/solutions",
-    label: "适用场景",
-    icon: IconBuildingBank,
   },
   {
     href: "/experience",
