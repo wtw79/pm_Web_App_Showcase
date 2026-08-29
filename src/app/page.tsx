@@ -8,28 +8,6 @@ import { CtaBanner } from "@/components/CtaBanner";
 import { features } from "@/constants/features";
 import { solutions } from "@/constants/solutions";
 
-// 这个系统能做什么（务实叙述，不夸大）
-const valueProps = [
-  {
-    icon: "⚡",
-    title: "装上就能用",
-    desc: "下载即装，数据存在本机，不需要服务器、不需要联网。浏览器里也能打开演示版先看看。",
-    href: "/features#desktop",
-  },
-  {
-    icon: "🖥",
-    title: "报价实时上大屏",
-    desc: "报价一落，副屏立刻刷新。大字卡、报价表、领先号牌一目了然，操作台和投屏互不干扰。",
-    href: "/experience?tab=screen",
-  },
-  {
-    icon: "📁",
-    title: "成交自动归档",
-    desc: "成交瞬间锁定结果，规范格式的《拍卖记录表》自动生成，散场后少加班。",
-    href: "/features#archive",
-  },
-];
-
 export const metadata: Metadata = {
   title: "拍卖竞价显示系统 · Auction Bid Console",
   description:
@@ -54,8 +32,8 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 text-[15px] md:text-base text-secondary leading-relaxed max-w-[30rem]">
-            标的管理、实时报价、副屏投屏、成交归档，都在一个程序里。
-            <b className="text-primary font-bold">一个人能操作，断网也能跑。</b>
+            标的管理、实时报价、副屏投屏、成交归档，
+            <b className="text-primary font-bold">一个程序跑完。</b>
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -72,24 +50,6 @@ export default function Home() {
               看它有哪些功能
             </Link>
           </div>
-
-          <ul className="mt-8 space-y-2.5">
-            {[
-              "纯桌面程序，数据存在本机，不上传",
-              "落槌即归档，报表和现场截图自动躺进标的的文件夹",
-              "V2.3.00 · 从 2021 年活到现在",
-            ].map((t) => (
-              <li
-                key={t}
-                className="flex items-center gap-2.5 text-[13px] font-medium text-secondary"
-              >
-                <span className="h-5 w-5 rounded-full bg-emerald-50 text-emerald-600 text-[11px] font-black flex items-center justify-center flex-none">
-                  ✓
-                </span>
-                {t}
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="min-w-0">
@@ -109,42 +69,9 @@ export default function Home() {
         <StatBar />
       </section>
 
-      {/* ═══════ 03 这个系统能做什么 ═══════ */}
+      {/* ═══════ 03 功能一览 ═══════ */}
       <section className="mt-14 md:mt-20">
-        <SectionHead
-          index="03"
-          title="这个系统能做什么"
-          desc="不吹功能，就说它实际帮你省了哪些事。"
-        />
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-          {valueProps.map((v) => (
-            <Link
-              key={v.title}
-              href={v.href}
-              className="group rounded-xl border border-neutral-200 bg-white p-6 md:p-7 hover:border-brand/40 hover:shadow-md transition-all"
-            >
-              <div className="text-2xl">{v.icon}</div>
-              <h3 className="mt-4 text-lg font-black text-primary group-hover:text-brand transition-colors">
-                {v.title}
-              </h3>
-              <p className="mt-2 text-sm text-secondary leading-relaxed">
-                {v.desc}
-              </p>
-              <span className="inline-block mt-4 text-sm font-bold text-brand">
-                看实现 →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══════ 04 功能一览 ═══════ */}
-      <section className="mt-14 md:mt-20">
-        <SectionHead
-          index="04"
-          title="功能一览"
-          desc="标的管理 → 现场报价 → 大屏投屏 → 成交归档，覆盖一场拍卖的主要环节。"
-        />
+        <SectionHead index="03" title="功能一览" />
         <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
           {features.map((f, i) => (
             <Link
@@ -172,7 +99,7 @@ export default function Home() {
                 <h3 className="text-base font-black text-primary group-hover:text-brand transition-colors">
                   {f.title}
                 </h3>
-                <p className="mt-1.5 text-[13px] text-secondary leading-relaxed line-clamp-2">
+                <p className="mt-1.5 text-[13px] text-secondary leading-relaxed line-clamp-1">
                   {f.desc}
                 </p>
               </div>
@@ -189,13 +116,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ 05 适用场景 ═══════ */}
+      {/* ═══════ 04 适用场景 ═══════ */}
       <section className="mt-14 md:mt-20">
-        <SectionHead
-          index="05"
-          title="哪些场景用得上"
-          desc="流程是『标的 + 现场竞价 + 落槌归档』的场合，基本都能用。"
-        />
+        <SectionHead index="04" title="哪些场景用得上" />
         <div className="grid md:grid-cols-3 gap-4 md:gap-5">
           {solutions.map((s) => (
             <Link
@@ -211,7 +134,7 @@ export default function Home() {
                   {s.title}
                 </h3>
               </div>
-              <p className="mt-3 text-[13px] text-secondary leading-relaxed line-clamp-3">
+              <p className="mt-3 text-[13px] text-secondary leading-relaxed line-clamp-1">
                 {s.intro}
               </p>
               <span className="inline-block mt-4 text-sm font-bold text-brand">
@@ -222,33 +145,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════ 06 关于这个项目 ═══════ */}
+      {/* ═══════ 05 关于这个项目 ═══════ */}
       <section className="mt-14 md:mt-20">
-        <SectionHead
-          index="06"
-          title="关于这个项目"
-          desc=""
-        />
-        <div className="rounded-2xl border border-neutral-200 bg-neutral-50/60 px-6 py-10 md:px-10">
+        <SectionHead index="05" title="关于这个项目" />
+        <div className="rounded-2xl border border-neutral-200 bg-neutral-50/60 px-6 py-8 md:px-10">
           <p className="text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
-            拍卖现场靠喊报价、靠笔记录，大屏要专人盯守，散场还得手工整理成交台账——越到关键轮次越容易出错。
-            这套系统把「标的管理 → 现场报价 → 大屏投屏 → 成交归档」收进一个程序：
-            报价落屏、成交归档，每一步都留得下记录。
-          </p>
-          <p className="mt-4 text-[15px] md:text-base text-secondary leading-relaxed max-w-3xl">
-            系统由<b className="text-primary">我一个人维护</b>，不追求大而全，
-            只把现场该做的事做扎实。它 2021 年就在拍卖现场干活，2025 年年中起由我接手维护；
-            核心流程每一步都有记录，错了可以撤回，不会让你带着糊涂散场。
-            如果你在实际使用中发现什么问题，欢迎在
-            <a
-              href="https://github.com/wtw79/pm_Web_App_Showcase"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand font-semibold hover:underline"
-            >
-              GitHub
-            </a>
-            上提 issue。
+            系统从 2021 年活到现在，2025 年年中起由我接手维护。一个人维护，只把现场该做的事做扎实。
+            <Link href="/updates" className="text-brand font-semibold hover:underline">
+              看更新记录 →
+            </Link>
           </p>
         </div>
       </section>
