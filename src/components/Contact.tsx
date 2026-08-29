@@ -58,7 +58,7 @@ export const Contact = () => {
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-neutral-600">
           <div className="flex justify-between border-b border-neutral-100 pb-2">
             <span>产品版本</span>
-            <span className="font-semibold text-neutral-800">V2.2.00</span>
+            <span className="font-semibold text-neutral-800">V2.3.00</span>
           </div>
           <div className="flex justify-between border-b border-neutral-100 pb-2">
             <span>技术架构</span>
@@ -70,7 +70,7 @@ export const Contact = () => {
           </div>
           <div className="flex justify-between border-b border-neutral-100 pb-2">
             <span>测试保障</span>
-            <span className="font-semibold text-neutral-800">88 自动化用例 · 100% 通过</span>
+            <span className="font-semibold text-neutral-800">88 自动化用例 · 逻辑 / 接口 / 性能分层</span>
           </div>
         </div>
       </div>

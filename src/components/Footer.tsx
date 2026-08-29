@@ -18,7 +18,7 @@ export const Footer = () => {
               </span>
             </div>
             <p className="mt-3 text-xs text-secondary leading-relaxed">
-              Auction Bid Console · V2.2.00 · 个人维护项目
+              Auction Bid Console · V2.3.00 · 个人维护项目
               <br />
               标的管理、实时报价、副屏投屏、成交归档
             </p>

@@ -63,7 +63,7 @@ export default function About() {
           不依赖网络，开箱即用）。
         </Paragraph>
         <Paragraph className=" mt-4">
-          <b className="text-neutral-700">版本</b>：产品版本 V2.2.00；报价校验、
+          <b className="text-neutral-700">版本</b>：产品版本 V2.3.00；报价校验、
           状态机、报表格式、软键盘等核心规则按拍卖行业标准流程严谨实现，
           行为稳定可靠。
         </Paragraph>
